@@ -11,6 +11,7 @@ from bsync import bsync
 root = bsync.BuildingSync()
 root.set('version', '2.2.0')
 
+# Valid element attributes can also be passed in as kwargs
 f = bsync.Facilities(bsync.Facilities.Facility(ID='Facility-1'))
 
 # Add the facilities.facility elements to the root
