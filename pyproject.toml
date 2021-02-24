@@ -2,7 +2,7 @@
 name = "bsyncpy"
 version = "0.1.0"
 description = "Tools to autogenerate a Python SDK for BuildingSync given an XSD"
-authors = ["Your Name <you@example.com>"]
+authors = ["Joel Bender <joel@carrickbender.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7.4"
