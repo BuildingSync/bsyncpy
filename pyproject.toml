@@ -5,7 +5,8 @@ description = "Tools to autogenerate a Python SDK for BuildingSync given an XSD"
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7.4"
+lxml = "^4.6.2"
 
 [tool.poetry.dev-dependencies]
 
