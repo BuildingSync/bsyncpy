@@ -21,3 +21,13 @@ with open('output.xml', 'wb+') as f:
     output = etree.tostring(root.toxml(), pretty_print=True, doctype='<?xml version="1.0" encoding="UTF-8"?>')
     f.write(output)
 ```
+
+Output
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildingSync version="2.2.0">
+  <Facilities>
+    <Facility ID="Facility-1"/>
+  </Facilities>
+</BuildingSync>
+```
