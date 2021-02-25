@@ -10,6 +10,7 @@ lxml = "^4.6.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"
+pre-commit = "^2.10.1"
 
 [build-system]
 requires = ["poetry>=0.12"]
