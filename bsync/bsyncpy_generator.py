@@ -715,7 +715,7 @@ sorted_dependancies = topological_sort()
 #   Create an output file with the header
 #
 
-with open("bsyncpy.py", "w") as bspy_file:
+with open("bsync.py", "w") as bspy_file:
     with open("bsyncpy_header.py") as bspy_header:
         bspy_file.write(bspy_header.read())
 
