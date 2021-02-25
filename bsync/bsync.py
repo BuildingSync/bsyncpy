@@ -53,7 +53,7 @@ class BSElement:
                     raise TypeError("boolean expected")
                 self._text = "true" if args[0] else "false"
 
-            elif self.element_type == "xs:integer":
+            elif self.element_type == "xs:integer" or self.element_type == "xs:int":
                 if len(args) > 1:
                     raise RuntimeError("too many arguments")
                 if not isinstance(arg_value, int):
