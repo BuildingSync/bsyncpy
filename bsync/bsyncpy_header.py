@@ -19,8 +19,7 @@ class BSElement:
     element_union: List[type] = []
 
     def __init__(self, *args, **kwargs):
-        """Create an instance of a BuildingSync element.
-        """
+        """Create an instance of a BuildingSync element."""
         self._children_by_name = dict(self.element_children)
         self._children_values = {}
         self._text = None
@@ -136,8 +135,7 @@ class BSElement:
         self._attributes = kwargs
 
     def __getattr__(self, attr):
-        """Get the value of a child element.
-        """
+        """Get the value of a child element."""
         if attr.startswith("_"):
             return object.__getattribute__(self, attr)
 
@@ -159,8 +157,7 @@ class BSElement:
             return values
 
     def __setattr__(self, attr, value):
-        """Set the value of a child element.
-        """
+        """Set the value of a child element."""
         if attr.startswith("_"):
             return super().__setattr__(attr, value)
 
@@ -209,25 +206,21 @@ class BSElement:
         return self + value
 
     def set(self, attr: str, value: str) -> None:
-        """Set an XML attribute value for the element.
-        """
+        """Set an XML attribute value for the element."""
         assert isinstance(value, str)
         self._attributes[attr] = value
 
     def __setitem__(self, item: str, value: str) -> None:
-        """Array form 'element[attr] = value' of 'element.set(attr, value).
-        """
+        """Array form 'element[attr] = value' of 'element.set(attr, value)."""
         assert isinstance(value, str)
         self._attributes[item] = value
 
     def get(self, attr: str) -> Any:
-        """Return an XML attribute value for the element.
-        """
+        """Return an XML attribute value for the element."""
         return self._attributes[attr]
 
     def __getitem__(self, item: str) -> str:
-        """Array form of 'element.get(attr)'.
-        """
+        """Array form of 'element.get(attr)'."""
         return self._attributes[item]
 
     def toxml(self, root=None, child_name=None) -> Any:
@@ -264,6 +257,5 @@ class BSElement:
         return myroot
 
     def __str__(self):
-        """Convert the element into a string.
-        """
+        """Convert the element into a string."""
         return etree.tostring(self.toxml(), pretty_print=True).decode()

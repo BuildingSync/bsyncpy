@@ -426,6 +426,28 @@ class eGRIDRegionCode(BSElement):
     ]
 
 
+# WeatherDataStationID
+class WeatherDataStationID(BSElement):
+    """For an actual weather station, this is the ID assigned by National Oceanic and Atmospheric Administration (NOAA). For hourly energy simulations, this is the six digit code associated with the hourly weather data, generally found in the name of the weather data file, as well as in the header of the data file. (NNNNNN) WARNING: This element is being deprecated, use WeatherStations/WeatherStation/WeatherDataStationID instead"""
+
+    element_type = "xs:string"
+
+
+# WeatherStationName
+class WeatherStationName(BSElement):
+    """The name of the weather station associated with this premises, which could be used for simulations, weather normalization, anomaly resolution, etc. For simulations, this is usually the name of the weather file, but the name is also in the header of the data file (TMY, IWEC), such as USA_CO_Denver.Intl.AP. WARNING: This element is being deprecated, use WeatherStations/WeatherStation/WeatherStationName instead"""
+
+    element_type = "xs:string"
+
+
+# WeatherStationCategory
+class WeatherStationCategory(BSElement):
+    """Describes the type of weather station used to specify the site's weather. WARNING: This element is being deprecated, use WeatherStations/WeatherStation/WeatherStationCategory instead"""
+
+    element_type = "xs:string"
+    element_enumerations = ["FAA", "ICAO", "NWS", "WBAN", "WMO", "Other"]
+
+
 # Longitude
 class Longitude(BSElement):
     """Distance measured in degrees east or west from an imaginary line (called the prime meridian) that goes from the North Pole to the South Pole and that passes through Greenwich, England. (degrees)"""
@@ -3052,6 +3074,58 @@ class FrequencyOfMaintenance(BSElement):
     ]
 
 
+# HVACSystemType.PrimaryHVACSystemType
+class PrimaryHVACSystemType(BSElement):
+    """Primary HVAC type. WARNING: This element is being deprecated, use PrincipalHVACSystemType instead."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Packaged Terminal Air Conditioner",
+        "Four Pipe Fan Coil Unit",
+        "Packaged Terminal Heat Pump",
+        "Packaged Rooftop Air Conditioner",
+        "Packaged Rooftop Heat Pump",
+        "Packaged Rooftop VAV with Hot Water Reheat",
+        "Packaged Rooftop VAV with Electric Reheat",
+        "VAV with Hot Water Reheat",
+        "VAV with Electric Reheat",
+        "Warm Air Furnace",
+        "Ventilation Only",
+        "Dedicated Outdoor Air System",
+        "Water Loop Heat Pump",
+        "Ground Source Heat Pump",
+        "VRF Terminal Unit",
+        "Chilled Beam",
+        "Other",
+    ]
+
+
+# HVACSystemType.PrincipalHVACSystemType
+class PrincipalHVACSystemType(BSElement):
+    """Principal HVAC type."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Packaged Terminal Air Conditioner",
+        "Four Pipe Fan Coil Unit",
+        "Packaged Terminal Heat Pump",
+        "Packaged Rooftop Air Conditioner",
+        "Packaged Rooftop Heat Pump",
+        "Packaged Rooftop VAV with Hot Water Reheat",
+        "Packaged Rooftop VAV with Electric Reheat",
+        "VAV with Hot Water Reheat",
+        "VAV with Electric Reheat",
+        "Warm Air Furnace",
+        "Ventilation Only",
+        "Dedicated Outdoor Air System",
+        "Water Loop Heat Pump",
+        "Ground Source Heat Pump",
+        "VRF Terminal Unit",
+        "Chilled Beam",
+        "Other",
+    ]
+
+
 # Quantity
 class Quantity(BSElement):
     """Number of systems of this type."""
@@ -3110,25 +3184,11 @@ class BurnerControlType(BSElement):
     ]
 
 
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.Furnace.BurnerQuantity
-class BurnerQuantity(BSElement):
-    """The number of burners."""
-
-    element_type = "xs:integer"
-
-
 # BurnerYearInstalled
 class BurnerYearInstalled(BSElement):
     """Year that the burner was installed"""
 
     element_type = "xs:gYear"
-
-
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.Furnace.BurnerTurndownRatio
-class BurnerTurndownRatio(BSElement):
-    """If applicable, the turndown ratio for the burner. (full input/minimum input)"""
-
-    element_type = "xs:decimal"
 
 
 # IgnitionType
@@ -3178,20 +3238,6 @@ class CondensingOperation(BSElement):
         "Other",
         "Unknown",
     ]
-
-
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.Furnace.CombustionEfficiency
-class CombustionEfficiency(BSElement):
-    """The measure of how much energy is extracted from the fuel and is the ratio of heat transferred to the combustion air divided by the heat input of the fuel. (0-1) (fraction)"""
-
-    element_type = "xs:decimal"
-
-
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.Furnace.ThermalEfficiency
-class ThermalEfficiency(BSElement):
-    """The efficiency of heat transfer between the combustion process and the heated steam, water, or air. (0-1) (fraction)"""
-
-    element_type = "xs:decimal"
 
 
 # ThirdPartyCertification
@@ -3347,13 +3393,6 @@ class HeatingMedium(BSElement):
     ]
 
 
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.AnnualHeatingEfficiencyValue
-class AnnualHeatingEfficiencyValue(BSElement):
-    """Overall annual efficiency of a heating system."""
-
-    element_type = "xs:decimal"
-
-
 # AnnualHeatingEfficiencyUnits
 class AnnualHeatingEfficiencyUnits(BSElement):
     """The measure used to quantify efficiency."""
@@ -3367,13 +3406,6 @@ class AnnualHeatingEfficiencyUnits(BSElement):
         "Other",
         "Unknown",
     ]
-
-
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.InputCapacity
-class InputCapacity(BSElement):
-    """The rate of energy consumption of the heating equipment at full load."""
-
-    element_type = "xs:decimal"
 
 
 # CapacityUnits
@@ -3420,13 +3452,6 @@ class HeatingStaging(BSElement):
         "Other",
         "Unknown",
     ]
-
-
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.NumberOfHeatingStages
-class NumberOfHeatingStages(BSElement):
-    """The number of heating stages, excluding "off." """
-
-    element_type = "xs:integer"
 
 
 # PrimaryFuel
@@ -3540,20 +3565,6 @@ class Refrigerant(BSElement):
     ]
 
 
-# HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType.DX.RefrigerantChargeFactor
-class RefrigerantChargeFactor(BSElement):
-    """Used to adjust cooling efficiency for assumed slightly degraded performance if refrigerant charge is not verified through acceptance test procedures. (0-1) (fraction)"""
-
-    element_type = "xs:decimal"
-
-
-# HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType.DX.ActiveDehumidification
-class ActiveDehumidification(BSElement):
-    """True if an active dehumidification system is available (in addition to the dehumidification that takes place during normal direct expansion (DX) cooling operation)."""
-
-    element_type = "xs:boolean"
-
-
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType.EvaporativeCooler.EvaporativeCoolingType
 class EvaporativeCoolingType(BSElement):
     """Defines the type of evaporative cooler operation."""
@@ -3596,13 +3607,6 @@ class CoolingMedium(BSElement):
     ]
 
 
-# HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.AnnualCoolingEfficiencyValue
-class AnnualCoolingEfficiencyValue(BSElement):
-    """Overall annual efficiency of a cooling system."""
-
-    element_type = "xs:decimal"
-
-
 # AnnualCoolingEfficiencyUnits
 class AnnualCoolingEfficiencyUnits(BSElement):
     """The measure used to quantify efficiency."""
@@ -3614,20 +3618,6 @@ class AnnualCoolingEfficiencyUnits(BSElement):
 # Capacity
 class Capacity(BSElement):
     """Capacity of the system at rated conditions."""
-
-    element_type = "xs:decimal"
-
-
-# HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.NumberOfDiscreteCoolingStages
-class NumberOfDiscreteCoolingStages(BSElement):
-    """The number of discrete operating stages, excluding "off." """
-
-    element_type = "xs:integer"
-
-
-# HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingStageCapacity
-class CoolingStageCapacity(BSElement):
-    """Average capacity of each cooling stage, at Air-Conditioning, Heating, and Refrigeration Institute (AHRI) rated conditions, expressed as a fraction of total capacity. (0-1) (fraction)"""
 
     element_type = "xs:decimal"
 
@@ -3903,14 +3893,312 @@ class HeatingPlantCondition(EquipmentCondition):
     pass
 
 
+# HeatingPlantType.Boiler.BoilerType
+class BoilerType(BSElement):
+    """General type of boiler used for space or water heating."""
+
+    element_type = "xs:string"
+    element_enumerations = ["Steam", "Hot water", "Other", "Unknown"]
+
+
+# HeatingPlantType.Boiler.BoilerInsulationRValue
+class BoilerInsulationRValue(BSElement):
+    """Insulation R-Value of hot water storage tank. (hr-ft2-F/Btu)"""
+
+    element_type = "xs:decimal"
+
+
+# HeatingPlantType.Boiler.BoilerInsulationThickness
+class BoilerInsulationThickness(BSElement):
+    """Insulation thickness of hot water storage tank. (in.)"""
+
+    element_type = "xs:decimal"
+
+
+# HeatingPlantType.Boiler.HotWaterBoilerMinimumFlowRate
+class HotWaterBoilerMinimumFlowRate(BSElement):
+    """The minimum flow rate of water required while the boiler is firing. (gpm)"""
+
+    element_type = "xs:decimal"
+
+
+# HeatingPlantType.Boiler.BoilerEWT
+class BoilerEWT(BSElement):
+    """Temperature of water returning to the equipment. (°F)"""
+
+    element_type = "xs:decimal"
+
+
+# HeatingPlantType.Boiler.HotWaterResetControl
+class HotWaterResetControl(BSElement):
+    """Times when the HVAC equipment is setback. For example, when the heat is lowered during the heating season, or the cooling setpoint increased during the cooling season."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "During the day",
+        "At night",
+        "During sleeping and unoccupied hours",
+        "Seasonal",
+        "Never-rarely",
+        "Other",
+        "Unknown",
+    ]
+
+
+# HeatingPlantType.Boiler.BoilerPercentCondensateReturn
+class BoilerPercentCondensateReturn(BSElement):
+    """The percentage of condensed steam that is returned to the boiler. (0-100) (%)"""
+
+    element_type = "xs:decimal"
+
+
+# HeatingPlantType.DistrictHeating.DistrictHeatingType
+class DistrictHeatingType(BSElement):
+    """General type of district heating used for space or water heating."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Hot water",
+        "Direct steam",
+        "Steam to hot water heat exchanger",
+        "Other",
+        "Unknown",
+    ]
+
+
 # CoolingPlantType.CoolingPlantCondition
 class CoolingPlantCondition(EquipmentCondition):
     pass
 
 
+# CoolingPlantType.Chiller.ChillerType
+class ChillerType(BSElement):
+    """Type of chiller."""
+
+    element_type = "xs:string"
+    element_enumerations = ["Vapor compression", "Absorption", "Other", "Unknown"]
+
+
+# CoolingPlantType.Chiller.ChillerCompressorDriver
+class ChillerCompressorDriver(BSElement):
+    """Vehicle for driving the compressor used in a chiller."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Electric Motor",
+        "Steam",
+        "Gas Turbine",
+        "Gas Engine",
+        "Other",
+        "Unknown",
+    ]
+
+
+# CoolingPlantType.Chiller.ChillerCompressorType
+class ChillerCompressorType(BSElement):
+    """Type of compressor in the chiller."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Reciprocating",
+        "Screw",
+        "Scroll",
+        "Centrifugal",
+        "Other",
+        "Unknown",
+    ]
+
+
+# CoolingPlantType.Chiller.AbsorptionHeatSource
+class AbsorptionHeatSource(BSElement):
+    """Source of heating energy for regeneration."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Steam",
+        "Solar energy",
+        "Combustion",
+        "Waste heat",
+        "Other",
+        "Unknown",
+    ]
+
+
+# CoolingPlantType.Chiller.AbsorptionStages
+class AbsorptionStages(BSElement):
+    """Number of stages in regeneration process."""
+
+    element_type = "xs:string"
+    element_enumerations = ["Single effect", "Double effect", "Other", "Unknown"]
+
+
+# CoolingPlantType.Chiller.ChilledWaterResetControl
+class ChilledWaterResetControl(BSElement):
+    """Times when the HVAC equipment is setback. For example, when the heat is lowered during the heating season, or the cooling setpoint increased during the cooling season."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "During the day",
+        "At night",
+        "During sleeping and unoccupied hours",
+        "Seasonal",
+        "Never-rarely",
+        "Other",
+        "Unknown",
+        "None",
+    ]
+
+
 # CondenserPlantType.CondenserPlantCondition
 class CondenserPlantCondition(EquipmentCondition):
     pass
+
+
+# CondenserPlantType.AirCooled.EvaporativelyCooledCondenser.EvaporativelyCooledCondenserMinimumTemperature
+class EvaporativelyCooledCondenserMinimumTemperature(BSElement):
+    """The threshold outside air dry-bulb temperature above which evaporative condenser operates. (°F)"""
+
+    element_type = "xs:decimal"
+
+
+# CondenserPlantType.AirCooled.EvaporativelyCooledCondenser.EvaporativelyCooledCondenserMaximumTemperature
+class EvaporativelyCooledCondenserMaximumTemperature(BSElement):
+    """The threshold outside air dry-bulb temperature below which evaporative condenser operates. (°F)"""
+
+    element_type = "xs:decimal"
+
+
+# CondenserPlantType.AirCooled.CondenserFanSpeedOperation
+class CondenserFanSpeedOperation(BSElement):
+    """The condenser fan control option used by the unit. If the unit has several constant-speed condenser fans that stage on in conjunction with multiple compressors, this should be set to "Stepped Speed." """
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Variable Volume",
+        "Stepped Speed",
+        "Constant Volume",
+        "Other",
+        "Unknown",
+    ]
+
+
+# CondenserPlantType.AirCooled.SplitCondenser
+class SplitCondenser(BSElement):
+    """True if a valve is used to split the condenser loop to better control head pressure."""
+
+    element_type = "xs:boolean"
+
+
+# CondenserPlantType.AirCooled.DesignAmbientTemperature
+class DesignAmbientTemperature(BSElement):
+    """The ambient air temperature under design conditions. (°F)"""
+
+    element_type = "xs:decimal"
+
+
+# CondenserPlantType.AirCooled.DesignTemperatureDifference
+class DesignTemperatureDifference(BSElement):
+    """The difference between the condensing temperature of the refrigerant in the condenser and the design ambient temperature. (°F)"""
+
+    element_type = "xs:decimal"
+
+
+# WaterSideEconomizerType
+class WaterSideEconomizerType(BSElement):
+    """Describes water flow control for a water-cooled condenser."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Parallel Plate and Frame Heat Exchanger",
+        "Series Plate and Frame Heat Exchanger",
+        "Strainer Cycle",
+        "Thermo Cycle",
+        "None",
+        "Other",
+        "Unknown",
+    ]
+
+
+# CondenserPlantType.WaterCooled.WaterCooledCondenserType
+class WaterCooledCondenserType(BSElement):
+    """Type of water-cooled condenser."""
+
+    element_type = "xs:string"
+    element_enumerations = ["Cooling tower", "Other", "Unknown"]
+
+
+# WaterCooledCondenserFlowControl
+class WaterCooledCondenserFlowControl(BSElement):
+    """Describes water flow control for a water-cooled condenser."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Fixed Flow",
+        "Two Position Flow",
+        "Variable Flow",
+        "Other",
+        "Unknown",
+    ]
+
+
+# CondenserPlantType.WaterCooled.CoolingTowerFanControl
+class CoolingTowerFanControl(BSElement):
+    """Cooling tower fan control type."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Single Speed",
+        "Two Speed",
+        "Variable Speed",
+        "Other",
+        "Unknown",
+    ]
+
+
+# CondenserPlantType.WaterCooled.CoolingTowerTemperatureControl
+class CoolingTowerTemperatureControl(BSElement):
+    """Cooling tower temperature control type."""
+
+    element_type = "xs:string"
+    element_enumerations = ["Wet Bulb Reset", "Other", "Unknown"]
+
+
+# CondenserPlantType.WaterCooled.CoolingTowerCellControl
+class CoolingTowerCellControl(BSElement):
+    """Cooling tower cell control type."""
+
+    element_type = "xs:string"
+    element_enumerations = ["Max Cells", "Min Cells", "Other", "Unknown"]
+
+
+# CondenserPlantType.WaterCooled.CellCount
+class CellCount(BSElement):
+    """The number of cells in the cooling tower. Each cell has its own fan, water flow allowing for responding to lower load conditions."""
+
+    element_type = "xs:integer"
+
+
+# CondenserPlantType.GroundSource.WaterSideEconomizer.WaterSideEconomizerTemperatureSetpoint
+class WaterSideEconomizerTemperatureSetpoint(BSElement):
+    """The water temperature that the equipment supplies, such as the chilled water temperature setpoint for a chiller, or hot water temperature setpoint for water leaving a boiler. (°F)"""
+
+    element_type = "xs:decimal"
+
+
+# CondenserPlantType.GroundSource.GroundSourceType
+class GroundSourceType(BSElement):
+    element_type = "xs:string"
+    element_enumerations = [
+        "Open loop ground water",
+        "Closed loop ground source",
+        "Other",
+        "Unknown",
+    ]
+
+
+# CondenserPlantType.GroundSource.WellCount
+class WellCount(BSElement):
+    element_type = "xs:integer"
 
 
 # OtherHVACSystemType.OtherHVACSystemCondition
@@ -5097,6 +5385,20 @@ class FanEfficiency(BSElement):
 # FanSystemType.FanSize
 class FanSize(BSElement):
     """Maximum air flow produced by the fan. (cfm)"""
+
+    element_type = "xs:decimal"
+
+
+# FanSystemType.InstalledFlowRate
+class InstalledFlowRate(BSElement):
+    """Actual flow rate of fan under normal operating conditions. WARNING: this element is being deprecated, use FanInstalledFlowRate instead. (cfm)"""
+
+    element_type = "xs:decimal"
+
+
+# FanSystemType.FanInstalledFlowRate
+class FanInstalledFlowRate(BSElement):
+    """Actual flow rate of fan under normal operating conditions. (cfm)"""
 
     element_type = "xs:decimal"
 
@@ -8364,27 +8666,19 @@ class TemperatureUnitsBaseType(BSElement):
     element_enumerations = ["Fahrenheit, F"]
 
 
-# WeatherDataStationID
-class WeatherDataStationID(BSElement):
-    """For an actual weather station, this is the ID assigned by National Oceanic and Atmospheric Administration (NOAA). For hourly energy simulations, this is the six digit code associated with the hourly weather data, generally found in the name of the weather data file, as well as in the header of the data file. (NNNNNN) WARNING: This element is being deprecated, use WeatherStations/WeatherStation/WeatherDataStationID instead"""
-
-    element_type = "xs:string"
+# WeatherStations.WeatherStation
+class WeatherStation(BSElement):
+    pass
 
 
-# WeatherStationName
-class WeatherStationName(BSElement):
-    """The name of the weather station associated with this premises, which could be used for simulations, weather normalization, anomaly resolution, etc. For simulations, this is usually the name of the weather file, but the name is also in the header of the data file (TMY, IWEC), such as USA_CO_Denver.Intl.AP. WARNING: This element is being deprecated, use WeatherStations/WeatherStation/WeatherStationName instead"""
-
-    element_type = "xs:string"
-
-
-# WeatherStationCategory
-class WeatherStationCategory(BSElement):
-    """Describes the type of weather station used to specify the site's weather. WARNING: This element is being deprecated, use WeatherStations/WeatherStation/WeatherStationCategory instead"""
-
-    element_type = "xs:string"
-    element_enumerations = ["FAA", "ICAO", "NWS", "WBAN", "WMO", "Other"]
-
+WeatherStation.element_attributes = [
+    "ID",  # ID
+]
+WeatherStation.element_children = [
+    ("WeatherDataStationID", WeatherDataStationID),
+    ("WeatherStationName", WeatherStationName),
+    ("WeatherStationCategory", WeatherStationCategory),
+]
 
 # BuildingSync.Programs.Program
 class Program(BSElement):
@@ -8434,6 +8728,15 @@ LocationsOfInteriorWaterIntrusionDamages.element_children = [
 class OccupancyClassification(OccupancyClassificationType):
     """Classification of the space (complex, whole building, or section) tasks by building occupants."""
 
+
+# WeatherStations
+class WeatherStations(BSElement):
+    pass
+
+
+WeatherStations.element_children = [
+    ("WeatherStation", WeatherStation),
+]
 
 # TenantIDs
 class TenantIDs(BSElement):
@@ -8498,34 +8801,33 @@ Assessment.element_children = [
     ("AssessmentVersion", AssessmentVersion),
 ]
 
-# BuildingType.Sections.Section.Sides.Side
-class Side(BSElement):
-    class ThermalZoneIDs(BSElement):
-        """List of thermal zone IDs."""
-
-        class ThermalZoneID(BSElement):
-            """ID number of the zone type associated with this space or side of the section."""
+# WallID
+class WallID(BSElement):
+    """ID number of the wall type associated with this side of the section."""
 
 
-Side.element_children = [
-    ("SideNumber", SideNumber),
-    ("SideLength", SideLength),
-    ("ThermalZoneIDs", Side.ThermalZoneIDs),
-]
-Side.ThermalZoneIDs.element_children = [
-    ("ThermalZoneID", Side.ThermalZoneIDs.ThermalZoneID),
-]
-Side.ThermalZoneIDs.ThermalZoneID.element_attributes = [
+WallID.element_attributes = [
     "IDref",  # IDREF
 ]
+WallID.element_children = [
+    ("WallArea", WallArea),
+]
 
-# BuildingType.Sections.Section.Sides
-class Sides(BSElement):
-    """List of sides."""
+# DoorID
+class DoorID(BSElement):
+    """ID number of the door type associated with this side of the section."""
+
+    class FenestrationArea(BSElement):
+        """Total area of this fenestration type. (ft2)"""
+
+        element_type = "xs:decimal"
 
 
-Sides.element_children = [
-    ("Side", Side),
+DoorID.element_attributes = [
+    "IDref",  # IDREF
+]
+DoorID.element_children = [
+    ("FenestrationArea", DoorID.FenestrationArea),
 ]
 
 # BuildingType.Sections.Section.Roofs.Roof.RoofID.RoofCondition
@@ -10098,33 +10400,46 @@ HVACControlSystemTypes.element_children = [
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.Furnace
 class Furnace(BSElement):
-    pass
+    class BurnerQuantity(BSElement):
+        """The number of burners."""
+
+        element_type = "xs:integer"
+
+    class BurnerTurndownRatio(BSElement):
+        """If applicable, the turndown ratio for the burner. (full input/minimum input)"""
+
+        element_type = "xs:decimal"
+
+    class CombustionEfficiency(BSElement):
+        """The measure of how much energy is extracted from the fuel and is the ratio of heat transferred to the combustion air divided by the heat input of the fuel. (0-1) (fraction)"""
+
+        element_type = "xs:decimal"
+
+    class ThermalEfficiency(BSElement):
+        """The efficiency of heat transfer between the combustion process and the heated steam, water, or air. (0-1) (fraction)"""
+
+        element_type = "xs:decimal"
 
 
 Furnace.element_children = [
     ("FurnaceType", FurnaceType),
     ("BurnerType", BurnerType),
     ("BurnerControlType", BurnerControlType),
-    ("BurnerQuantity", BurnerQuantity),
+    ("BurnerQuantity", Furnace.BurnerQuantity),
     ("BurnerYearInstalled", BurnerYearInstalled),
-    ("BurnerTurndownRatio", BurnerTurndownRatio),
+    ("BurnerTurndownRatio", Furnace.BurnerTurndownRatio),
     ("IgnitionType", IgnitionType),
     ("DraftType", DraftType),
     ("DraftBoundary", DraftBoundary),
     ("CondensingOperation", CondensingOperation),
-    ("CombustionEfficiency", CombustionEfficiency),
-    ("ThermalEfficiency", ThermalEfficiency),
+    ("CombustionEfficiency", Furnace.CombustionEfficiency),
+    ("ThermalEfficiency", Furnace.ThermalEfficiency),
     ("ThirdPartyCertification", ThirdPartyCertification),
 ]
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.HeatPump.HeatPumpBackupSystemFuel
 class HeatPumpBackupSystemFuel(FuelTypes):
     """Backup fuel used by the heat pump."""
-
-
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.NoHeating
-class NoHeating(NoHeatingType):
-    pass
 
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType
@@ -10141,6 +10456,9 @@ class HeatingSourceType(BSElement):
     class OtherCombination(OtherCombinationType):
         pass
 
+    class NoHeating(NoHeatingType):
+        pass
+
     class Unknown(UnknownType):
         pass
 
@@ -10151,7 +10469,7 @@ HeatingSourceType.element_children = [
     ("Furnace", Furnace),
     ("HeatPump", HeatingSourceType.HeatPump),
     ("OtherCombination", HeatingSourceType.OtherCombination),
-    ("NoHeating", NoHeating),
+    ("NoHeating", HeatingSourceType.NoHeating),
     ("Unknown", HeatingSourceType.Unknown),
 ]
 HeatingSourceType.HeatPump.element_children = [
@@ -10170,16 +10488,21 @@ HeatingSourceType.HeatPump.CoolingSourceID.element_attributes = [
     "IDref",  # IDREF
 ]
 
-# HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingStageCapacityFraction
-class HeatingStageCapacityFraction(BoundedDecimalZeroToOneWithSourceAttribute):
-    """Average capacity of each heating stage, at Air-Conditioning, Heating, and Refrigeration Institute (AHRI) rated conditions, expressed as a fraction of total capacity. (0-1) (fraction)"""
-
-
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType.DX
 class DX(BSElement):
     class CondenserPlantIDs(BSElement):
         class CondenserPlantID(BSElement):
             """ID number of the central CondenserPlant serving as the source for this cooling system."""
+
+    class RefrigerantChargeFactor(BSElement):
+        """Used to adjust cooling efficiency for assumed slightly degraded performance if refrigerant charge is not verified through acceptance test procedures. (0-1) (fraction)"""
+
+        element_type = "xs:decimal"
+
+    class ActiveDehumidification(BSElement):
+        """True if an active dehumidification system is available (in addition to the dehumidification that takes place during normal direct expansion (DX) cooling operation)."""
+
+        element_type = "xs:boolean"
 
 
 DX.element_children = [
@@ -10188,8 +10511,8 @@ DX.element_children = [
     ("CompressorStaging", CompressorStaging),
     ("CondenserPlantIDs", DX.CondenserPlantIDs),
     ("Refrigerant", Refrigerant),
-    ("RefrigerantChargeFactor", RefrigerantChargeFactor),
-    ("ActiveDehumidification", ActiveDehumidification),
+    ("RefrigerantChargeFactor", DX.RefrigerantChargeFactor),
+    ("ActiveDehumidification", DX.ActiveDehumidification),
 ]
 DX.CondenserPlantIDs.element_children = [
     ("CondenserPlantID", DX.CondenserPlantIDs.CondenserPlantID),
@@ -10207,16 +10530,14 @@ EvaporativeCooler.element_children = [
     ("EvaporativeCoolingType", EvaporativeCoolingType),
 ]
 
-# HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType.NoCooling
-class NoCooling(NoCoolingType):
-    pass
-
-
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType
 class CoolingSourceType(BSElement):
     """Source of energy used for cooling the zone."""
 
     class OtherCombination(OtherCombinationType):
+        pass
+
+    class NoCooling(NoCoolingType):
         pass
 
     class Unknown(UnknownType):
@@ -10228,19 +10549,9 @@ CoolingSourceType.element_children = [
     ("DX", DX),
     ("EvaporativeCooler", EvaporativeCooler),
     ("OtherCombination", CoolingSourceType.OtherCombination),
-    ("NoCooling", NoCooling),
+    ("NoCooling", CoolingSourceType.NoCooling),
     ("Unknown", CoolingSourceType.Unknown),
 ]
-
-# HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.MinimumPartLoadRatio
-class MinimumPartLoadRatio(BoundedDecimalZeroToOneWithSourceAttribute):
-    """The minimum part load ratio at which the system is able to operate. (0-1) (fraction)"""
-
-
-# HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.RatedCoolingSensibleHeatRatio
-class RatedCoolingSensibleHeatRatio(BoundedDecimalZeroToOneWithSourceAttribute):
-    """The fraction of total energy transfer between the evaporator coil and air that is associated with sensible capacity (change in air temperature) expressed as a dimensionless value, and at the rated conditions prescribed for this system. (0-1) (fraction)"""
-
 
 # HVACSystemType.HeatingAndCoolingSystems.Deliveries.Delivery.DeliveryType.ZoneEquipment.Convection
 class Convection(BSElement):
@@ -10289,6 +10600,131 @@ class DuctInsulationCondition(InsulationCondition):
 class SupplyFractionOfDuctLeakage(BoundedDecimalZeroToOneWithSourceAttribute):
     """Fraction of total duct leakage that is on the supply side. Remainder is assumed to be on the return side. (0-1) (fraction)"""
 
+
+# HeatingPlantType.DistrictHeating
+class DistrictHeating(BSElement):
+    class OutputCapacity(BSElement):
+        """Output capacity of equipment. WARNING: This element is being deprecated, use Capacity instead"""
+
+        element_type = "xs:decimal"
+
+    class Capacity(BSElement):
+        """Output capacity of equipment."""
+
+        element_type = "xs:decimal"
+
+    class AnnualHeatingEfficiencyValue(BSElement):
+        """Overall annual efficiency of a heating system."""
+
+        element_type = "xs:decimal"
+
+    class HotWaterBoilerMaximumFlowRate(BSElement):
+        """The maximum flow rate of water that the boiler is designed to accept. (gpm)"""
+
+        element_type = "xs:decimal"
+
+    class BoilerLWT(BSElement):
+        """The water temperature that the equipment supplies, such as the chilled water temperature setpoint for a chiller, or hot water temperature setpoint for water leaving a boiler. (°F)"""
+
+        element_type = "xs:decimal"
+
+    class SteamBoilerMinimumOperatingPressure(BSElement):
+        """The minimum amount of steam pressure required during boiler operation. This should be input as gauge pressure. (psi)"""
+
+        element_type = "xs:decimal"
+
+    class SteamBoilerMaximumOperatingPressure(BSElement):
+        """The maximum amount of steam pressure allowed during boiler operation. This should be input as gauge pressure. (psi)"""
+
+        element_type = "xs:decimal"
+
+
+DistrictHeating.element_children = [
+    ("DistrictHeatingType", DistrictHeatingType),
+    ("OutputCapacity", DistrictHeating.OutputCapacity),
+    ("Capacity", DistrictHeating.Capacity),
+    ("CapacityUnits", CapacityUnits),
+    ("AnnualHeatingEfficiencyValue", DistrictHeating.AnnualHeatingEfficiencyValue),
+    ("AnnualHeatingEfficiencyUnits", AnnualHeatingEfficiencyUnits),
+    ("HotWaterBoilerMaximumFlowRate", DistrictHeating.HotWaterBoilerMaximumFlowRate),
+    ("BoilerLWT", DistrictHeating.BoilerLWT),
+    (
+        "SteamBoilerMinimumOperatingPressure",
+        DistrictHeating.SteamBoilerMinimumOperatingPressure,
+    ),
+    (
+        "SteamBoilerMaximumOperatingPressure",
+        DistrictHeating.SteamBoilerMaximumOperatingPressure,
+    ),
+    ("Quantity", Quantity),
+]
+
+# HeatingPlantType.SolarThermal
+class SolarThermal(BSElement):
+    class OutputCapacity(BSElement):
+        """Output capacity of equipment. WARNING: This element is being deprecated, use Capacity instead"""
+
+        element_type = "xs:decimal"
+
+    class Capacity(BSElement):
+        """Output capacity of equipment."""
+
+        element_type = "xs:decimal"
+
+    class AnnualHeatingEfficiencyValue(BSElement):
+        """Overall annual efficiency of a heating system."""
+
+        element_type = "xs:decimal"
+
+
+SolarThermal.element_children = [
+    ("OutputCapacity", SolarThermal.OutputCapacity),
+    ("Capacity", SolarThermal.Capacity),
+    ("CapacityUnits", CapacityUnits),
+    ("AnnualHeatingEfficiencyValue", SolarThermal.AnnualHeatingEfficiencyValue),
+    ("AnnualHeatingEfficiencyUnits", AnnualHeatingEfficiencyUnits),
+    ("Quantity", Quantity),
+]
+
+# CoolingPlantType.Chiller.PartLoadRatioBelowWhichHotGasBypassOperates
+class PartLoadRatioBelowWhichHotGasBypassOperates(
+    BoundedDecimalZeroToOneWithSourceAttribute
+):
+    """The part load ratio of the chiller below which hot gas bypass (HGBP) operates. (0-1) (fraction)"""
+
+
+# CondenserPlantType.GlycolCooledDryCooler
+class GlycolCooledDryCooler(BSElement):
+    class CondensingTemperature(BSElement):
+        """The saturation temperature, in degrees, corresponding to the measured refrigerant pressure at the condenser inlet. (°F)"""
+
+        element_type = "xs:decimal"
+
+
+GlycolCooledDryCooler.element_children = [
+    ("CondensingTemperature", GlycolCooledDryCooler.CondensingTemperature),
+    ("Capacity", Capacity),
+    ("CapacityUnits", CapacityUnits),
+]
+
+# CondenserPlantType.AirCooled.EvaporativelyCooledCondenser
+class EvaporativelyCooledCondenser(BSElement):
+    """If exists then the unit uses evaporative cooling to enhance heat rejection from the condenser coils."""
+
+
+EvaporativelyCooledCondenser.element_attributes = [
+    "ID",  # ID
+]
+EvaporativelyCooledCondenser.element_children = [
+    (
+        "EvaporativelyCooledCondenserMinimumTemperature",
+        EvaporativelyCooledCondenserMinimumTemperature,
+    ),
+    (
+        "EvaporativelyCooledCondenserMaximumTemperature",
+        EvaporativelyCooledCondenserMaximumTemperature,
+    ),
+]
 
 # OtherHVACSystemType.LinkedDeliveryIDs
 class LinkedDeliveryIDs(BSElement):
@@ -11770,58 +12206,10 @@ DOE.element_children = [
     ("ClimateZone", DOE.ClimateZone),
 ]
 
-# WallID
-class WallID(BSElement):
-    """ID number of the wall type associated with this side of the section."""
-
-
-WallID.element_attributes = [
-    "IDref",  # IDREF
-]
-WallID.element_children = [
-    ("WallArea", WallArea),
-]
-
-# DoorID
-class DoorID(BSElement):
-    """ID number of the door type associated with this side of the section."""
-
-    class FenestrationArea(BSElement):
-        """Total area of this fenestration type. (ft2)"""
-
-        element_type = "xs:decimal"
-
-
-DoorID.element_attributes = [
-    "IDref",  # IDREF
-]
-DoorID.element_children = [
-    ("FenestrationArea", DoorID.FenestrationArea),
-]
-
 # WindowID.WindowToWallRatio
 class WindowToWallRatio(BoundedDecimalZeroToOneWithSourceAttribute):
     """Ratio of total window area to total wall area. (0-1) (fraction)"""
 
-
-# WindowID
-class WindowID(BSElement):
-    """ID number of the window type associated with this side of the section."""
-
-    class FenestrationArea(BSElement):
-        """Total area of this fenestration type. (ft2)"""
-
-        element_type = "xs:decimal"
-
-
-WindowID.element_attributes = [
-    "IDref",  # IDREF
-]
-WindowID.element_children = [
-    ("FenestrationArea", WindowID.FenestrationArea),
-    ("WindowToWallRatio", WindowToWallRatio),
-    ("PercentOfWindowAreaShaded", PercentOfWindowAreaShaded),
-]
 
 # ResourceUnitsType
 class ResourceUnitsType(BSElement):
@@ -11923,29 +12311,6 @@ class DimensionlessUnitsType(BSElement):
 DimensionlessUnitsType.element_union = [
     OtherUnitsType,
     DimensionlessUnitsBaseType,
-]
-
-# WeatherStations.WeatherStation
-class WeatherStation(BSElement):
-    pass
-
-
-WeatherStation.element_attributes = [
-    "ID",  # ID
-]
-WeatherStation.element_children = [
-    ("WeatherDataStationID", WeatherDataStationID),
-    ("WeatherStationName", WeatherStationName),
-    ("WeatherStationCategory", WeatherStationCategory),
-]
-
-# WeatherStations
-class WeatherStations(BSElement):
-    pass
-
-
-WeatherStations.element_children = [
-    ("WeatherStation", WeatherStation),
 ]
 
 # UserDefinedFields
@@ -12063,6 +12428,43 @@ class Assessments(BSElement):
 
 Assessments.element_children = [
     ("Assessment", Assessment),
+]
+
+# BuildingType.Sections.Section.Sides.Side.WallIDs
+class WallIDs(BSElement):
+    pass
+
+
+WallIDs.element_children = [
+    ("WallID", WallID),
+]
+
+# WindowID
+class WindowID(BSElement):
+    """ID number of the window type associated with this side of the section."""
+
+    class FenestrationArea(BSElement):
+        """Total area of this fenestration type. (ft2)"""
+
+        element_type = "xs:decimal"
+
+
+WindowID.element_attributes = [
+    "IDref",  # IDREF
+]
+WindowID.element_children = [
+    ("FenestrationArea", WindowID.FenestrationArea),
+    ("WindowToWallRatio", WindowToWallRatio),
+    ("PercentOfWindowAreaShaded", PercentOfWindowAreaShaded),
+]
+
+# BuildingType.Sections.Section.Sides.Side.DoorIDs
+class DoorIDs(BSElement):
+    pass
+
+
+DoorIDs.element_children = [
+    ("DoorID", DoorID),
 ]
 
 # SpaceType
@@ -12419,6 +12821,115 @@ Qualifications.element_children = [
     ("Qualification", Qualification),
 ]
 
+# HeatingPlantType.Boiler
+class Boiler(BSElement):
+    class BurnerQuantity(BSElement):
+        """The number of burners."""
+
+        element_type = "xs:integer"
+
+    class BurnerTurndownRatio(BSElement):
+        """If applicable, the turndown ratio for the burner (full input/minimum input)."""
+
+        element_type = "xs:decimal"
+
+    class InputCapacity(BSElement):
+        """The rate of energy consumption of the heating equipment at full load."""
+
+        element_type = "xs:decimal"
+
+    class OutputCapacity(BSElement):
+        """Output capacity of equipment. WARNING: This element is being deprecated, use Capacity instead"""
+
+        element_type = "xs:decimal"
+
+    class Capacity(BSElement):
+        """Output capacity of equipment."""
+
+        element_type = "xs:decimal"
+
+    class NumberOfHeatingStages(BSElement):
+        """The number of heating stages, excluding "off." """
+
+        element_type = "xs:integer"
+
+    class HeatingStageCapacityFraction(BoundedDecimalZeroToOneWithSourceAttribute):
+        """Average capacity of each heating stage, at Air-Conditioning, Heating, and Refrigeration Institute (AHRI) rated conditions, expressed as a fraction of total capacity. (0-1) (fraction)"""
+
+    class AnnualHeatingEfficiencyValue(BSElement):
+        """Overall annual efficiency of a heating system."""
+
+        element_type = "xs:decimal"
+
+    class CombustionEfficiency(BSElement):
+        """The measure of how much energy is extracted from the fuel and is the ratio of heat transferred to the combustion air divided by the heat input of the fuel. (0-1) (fraction)"""
+
+        element_type = "xs:decimal"
+
+    class ThermalEfficiency(BSElement):
+        """The efficiency of heat transfer between the combustion process and the heated steam, water, or air. (0-1) (fraction)"""
+
+        element_type = "xs:decimal"
+
+    class HotWaterBoilerMaximumFlowRate(BSElement):
+        """The maximum flow rate of water that the boiler is designed to accept. (gpm)"""
+
+        element_type = "xs:decimal"
+
+    class BoilerLWT(BSElement):
+        """The water temperature that the equipment supplies, such as the chilled water temperature setpoint for a chiller, or hot water temperature setpoint for water leaving a boiler. (°F)"""
+
+        element_type = "xs:decimal"
+
+    class SteamBoilerMinimumOperatingPressure(BSElement):
+        """The minimum amount of steam pressure required during boiler operation. This should be input as gauge pressure. (psi)"""
+
+        element_type = "xs:decimal"
+
+    class SteamBoilerMaximumOperatingPressure(BSElement):
+        """The maximum amount of steam pressure allowed during boiler operation. This should be input as gauge pressure. (psi)"""
+
+        element_type = "xs:decimal"
+
+
+Boiler.element_children = [
+    ("BoilerType", BoilerType),
+    ("BurnerType", BurnerType),
+    ("BurnerControlType", BurnerControlType),
+    ("BurnerQuantity", Boiler.BurnerQuantity),
+    ("BurnerYearInstalled", BurnerYearInstalled),
+    ("BurnerTurndownRatio", Boiler.BurnerTurndownRatio),
+    ("IgnitionType", IgnitionType),
+    ("DraftType", DraftType),
+    ("DraftBoundary", DraftBoundary),
+    ("CondensingOperation", CondensingOperation),
+    ("HeatingStaging", HeatingStaging),
+    ("InputCapacity", Boiler.InputCapacity),
+    ("OutputCapacity", Boiler.OutputCapacity),
+    ("Capacity", Boiler.Capacity),
+    ("CapacityUnits", CapacityUnits),
+    ("NumberOfHeatingStages", Boiler.NumberOfHeatingStages),
+    ("HeatingStageCapacityFraction", Boiler.HeatingStageCapacityFraction),
+    ("Priority", Priority),
+    ("AnnualHeatingEfficiencyValue", Boiler.AnnualHeatingEfficiencyValue),
+    ("AnnualHeatingEfficiencyUnits", AnnualHeatingEfficiencyUnits),
+    ("CombustionEfficiency", Boiler.CombustionEfficiency),
+    ("ThermalEfficiency", Boiler.ThermalEfficiency),
+    ("ThirdPartyCertification", ThirdPartyCertification),
+    ("BoilerInsulationRValue", BoilerInsulationRValue),
+    ("BoilerInsulationThickness", BoilerInsulationThickness),
+    ("HotWaterBoilerMinimumFlowRate", HotWaterBoilerMinimumFlowRate),
+    ("HotWaterBoilerMaximumFlowRate", Boiler.HotWaterBoilerMaximumFlowRate),
+    ("BoilerEWT", BoilerEWT),
+    ("BoilerLWT", Boiler.BoilerLWT),
+    ("HotWaterResetControl", HotWaterResetControl),
+    ("SteamBoilerMinimumOperatingPressure", Boiler.SteamBoilerMinimumOperatingPressure),
+    ("SteamBoilerMaximumOperatingPressure", Boiler.SteamBoilerMaximumOperatingPressure),
+    ("BoilerPercentCondensateReturn", BoilerPercentCondensateReturn),
+    ("UserDefinedFields", UserDefinedFields),
+    ("Quantity", Quantity),
+]
+
 # ControlSystemType
 class ControlSystemType(BSElement):
     """Identifier for the type of control (e.g., Pneumatic, Analog, Digital)."""
@@ -12435,6 +12946,246 @@ ControlSystemType.element_children = [
 ]
 ControlSystemType.Other.element_children = [
     ("OtherCommunicationProtocolName", OtherCommunicationProtocolName),
+]
+
+# CoolingPlantType.Chiller
+class Chiller(BSElement):
+    class NumberOfDiscreteCoolingStages(BSElement):
+        """The number of discrete operating stages, excluding "off." """
+
+        element_type = "xs:integer"
+
+    class CoolingStageCapacity(BSElement):
+        """Average capacity of each cooling stage, at Air-Conditioning, Heating, and Refrigeration Institute (AHRI) rated conditions, expressed as a fraction of total capacity. (0-1) (fraction)"""
+
+        element_type = "xs:decimal"
+
+    class CondenserPlantIDs(BSElement):
+        class CondenserPlantID(BSElement):
+            """ID number of the central CondenserPlant serving as the source for this cooling system."""
+
+    class RefrigerantChargeFactor(BSElement):
+        """Used to adjust cooling efficiency for assumed slightly degraded performance if refrigerant charge is not verified through acceptance test procedures. (0-1) (fraction)"""
+
+        element_type = "xs:decimal"
+
+    class AnnualCoolingEfficiencyValue(BSElement):
+        """Overall annual efficiency of a cooling system."""
+
+        element_type = "xs:decimal"
+
+    class MinimumPartLoadRatio(BoundedDecimalZeroToOneWithSourceAttribute):
+        """The minimum part load ratio at which the system is able to operate. (0-1) (fraction)"""
+
+    class RatedCoolingSensibleHeatRatio(BoundedDecimalZeroToOneWithSourceAttribute):
+        """The fraction of total energy transfer between the evaporator coil and air that is associated with sensible capacity (change in air temperature) expressed as a dimensionless value, and at the rated conditions prescribed for this system. (0-1) (fraction)"""
+
+    class ChilledWaterSupplyTemperature(BSElement):
+        """The water temperature that the equipment supplies, such as the chilled water temperature setpoint for a chiller, or hot water temperature setpoint for water leaving a boiler. (°F)"""
+
+        element_type = "xs:decimal"
+
+    class ActiveDehumidification(BSElement):
+        """True if an active dehumidification system is available (in addition to the dehumidification that takes place during normal DX cooling operation)."""
+
+        element_type = "xs:boolean"
+
+
+Chiller.element_children = [
+    ("ChillerType", ChillerType),
+    ("ChillerCompressorDriver", ChillerCompressorDriver),
+    ("ChillerCompressorType", ChillerCompressorType),
+    ("CompressorStaging", CompressorStaging),
+    ("NumberOfDiscreteCoolingStages", Chiller.NumberOfDiscreteCoolingStages),
+    ("CoolingStageCapacity", Chiller.CoolingStageCapacity),
+    ("CondenserPlantIDs", Chiller.CondenserPlantIDs),
+    ("Refrigerant", Refrigerant),
+    ("RefrigerantChargeFactor", Chiller.RefrigerantChargeFactor),
+    ("AbsorptionHeatSource", AbsorptionHeatSource),
+    ("AbsorptionStages", AbsorptionStages),
+    ("AnnualCoolingEfficiencyValue", Chiller.AnnualCoolingEfficiencyValue),
+    ("AnnualCoolingEfficiencyUnits", AnnualCoolingEfficiencyUnits),
+    ("Capacity", Capacity),
+    ("CapacityUnits", CapacityUnits),
+    ("MinimumPartLoadRatio", Chiller.MinimumPartLoadRatio),
+    ("RatedCoolingSensibleHeatRatio", Chiller.RatedCoolingSensibleHeatRatio),
+    (
+        "PartLoadRatioBelowWhichHotGasBypassOperates",
+        PartLoadRatioBelowWhichHotGasBypassOperates,
+    ),
+    ("ThirdPartyCertification", ThirdPartyCertification),
+    ("ChilledWaterResetControl", ChilledWaterResetControl),
+    ("ChilledWaterSupplyTemperature", Chiller.ChilledWaterSupplyTemperature),
+    ("ActiveDehumidification", Chiller.ActiveDehumidification),
+    ("Quantity", Quantity),
+]
+Chiller.CondenserPlantIDs.element_children = [
+    ("CondenserPlantID", Chiller.CondenserPlantIDs.CondenserPlantID),
+]
+Chiller.CondenserPlantIDs.CondenserPlantID.element_attributes = [
+    "IDref",  # IDREF
+]
+
+# CoolingPlantType.DistrictChilledWater
+class DistrictChilledWater(BSElement):
+    class AnnualCoolingEfficiencyValue(BSElement):
+        """Overall annual efficiency of a cooling system."""
+
+        element_type = "xs:decimal"
+
+    class RatedCoolingSensibleHeatRatio(BoundedDecimalZeroToOneWithSourceAttribute):
+        """The fraction of total energy transfer between the evaporator coil and air that is associated with sensible capacity (change in air temperature) expressed as a dimensionless value, and at the rated conditions prescribed for this system. (0-1) (fraction)"""
+
+    class ChilledWaterSupplyTemperature(BSElement):
+        """The water temperature that the equipment supplies, such as the chilled water temperature setpoint for a chiller, or hot water temperature setpoint for water leaving a boiler. (°F)"""
+
+        element_type = "xs:decimal"
+
+    class ActiveDehumidification(BSElement):
+        """True if an active dehumidification system is available (in addition to the dehumidification that takes place during normal DX cooling operation)."""
+
+        element_type = "xs:boolean"
+
+
+DistrictChilledWater.element_children = [
+    ("AnnualCoolingEfficiencyValue", DistrictChilledWater.AnnualCoolingEfficiencyValue),
+    ("AnnualCoolingEfficiencyUnits", AnnualCoolingEfficiencyUnits),
+    ("Capacity", Capacity),
+    ("CapacityUnits", CapacityUnits),
+    (
+        "RatedCoolingSensibleHeatRatio",
+        DistrictChilledWater.RatedCoolingSensibleHeatRatio,
+    ),
+    (
+        "ChilledWaterSupplyTemperature",
+        DistrictChilledWater.ChilledWaterSupplyTemperature,
+    ),
+    ("ActiveDehumidification", DistrictChilledWater.ActiveDehumidification),
+]
+
+# CondenserPlantType.AirCooled
+class AirCooled(BSElement):
+    class CondensingTemperature(BSElement):
+        """The saturation temperature, in degrees, corresponding to the measured refrigerant pressure at the condenser inlet. (°F)"""
+
+        element_type = "xs:decimal"
+
+
+AirCooled.element_children = [
+    ("EvaporativelyCooledCondenser", EvaporativelyCooledCondenser),
+    ("CondenserFanSpeedOperation", CondenserFanSpeedOperation),
+    ("CondensingTemperature", AirCooled.CondensingTemperature),
+    ("SplitCondenser", SplitCondenser),
+    ("DesignAmbientTemperature", DesignAmbientTemperature),
+    ("DesignTemperatureDifference", DesignTemperatureDifference),
+    ("Capacity", Capacity),
+    ("CapacityUnits", CapacityUnits),
+]
+
+# CondenserPlantType.WaterCooled
+class WaterCooled(BSElement):
+    class CondenserWaterTemperature(BSElement):
+        """The temperature of water supplied to a water-cooled condenser under normal operating conditions. (°F)"""
+
+        element_type = "xs:decimal"
+
+    class CondensingTemperature(BSElement):
+        """The saturation temperature, in degrees, corresponding to the measured refrigerant pressure at the condenser inlet. (°F)"""
+
+        element_type = "xs:decimal"
+
+    class WaterSideEconomizer(BSElement):
+        """If exists then the cooling system has a water-side economizer to provide free cooling."""
+
+        class WaterSideEconomizerTemperatureMaximum(BSElement):
+            """The control temperature of the condenser water supply temperature above which the water-side economizer is disabled. (°F)"""
+
+            element_type = "xs:decimal"
+
+        class WaterSideEconomizerDBTemperatureMaximum(BSElement):
+            """The control temperature of the outside air dry-bulb temperature above which the water-side economizer is disabled. (°F)"""
+
+            element_type = "xs:decimal"
+
+
+WaterCooled.element_children = [
+    ("WaterCooledCondenserType", WaterCooledCondenserType),
+    ("CondenserWaterTemperature", WaterCooled.CondenserWaterTemperature),
+    ("CondensingTemperature", WaterCooled.CondensingTemperature),
+    ("WaterCooledCondenserFlowControl", WaterCooledCondenserFlowControl),
+    ("WaterSideEconomizer", WaterCooled.WaterSideEconomizer),
+    ("CoolingTowerFanControl", CoolingTowerFanControl),
+    ("CoolingTowerTemperatureControl", CoolingTowerTemperatureControl),
+    ("CoolingTowerCellControl", CoolingTowerCellControl),
+    ("CellCount", CellCount),
+    ("Capacity", Capacity),
+    ("CapacityUnits", CapacityUnits),
+]
+WaterCooled.WaterSideEconomizer.element_attributes = [
+    "ID",  # ID
+]
+WaterCooled.WaterSideEconomizer.element_children = [
+    ("WaterSideEconomizerType", WaterSideEconomizerType),
+    (
+        "WaterSideEconomizerTemperatureMaximum",
+        WaterCooled.WaterSideEconomizer.WaterSideEconomizerTemperatureMaximum,
+    ),
+    (
+        "WaterSideEconomizerDBTemperatureMaximum",
+        WaterCooled.WaterSideEconomizer.WaterSideEconomizerDBTemperatureMaximum,
+    ),
+]
+
+# CondenserPlantType.GroundSource
+class GroundSource(BSElement):
+    class CondenserWaterTemperature(BSElement):
+        """The temperature of water supplied to a water-cooled condenser under normal operating conditions. (°F)"""
+
+        element_type = "xs:decimal"
+
+    class CondensingTemperature(BSElement):
+        """The saturation temperature, in degrees, corresponding to the measured refrigerant pressure at the condenser inlet. (°F)"""
+
+        element_type = "xs:decimal"
+
+    class WaterSideEconomizer(BSElement):
+        """If exists then the cooling system has a water-side economizer to provide free cooling."""
+
+        class WaterSideEconomizerTemperatureMaximum(BSElement):
+            """The control temperature of the condenser water supply temperature above which the water-side economizer is disabled. (°F)"""
+
+            element_type = "xs:decimal"
+
+        class WaterSideEconomizerDBTemperatureMaximum(BSElement):
+            """The control temperature of the outside air dry-bulb temperature above which the water-side economizer is disabled. (°F)"""
+
+            element_type = "xs:decimal"
+
+
+GroundSource.element_children = [
+    ("GroundSourceType", GroundSourceType),
+    ("CondenserWaterTemperature", GroundSource.CondenserWaterTemperature),
+    ("CondensingTemperature", GroundSource.CondensingTemperature),
+    ("WaterCooledCondenserFlowControl", WaterCooledCondenserFlowControl),
+    ("WaterSideEconomizer", GroundSource.WaterSideEconomizer),
+    ("WellCount", WellCount),
+    ("Capacity", Capacity),
+    ("CapacityUnits", CapacityUnits),
+]
+GroundSource.WaterSideEconomizer.element_attributes = [
+    "ID",  # ID
+]
+GroundSource.WaterSideEconomizer.element_children = [
+    ("WaterSideEconomizerType", WaterSideEconomizerType),
+    ("WaterSideEconomizerTemperatureSetpoint", WaterSideEconomizerTemperatureSetpoint),
+    (
+        "WaterSideEconomizerTemperatureMaximum",
+        GroundSource.WaterSideEconomizer.WaterSideEconomizerTemperatureMaximum,
+    ),
+    (
+        "WaterSideEconomizerDBTemperatureMaximum",
+        GroundSource.WaterSideEconomizer.WaterSideEconomizerDBTemperatureMaximum,
+    ),
 ]
 
 # OtherHVACSystemType.OtherHVACType
@@ -13228,6 +13979,51 @@ TenantType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+# BuildingType.Sections.Section.Sides.Side.WindowIDs
+class WindowIDs(BSElement):
+    pass
+
+
+WindowIDs.element_children = [
+    ("WindowID", WindowID),
+]
+
+# BuildingType.Sections.Section.Sides.Side
+class Side(BSElement):
+    class ThermalZoneIDs(BSElement):
+        """List of thermal zone IDs."""
+
+        class ThermalZoneID(BSElement):
+            """ID number of the zone type associated with this space or side of the section."""
+
+
+Side.element_children = [
+    ("SideNumber", SideNumber),
+    ("SideLength", SideLength),
+    ("WallID", WallID),
+    ("WallIDs", WallIDs),
+    ("WindowID", WindowID),
+    ("WindowIDs", WindowIDs),
+    ("DoorID", DoorID),
+    ("DoorIDs", DoorIDs),
+    ("ThermalZoneIDs", Side.ThermalZoneIDs),
+]
+Side.ThermalZoneIDs.element_children = [
+    ("ThermalZoneID", Side.ThermalZoneIDs.ThermalZoneID),
+]
+Side.ThermalZoneIDs.ThermalZoneID.element_attributes = [
+    "IDref",  # IDREF
+]
+
+# BuildingType.Sections.Section.Sides
+class Sides(BSElement):
+    """List of sides."""
+
+
+Sides.element_children = [
+    ("Side", Side),
+]
+
 # ResourceUseType
 class ResourceUseType(BSElement):
     class EndUse(EndUse):
@@ -13494,6 +14290,15 @@ class Utility(UtilityType):
 
 # CoolingPlantType
 class CoolingPlantType(BSElement):
+    class OtherCombination(OtherCombinationType):
+        pass
+
+    class NoCooling(NoCoolingType):
+        pass
+
+    class Unknown(UnknownType):
+        pass
+
     class PrimaryFuel(FuelTypes):
         """Main fuel used by the CooiingPlant."""
 
@@ -13506,6 +14311,11 @@ CoolingPlantType.element_attributes = [
     "Status",  # Status
 ]
 CoolingPlantType.element_children = [
+    ("Chiller", Chiller),
+    ("DistrictChilledWater", DistrictChilledWater),
+    ("OtherCombination", CoolingPlantType.OtherCombination),
+    ("NoCooling", CoolingPlantType.NoCooling),
+    ("Unknown", CoolingPlantType.Unknown),
     ("CoolingPlantCondition", CoolingPlantCondition),
     ("Location", Location),
     ("YearInstalled", YearInstalled),
@@ -13520,6 +14330,12 @@ CoolingPlantType.ControlSystemTypes.element_children = [
 
 # CondenserPlantType
 class CondenserPlantType(BSElement):
+    class Other(OtherType):
+        pass
+
+    class Unknown(UnknownType):
+        pass
+
     class PrimaryFuel(FuelTypes):
         """Main fuel used by the CondenserPlant."""
 
@@ -13531,6 +14347,12 @@ CondenserPlantType.element_attributes = [
     "ID",  # ID
 ]
 CondenserPlantType.element_children = [
+    ("AirCooled", AirCooled),
+    ("WaterCooled", WaterCooled),
+    ("GroundSource", GroundSource),
+    ("GlycolCooledDryCooler", GlycolCooledDryCooler),
+    ("Other", CondenserPlantType.Other),
+    ("Unknown", CondenserPlantType.Unknown),
     ("CondenserPlantCondition", CondenserPlantCondition),
     ("Location", Location),
     ("YearInstalled", YearInstalled),
@@ -13658,6 +14480,27 @@ ControlGeneralType.OtherControlTechnology.element_children = [
 
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource
 class CoolingSource(BSElement):
+    class AnnualCoolingEfficiencyValue(BSElement):
+        """Overall annual efficiency of a cooling system."""
+
+        element_type = "xs:decimal"
+
+    class NumberOfDiscreteCoolingStages(BSElement):
+        """The number of discrete operating stages, excluding "off." """
+
+        element_type = "xs:integer"
+
+    class CoolingStageCapacity(BSElement):
+        """Average capacity of each cooling stage, at Air-Conditioning, Heating, and Refrigeration Institute (AHRI) rated conditions, expressed as a fraction of total capacity. (0-1) (fraction)"""
+
+        element_type = "xs:decimal"
+
+    class MinimumPartLoadRatio(BoundedDecimalZeroToOneWithSourceAttribute):
+        """The minimum part load ratio at which the system is able to operate. (0-1) (fraction)"""
+
+    class RatedCoolingSensibleHeatRatio(BoundedDecimalZeroToOneWithSourceAttribute):
+        """The fraction of total energy transfer between the evaporator coil and air that is associated with sensible capacity (change in air temperature) expressed as a dimensionless value, and at the rated conditions prescribed for this system. (0-1) (fraction)"""
+
     class Controls(BSElement):
         """List of controls for CoolingSource."""
 
@@ -13672,14 +14515,14 @@ CoolingSource.element_attributes = [
 CoolingSource.element_children = [
     ("CoolingSourceType", CoolingSourceType),
     ("CoolingMedium", CoolingMedium),
-    ("AnnualCoolingEfficiencyValue", AnnualCoolingEfficiencyValue),
+    ("AnnualCoolingEfficiencyValue", CoolingSource.AnnualCoolingEfficiencyValue),
     ("AnnualCoolingEfficiencyUnits", AnnualCoolingEfficiencyUnits),
     ("Capacity", Capacity),
     ("CapacityUnits", CapacityUnits),
-    ("NumberOfDiscreteCoolingStages", NumberOfDiscreteCoolingStages),
-    ("CoolingStageCapacity", CoolingStageCapacity),
-    ("MinimumPartLoadRatio", MinimumPartLoadRatio),
-    ("RatedCoolingSensibleHeatRatio", RatedCoolingSensibleHeatRatio),
+    ("NumberOfDiscreteCoolingStages", CoolingSource.NumberOfDiscreteCoolingStages),
+    ("CoolingStageCapacity", CoolingSource.CoolingStageCapacity),
+    ("MinimumPartLoadRatio", CoolingSource.MinimumPartLoadRatio),
+    ("RatedCoolingSensibleHeatRatio", CoolingSource.RatedCoolingSensibleHeatRatio),
     ("ThirdPartyCertification", ThirdPartyCertification),
     ("PrimaryFuel", PrimaryFuel),
     ("CoolingSourceCondition", CoolingSourceCondition),
@@ -14755,6 +15598,15 @@ Utilities.element_children = [
 
 # HeatingPlantType
 class HeatingPlantType(BSElement):
+    class OtherCombination(OtherCombinationType):
+        pass
+
+    class NoHeating(NoHeatingType):
+        pass
+
+    class Unknown(UnknownType):
+        pass
+
     class PrimaryFuel(FuelTypes):
         """Main fuel used by the HeatingPlant."""
 
@@ -14767,6 +15619,12 @@ HeatingPlantType.element_attributes = [
     "Status",  # Status
 ]
 HeatingPlantType.element_children = [
+    ("Boiler", Boiler),
+    ("DistrictHeating", DistrictHeating),
+    ("SolarThermal", SolarThermal),
+    ("OtherCombination", HeatingPlantType.OtherCombination),
+    ("NoHeating", HeatingPlantType.NoHeating),
+    ("Unknown", HeatingPlantType.Unknown),
     ("HeatingPlantCondition", HeatingPlantCondition),
     ("Location", Location),
     ("YearInstalled", YearInstalled),
@@ -14809,6 +15667,34 @@ CondenserPlants.element_children = [
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource
 class HeatingSource(BSElement):
+    class AnnualHeatingEfficiencyValue(BSElement):
+        """Overall annual efficiency of a heating system."""
+
+        element_type = "xs:decimal"
+
+    class InputCapacity(BSElement):
+        """The rate of energy consumption of the heating equipment at full load."""
+
+        element_type = "xs:decimal"
+
+    class OutputCapacity(BSElement):
+        """Output capacity of equipment. WARNING: This element is being deprecated, use Capacity instead"""
+
+        element_type = "xs:decimal"
+
+    class Capacity(BSElement):
+        """Output capacity of equipment."""
+
+        element_type = "xs:decimal"
+
+    class NumberOfHeatingStages(BSElement):
+        """The number of heating stages, excluding "off." """
+
+        element_type = "xs:integer"
+
+    class HeatingStageCapacityFraction(BoundedDecimalZeroToOneWithSourceAttribute):
+        """Average capacity of each heating stage, at Air-Conditioning, Heating, and Refrigeration Institute (AHRI) rated conditions, expressed as a fraction of total capacity. (0-1) (fraction)"""
+
     class Controls(BSElement):
         """List of controls for HeatingSource."""
 
@@ -14823,13 +15709,15 @@ HeatingSource.element_attributes = [
 HeatingSource.element_children = [
     ("HeatingSourceType", HeatingSourceType),
     ("HeatingMedium", HeatingMedium),
-    ("AnnualHeatingEfficiencyValue", AnnualHeatingEfficiencyValue),
+    ("AnnualHeatingEfficiencyValue", HeatingSource.AnnualHeatingEfficiencyValue),
     ("AnnualHeatingEfficiencyUnits", AnnualHeatingEfficiencyUnits),
-    ("InputCapacity", InputCapacity),
+    ("InputCapacity", HeatingSource.InputCapacity),
+    ("OutputCapacity", HeatingSource.OutputCapacity),
+    ("Capacity", HeatingSource.Capacity),
     ("CapacityUnits", CapacityUnits),
     ("HeatingStaging", HeatingStaging),
-    ("NumberOfHeatingStages", NumberOfHeatingStages),
-    ("HeatingStageCapacityFraction", HeatingStageCapacityFraction),
+    ("NumberOfHeatingStages", HeatingSource.NumberOfHeatingStages),
+    ("HeatingStageCapacityFraction", HeatingSource.HeatingStageCapacityFraction),
     ("PrimaryFuel", PrimaryFuel),
     ("HeatingSourceCondition", HeatingSourceCondition),
     ("Controls", HeatingSource.Controls),
@@ -15194,6 +16082,8 @@ FanSystemType.element_attributes = [
 FanSystemType.element_children = [
     ("FanEfficiency", FanEfficiency),
     ("FanSize", FanSize),
+    ("InstalledFlowRate", InstalledFlowRate),
+    ("FanInstalledFlowRate", FanInstalledFlowRate),
     ("MinimumFlowRate", MinimumFlowRate),
     ("MaximumFanPower", MaximumFanPower),
     ("FanPowerMinimumRatio", FanPowerMinimumRatio),
@@ -16167,6 +17057,8 @@ HVACSystemType.element_children = [
     ("Location", Location),
     ("Priority", Priority),
     ("FrequencyOfMaintenance", FrequencyOfMaintenance),
+    ("PrimaryHVACSystemType", PrimaryHVACSystemType),
+    ("PrincipalHVACSystemType", PrincipalHVACSystemType),
     ("HVACControlSystemTypes", HVACControlSystemTypes),
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
@@ -16204,6 +17096,10 @@ BuildingType.element_children = [
     ("Address", Address),
     ("ClimateZoneType", ClimateZoneType),
     ("eGRIDRegionCode", eGRIDRegionCode),
+    ("WeatherDataStationID", WeatherDataStationID),
+    ("WeatherStationName", WeatherStationName),
+    ("WeatherStationCategory", WeatherStationCategory),
+    ("WeatherStations", WeatherStations),
     ("Longitude", Longitude),
     ("Latitude", Latitude),
     ("BuildingClassification", BuildingClassification),
@@ -16504,6 +17400,10 @@ SiteType.element_children = [
     ("Address", Address),
     ("ClimateZoneType", ClimateZoneType),
     ("eGRIDRegionCode", eGRIDRegionCode),
+    ("WeatherDataStationID", WeatherDataStationID),
+    ("WeatherStationName", WeatherStationName),
+    ("WeatherStationCategory", WeatherStationCategory),
+    ("WeatherStations", WeatherStations),
     ("Longitude", Longitude),
     ("Latitude", Latitude),
     ("FloorAreas", FloorAreas),
