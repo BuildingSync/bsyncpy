@@ -52,6 +52,7 @@ with the correct type.
 """
 
 import sys
+import argparse
 import logging
 from textwrap import dedent
 from collections import defaultdict
@@ -116,8 +117,7 @@ def register_dependency(element, dependency):
 
 
 def topological_sort() -> List[str]:
-    """perform topological sort on element dependencies.
-    """
+    """perform topological sort on element dependencies."""
     global element_dependencies
 
     result: List[str] = []
@@ -395,10 +395,7 @@ def do_complexType(element) -> BSElement:
                 child_ref = child.get("ref")
 
                 if child_name and child_ref:
-                    logging.debug(
-                        f"        - here {child_name} refers to {child_ref} ***"
-                    )
-
+                    logging.debug(f"        - here {child_name} refers to {child_ref}")
                     if child_ref.startswith("auc:"):
                         child_type_name = child_ref[4:]
                         bs_element.element_children.append(
@@ -433,6 +430,71 @@ def do_complexType(element) -> BSElement:
 
             elif child.tag == "choice":
                 logging.debug("        - embedded choice")
+                for j, subchild in enumerate(child):
+                    logging.debug(f"        c [{j}] {subchild} {subchild.get('name')}")
+                    if subchild.tag == "element":
+                        logging.debug(f"        c+")
+                        subchild_element = do_element(subchild)
+                        logging.debug(f"        c-")
+
+                        subchild_name = subchild.get("name")
+                        subchild_ref = subchild.get("ref")
+
+                        if subchild_name and subchild_ref:
+                            logging.debug(
+                                f"            - here {subchild_name} refers to {subchild_ref}"
+                            )
+                            if subchild_ref.startswith("auc:"):
+                                subchild_type_name = child_ref[4:]
+                                bs_element.element_children.append(
+                                    (subchild_name, subchild_type_name)
+                                )
+                            else:
+                                logging.debug("            - punt")
+
+                        elif subchild_name:
+                            logging.debug(f"            - seems to be here")
+                            bs_element.element_children.append(
+                                (subchild_name, subchild_element.element_full_name)
+                            )
+
+                        elif subchild_ref:
+                            logging.debug(
+                                f"            - no name, refers to {subchild_ref}"
+                            )
+
+                            if subchild_ref.startswith("auc:"):
+                                subchild_type_name = subchild_ref[4:]
+                                bs_element.element_children.append(
+                                    (subchild_type_name, subchild_type_name)
+                                )
+                            else:
+                                logging.debug("            - punt")
+
+                        else:
+                            raise RuntimeError(
+                                "resolve element with no name or reference"
+                            )
+
+                    elif subchild.tag == "sequence":
+                        logging.debug(f"        - sequence {subchild} ***")
+                        for i, grandchild in enumerate(subchild):
+                            logging.debug(
+                                f"            s [{i}] {grandchild} {grandchild.get('name')} {grandchild.get('ref')}"
+                            )
+                            grandchild_element = do_element(grandchild)
+                            grandchild_name = grandchild.get("name")
+                            grandchild_ref = grandchild.get("ref")
+                            if grandchild_ref.startswith("auc:"):
+                                grandchild_type_name = grandchild_ref[4:]
+                                bs_element.element_children.append(
+                                    (grandchild_type_name, grandchild_type_name)
+                                )
+                            else:
+                                logging.debug("            - punt")
+                    else:
+                        raise RuntimeError(f"unrecognized child of a choice: {child}")
+
             else:
                 raise RuntimeError(f"unrecognized child of a sequence: {child}")
 
@@ -452,11 +514,11 @@ def do_element(element) -> BSElement:
 
     element_name = element.get("name")
     if element_name:
-        logging.debug("    - here: {element_name}")
+        logging.debug(f"    - here: {element_name}")
 
     element_type = element.get("type")
     if element_type:
-        logging.debug("    - type: {element_type}")
+        logging.debug(f"    - type: {element_type}")
 
     element_docstring = ""
 
@@ -506,8 +568,23 @@ def do_attribute(element) -> BSElement:
 #   __main__
 #
 
+parser = argparse.ArgumentParser()
+
+# needs an XSD file name
+parser.add_argument("schema", type=str, help="schema file name")
+parser.add_argument(
+    "--debug", help="turn on debugging", action="store_true",
+)
+
+args = parser.parse_args()
+
+# turn on debugging
+if args.debug:
+    logging.basicConfig(level=logging.DEBUG)
+    logging.debug("args: {!r}".format(args))
+
 # parse the XML Schema document and get the root element
-doc = etree.parse("BuildingSync.xsd")
+doc = etree.parse(args.schema)
 root = doc.getroot()
 
 # simplify the element names by pulling out the local name
