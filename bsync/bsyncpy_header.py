@@ -107,15 +107,15 @@ class BSElement:
             elif self.element_type == "xs:dateTime":
                 if len(args) > 1:
                     raise RuntimeError("too many arguments")
-                if not isinstance(arg_value, datetime):
+                if not isinstance(arg_value, datetime.datetime):
                     raise TypeError("datetime.datetime expected")
                 self._text = arg_value.isoformat()
 
             elif self.element_type == "xs:gMonthDay":
                 if len(args) > 1:
                     raise RuntimeError("too many arguments")
-                if not isinstance(arg_value, datetime):
-                    raise TypeError("datetime expected")
+                if not isinstance(arg_value, datetime.date):
+                    raise TypeError("datetime.date expected")
                 self._text = arg_value.strftime("%m-%d")
 
             elif self.element_type == "xs:gYear":
