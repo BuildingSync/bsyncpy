@@ -116,7 +116,7 @@ class BSElement:
                     raise RuntimeError("too many arguments")
                 if not isinstance(arg_value, datetime.date):
                     raise TypeError("datetime.date expected")
-                self._text = arg_value.strftime("%m-%d")
+                self._text = arg_value.strftime("--%m-%d")
 
             elif self.element_type == "xs:gYear":
                 if len(args) > 1:
