@@ -94,5 +94,5 @@ def test_gmonthday():
     xml_representation = etree.tostring(ts.toxml())
     assert (
         xml_representation.decode("utf-8")
-        == "<ApplicableEndDateForDemandRate>01-01</ApplicableEndDateForDemandRate>"
+        == "<ApplicableEndDateForDemandRate>--01-01</ApplicableEndDateForDemandRate>"
     )
