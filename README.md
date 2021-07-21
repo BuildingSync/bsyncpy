@@ -44,3 +44,5 @@ Output
   </Facilities>
 </BuildingSync>
 ```
+
+Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/github/BuildingSync/schema/blob/develop/docs/notebooks/bsync_examples/Small-Office-Level-1.ipynb).
