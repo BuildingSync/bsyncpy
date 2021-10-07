@@ -6,3 +6,6 @@ __pycache__
 *.pyc
 
 BuildingSync.xsd
+BuildingSync-*.xsd
+example.py
+output.xml
