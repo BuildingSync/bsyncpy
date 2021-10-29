@@ -573,7 +573,9 @@ parser = argparse.ArgumentParser()
 # needs an XSD file name
 parser.add_argument("schema", type=str, help="schema file name")
 parser.add_argument(
-    "--debug", help="turn on debugging", action="store_true",
+    "--debug",
+    help="turn on debugging",
+    action="store_true",
 )
 
 args = parser.parse_args()
