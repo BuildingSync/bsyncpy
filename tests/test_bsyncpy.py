@@ -1,5 +1,5 @@
 import datetime
-from bsync import bsync
+from bsyncpy import bsync
 from lxml import etree
 
 

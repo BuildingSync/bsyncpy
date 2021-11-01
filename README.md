@@ -7,11 +7,11 @@ Current BuildingSync version: `2.4.0`.
 ## Generating
 - `poetry install`
 - `poetry run pre-commit install`
-- Download, copy, or curl a BuildingSync schema into `bsyncpy/bsync`
-  - `curl -L -o bsync/BuildingSync-2.4.xsd https://github.com/BuildingSync/schema/releases/download/v2.4.0/BuildingSync.xsd`
-- cd into `bsyncpy/bsync`
+- Download, copy, or curl a BuildingSync schema into `bsyncpy/bsyncpy`
+  - `curl -L -o bsyncpy/BuildingSync-2.4.xsd https://github.com/BuildingSync/schema/releases/download/v2.4.0/BuildingSync.xsd`
+- cd into `bsyncpy/bsyncpy`
 - Run generator: `poetry run python bsyncpy_generator.py BuildingSync-2.4.xsd`
-- Go back to `bsyncpy` and run tests: `poetry run pytest`
+- Go back to the root `bsyncpy` and run tests: `poetry run pytest`
 - Make sure formatting is good: `poetry run pre-commit run --all-files`
 - On commit, pre-commit should run again
 
@@ -20,7 +20,7 @@ Current BuildingSync version: `2.4.0`.
 *Input*
 ```python
 from lxml import etree
-from bsync import bsync
+from bsyncpy import bsync
 
 # Create a root and set the version attribute
 root = bsync.BuildingSync()
@@ -51,3 +51,8 @@ with open('output.xml', 'wb+') as f:
 ## Comprehensive example
 
 Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/github/BuildingSync/schema/blob/develop-v2/docs/notebooks/bsync_examples/Small-Office-Level-1.ipynb).
+
+
+# Updating Version
+
+See the notes above on downloading and generating the new bsync.py file. 
