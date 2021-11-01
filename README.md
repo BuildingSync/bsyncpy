@@ -2,7 +2,7 @@
 
 ![Build Status](https://github.com/BuildingSync/bsyncpy/actions/workflows/ci.yml/badge.svg?branch=develop)
 
-Current BuildingSync version: `2.4.0`
+Current BuildingSync version: `2.4.0`.
 
 ## Generating
 - `poetry install`
