@@ -24,9 +24,9 @@ jobs:
     - name: Install poetry
       uses: abatilo/actions-poetry@v2.0.0
 
-    - name: Install poetry and pre-commit
+    - name: Install poetry (and update) and pre-commit
       run: | 
-        poetry install
+        poetry update
         poetry run pre-commit install
 
     - name: Run pre-commit
@@ -35,7 +35,8 @@ jobs:
     - name: Run tests
       run: poetry run pytest
 
-    - name: Run Generator
+    - name: Run Generator (BuildingSync 2.4)
       run: |
-        echo "Whatever!"
-        
+        curl -L -o bsyncpy/BuildingSync-2.4.xsd https://github.com/BuildingSync/schema/releases/download/v2.4.0/BuildingSync.xsd
+        cd bsyncpy
+        poetry run python bsyncpy_generator.py BuildingSync-2.4.xsd

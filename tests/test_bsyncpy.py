@@ -9,7 +9,7 @@ def test_initialize():
 
 
 def test_int_datatype():
-    b = bsync.Sections.Section.Story(1)
+    b = bsync.Sections.Section(bsync.Story(1))
     assert b is not None
 
 
@@ -49,13 +49,13 @@ def test_datetime():
     """
     Added for https://github.com/BuildingSync/bsyncpy/issues/6
     """
-    dt = datetime.datetime(2019, 1, 1, 0, 0, 0)
-    ts = bsync.TimeSeriesData.TimeSeries.StartTimestamp(dt)
+    dt = datetime.datetime(2019, 1, 1, 8, 24, 59)
+    ts = bsync.StartTimestamp(dt)
     assert ts is not None
     xml_representation = etree.tostring(ts.toxml())
     assert (
         xml_representation.decode("utf-8")
-        == "<StartTimestamp>2019-01-01T00:00:00</StartTimestamp>"
+        == "<StartTimestamp>2019-01-01T08:24:59</StartTimestamp>"
     )
 
 
