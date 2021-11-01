@@ -55,4 +55,8 @@ Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/githu
 
 # Updating Version
 
-See the notes above on downloading and generating the new bsync.py file. 
+* See the notes above on downloading and generating the new bsync.py file. 
+* Bump version in `pyproject.toml` file
+* Add CHANGELOG entry
+* Update (or add) generator test in `.github/ci.yml`
+* Update this README with the latest version of testing.
