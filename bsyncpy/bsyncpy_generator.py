@@ -146,8 +146,7 @@ def topological_sort() -> List[str]:
 
 class BSElement:
     """A instance of this object is a summary of the BuildingSync element
-    components, enough to turn it into a Python class definition.
-    """
+    components, enough to turn it into a Python class definition."""
 
     element_name: str
     element_type: str
@@ -374,16 +373,45 @@ def do_complexType(element) -> BSElement:
     elif choice is not None:
         logging.debug("    choice!")
         for i, child in enumerate(choice):
-            child_name = child.get("name")
-            child_ref = child.get("ref")
-            logging.debug(f"    c [{i}] {child} {child_name} {child_ref}")
+            logging.debug(f"    c [{i}] {child} {child.get('name')}")
 
-            choice_element = do_element(child)
-            logging.debug(f"        - choice_element: {choice_element.element_name}")
+            if child.tag == "element":
+                child_name = child.get("name")
+                child_ref = child.get("ref")
 
-            bs_element.element_children.append(
-                (child_name, choice_element.element_full_name)
-            )
+                if child_name and child_ref:
+                    logging.debug(f"        - here {child_name} refers to {child_ref}")
+                    if child_ref.startswith("auc:"):
+                        child_type_name = child_ref[4:]
+                        bs_element.element_children.append(
+                            (child_name, child_type_name)
+                        )
+                    else:
+                        logging.debug("        - punt")
+
+                elif child_name:
+                    logging.debug("        - seems to be here")
+                    logging.debug(f"+1 {child_name}")
+                    child_element = do_element(child)
+                    logging.debug(f"-1 {child_name}")
+
+                    bs_element.element_children.append(
+                        (child_name, child_element.element_full_name)
+                    )
+
+                elif child_ref:
+                    logging.debug(f"        - no name, refers to {child_ref}")
+
+                    if child_ref.startswith("auc:"):
+                        child_type_name = child_ref[4:]
+                        bs_element.element_children.append(
+                            (child_type_name, child_type_name)
+                        )
+                    else:
+                        logging.debug("        - punt")
+
+                else:
+                    raise RuntimeError("resolve element with no name or reference")
 
     elif sequence is not None:
         logging.debug("    sequence!")

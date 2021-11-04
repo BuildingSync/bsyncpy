@@ -1,3 +1,9 @@
+# Version 0.2.0 (Unreleased)
+
+* Generated for BuildingSync 2.4
+* Renamed project folder to bsyncpy to follow Python package conventions
+* Updated Poetry/Python dependencies
+
 # Version 0.1.1
 
 * Updated dependencies and regenerated bsync.py
