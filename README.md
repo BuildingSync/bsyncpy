@@ -4,6 +4,10 @@
 
 Current BuildingSync version: `2.4.0`.
 
+## Installing
+
+`pip install bsyncpy`
+
 ## Generating
 - `poetry install`
 - `poetry run pre-commit install`
@@ -60,3 +64,12 @@ Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/githu
 * Add CHANGELOG entry
 * Update (or add) generator test in `.github/ci.yml`
 * Update this README with the latest version of testing.
+
+## Releasing New Version
+
+* Merge everything down to `main`
+* `git tag <version>`. Version in the form of vX.Y.Z.
+* `git push --tags`.
+* Go to GitHub and convert the tag to a release.
+* `poetry build`
+* `poetry publish`. Login via pypi account.
