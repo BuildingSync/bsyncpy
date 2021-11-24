@@ -146,7 +146,8 @@ def topological_sort() -> List[str]:
 
 class BSElement:
     """A instance of this object is a summary of the BuildingSync element
-    components, enough to turn it into a Python class definition."""
+    components, enough to turn it into a Python class definition.
+    """
 
     element_name: str
     element_type: str
@@ -373,45 +374,18 @@ def do_complexType(element) -> BSElement:
     elif choice is not None:
         logging.debug("    choice!")
         for i, child in enumerate(choice):
-            logging.debug(f"    c [{i}] {child} {child.get('name')}")
+            child_name = child.get("name")
+            child_ref = child.get("ref")
+            logging.debug(f"    c [{i}] {child} {child_name} {child_ref}")
+            if not child_name:
+                child_name = child_ref[4:]
 
-            if child.tag == "element":
-                child_name = child.get("name")
-                child_ref = child.get("ref")
+            choice_element = do_element(child)
+            logging.debug(f"        - choice_element: {choice_element.element_name}")
 
-                if child_name and child_ref:
-                    logging.debug(f"        - here {child_name} refers to {child_ref}")
-                    if child_ref.startswith("auc:"):
-                        child_type_name = child_ref[4:]
-                        bs_element.element_children.append(
-                            (child_name, child_type_name)
-                        )
-                    else:
-                        logging.debug("        - punt")
-
-                elif child_name:
-                    logging.debug("        - seems to be here")
-                    logging.debug(f"+1 {child_name}")
-                    child_element = do_element(child)
-                    logging.debug(f"-1 {child_name}")
-
-                    bs_element.element_children.append(
-                        (child_name, child_element.element_full_name)
-                    )
-
-                elif child_ref:
-                    logging.debug(f"        - no name, refers to {child_ref}")
-
-                    if child_ref.startswith("auc:"):
-                        child_type_name = child_ref[4:]
-                        bs_element.element_children.append(
-                            (child_type_name, child_type_name)
-                        )
-                    else:
-                        logging.debug("        - punt")
-
-                else:
-                    raise RuntimeError("resolve element with no name or reference")
+            bs_element.element_children.append(
+                (child_name, choice_element.element_full_name)
+            )
 
     elif sequence is not None:
         logging.debug("    sequence!")
@@ -507,12 +481,13 @@ def do_complexType(element) -> BSElement:
                     elif subchild.tag == "sequence":
                         logging.debug(f"        - sequence {subchild} ***")
                         for i, grandchild in enumerate(subchild):
-                            logging.debug(
-                                f"            s [{i}] {grandchild} {grandchild.get('name')} {grandchild.get('ref')}"
-                            )
-                            grandchild_element = do_element(grandchild)
                             grandchild_name = grandchild.get("name")
                             grandchild_ref = grandchild.get("ref")
+                            logging.debug(
+                                f"            s [{i}] {grandchild} {grandchild_name} {grandchild_ref}"
+                            )
+
+                            grandchild_element = do_element(grandchild)
                             if grandchild_ref.startswith("auc:"):
                                 grandchild_type_name = grandchild_ref[4:]
                                 bs_element.element_children.append(
@@ -535,11 +510,6 @@ def do_complexType(element) -> BSElement:
 def do_element(element) -> BSElement:
     logging.debug(f"element {element} {element.get('name')}")
 
-    element_ref = element.get("ref")
-    if element_ref:
-        logging.debug(f"    - elsewhere: {element_ref}")
-        return
-
     element_name = element.get("name")
     if element_name:
         logging.debug(f"    - here: {element_name}")
@@ -547,6 +517,15 @@ def do_element(element) -> BSElement:
     element_type = element.get("type")
     if element_type:
         logging.debug(f"    - type: {element_type}")
+
+    element_ref = element.get("ref")
+    if element_ref:
+        logging.debug(f"    - elsewhere: {element_ref}")
+        if element_ref.startswith("auc:"):
+            element_type = element_ref
+            element_name = element_ref[4:]
+        else:
+            raise RuntimeError("oof!")
 
     element_docstring = ""
 
