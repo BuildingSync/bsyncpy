@@ -2397,7 +2397,6 @@ class EmissionsType(BSElement):
     element_type = "xs:string"
     element_enumerations = [
         "CO2e",
-        "MtCO2e",
         "CO2",
         "CH4",
         "N2O",
