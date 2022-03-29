@@ -2395,15 +2395,7 @@ class EmissionsType(BSElement):
     """Category of greenhouse gas or other emission."""
 
     element_type = "xs:string"
-    element_enumerations = [
-        "CO2e",
-        "CO2",
-        "CH4",
-        "N2O",
-        "NOx",
-        "SO2",
-        "Other",
-    ]
+    element_enumerations = ["CO2e", "CO2", "CH4", "N2O", "NOx", "SO2", "Other"]
 
 
 # ResourceUseType.Emissions.Emission.EmissionsFactor
