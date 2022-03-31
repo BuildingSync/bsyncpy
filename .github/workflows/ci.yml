@@ -40,7 +40,7 @@ jobs:
           curl -L -o bsyncpy/BuildingSync-2.3.xsd https://github.com/BuildingSync/schema/releases/download/v2.3.0/BuildingSync.xsd
           cd bsyncpy
           poetry run python bsyncpy_generator.py BuildingSync-2.3.xsd
-      
+
       - name: Run Generator (BuildingSync 2.4)
         run: |
           curl -L -o bsyncpy/BuildingSync-2.4.xsd https://github.com/BuildingSync/schema/releases/download/v2.4.0/BuildingSync.xsd
