@@ -387,6 +387,44 @@ class PremisesNotes(BSElement):
     element_type = "xs:string"
 
 
+# eGRIDRegionCode
+class eGRIDRegionCode(BSElement):
+    """WARNING: eGRIDRegionCode will be deprecated in BuildingSync 3.0 - use eGRIDSubregionCodes."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "AKGD",
+        "AKMS",
+        "AZNM",
+        "CAMX",
+        "ERCT",
+        "FRCC",
+        "HIMS",
+        "HIOA",
+        "MORE",
+        "MROE",
+        "MROW",
+        "NEWE",
+        "NWPP",
+        "NYCW",
+        "NYLI",
+        "NYUP",
+        "PRMS",
+        "RFCE",
+        "RFCM",
+        "RFCW",
+        "RMPA",
+        "SPNO",
+        "SPSO",
+        "SRMV",
+        "SRMW",
+        "SRSO",
+        "SRTV",
+        "SRVC",
+        "Other",
+    ]
+
+
 # WeatherDataStationID
 class WeatherDataStationID(BSElement):
     """For an actual weather station, this is the ID assigned by National Oceanic and Atmospheric Administration (NOAA). For hourly energy simulations, this is the six digit code associated with the hourly weather data, generally found in the name of the weather data file, as well as in the header of the data file. (NNNNNN) WARNING: This element is being deprecated, use WeatherStations/WeatherStation/WeatherDataStationID instead"""
@@ -509,7 +547,7 @@ class PubliclySubsidized(BSElement):
 class NumberOfBusinesses(BSElement):
     """Number of separate business tenants within the premises."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # FloorsAboveGrade
@@ -530,28 +568,28 @@ class FloorsBelowGrade(BSElement):
 class ConditionedFloorsAboveGrade(BSElement):
     """Nominal number of floors which are fully above ground and are conditioned."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # BuildingType.ConditionedFloorsBelowGrade
 class ConditionedFloorsBelowGrade(BSElement):
     """Nominal number of floors which are fully underground and are conditioned."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # BuildingType.UnconditionedFloorsAboveGrade
 class UnconditionedFloorsAboveGrade(BSElement):
     """Nominal number of floors which are fully above ground and are unconditioned."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # BuildingType.UnconditionedFloorsBelowGrade
 class UnconditionedFloorsBelowGrade(BSElement):
     """Nominal number of floors which are fully underground and are unconditioned."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # BuildingAutomationSystem
@@ -586,7 +624,7 @@ class AspectRatio(BSElement):
 class Perimeter(BSElement):
     """Length of a line forming the boundary around the premises. (ft)"""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # BuildingType.TotalExteriorAboveGradeWallArea
@@ -700,7 +738,7 @@ class PercentLeasedByOwner(BSElement):
 class NumberOfFacilitiesOnSite(BSElement):
     """Number of facilities on the site."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # BuildingType.OperatorType
@@ -929,7 +967,7 @@ class FootprintShape(BSElement):
 class NumberOfSides(BSElement):
     """Number of sides of the section of the building. Inclusion of this element is recommended when auc:FootprintShape is Other."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # Story
@@ -992,7 +1030,7 @@ class ZOffset(BSElement):
 class FloorsPartiallyBelowGrade(BSElement):
     """Number of floors which are partially underground."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # BuildingType.Sections.Section.FloorToFloorHeight
@@ -1119,7 +1157,7 @@ class PercentageOfCommonSpace(BSElement):
 class ConditionedVolume(BSElement):
     """Heated or cooled air volume of a premises. (ft3)"""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # SpaceType.OccupancyScheduleIDs.OccupancyScheduleID
@@ -2326,21 +2364,21 @@ LinkedTimeSeriesID.element_attributes = [
     "IDref",  # IDREF
 ]
 
-# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs.EmissionsLinkedTimeSeriesID
-class EmissionsLinkedTimeSeriesID(BSElement):
-    pass
-
-
-EmissionsLinkedTimeSeriesID.element_attributes = [
-    "IDref",  # IDREF
-]
-
 # ResourceUseType.UtilityIDs.UtilityID
 class UtilityID(BSElement):
     """ID of utility associated with this resource use."""
 
 
 UtilityID.element_attributes = [
+    "IDref",  # IDREF
+]
+
+# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs.EmissionsLinkedTimeSeriesID
+class EmissionsLinkedTimeSeriesID(BSElement):
+    pass
+
+
+EmissionsLinkedTimeSeriesID.element_attributes = [
     "IDref",  # IDREF
 ]
 
@@ -2382,8 +2420,8 @@ class GHGEmissions(BSElement):
     element_type = "xs:decimal"
 
 
-# ResourceUseType.Emissions.Emission.GHGEmissionsIntensity
-class GHGEmissionsIntensity(BSElement):
+# ResourceUseType.Emissions.Emission.GHGEmissionIntensity
+class GHGEmissionIntensity(BSElement):
     """GHG Emission Intensity (kg CO2e/ft2)"""
 
     element_type = "xs:decimal"
@@ -2391,21 +2429,9 @@ class GHGEmissionsIntensity(BSElement):
 
 # ResourceUseType.Emissions.Emission.AvoidedEmissions
 class AvoidedEmissions(BSElement):
-    """The avoided Greenhouse gas (GHG) emissions resulting from a renewable energy source or a system. (MtCO2e)"""
+    """The avoided Greenhouse gas (GHG) emissions resulting from a renewable energy source or a system. (kg CO2e)"""
 
     element_type = "xs:decimal"
-
-
-# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs
-class EmissionsLinkedTimeSeriesIDs(BSElement):
-    """Links to all time series data used to calculate the total GHG Emissions"""
-
-    element_type = "xs:decimal"
-
-
-EmissionsLinkedTimeSeriesIDs.element_children = [
-    ("EmissionsLinkedTimeSeriesID", EmissionsLinkedTimeSeriesID),
-]
 
 
 # AllResourceTotalType.SiteEnergyUseIntensity
@@ -2527,6 +2553,27 @@ class WasteWaterVolume(BSElement):
     element_type = "xs:decimal"
 
 
+# AllResourceTotalType.AnnualAverageGHGEmissions
+class AnnualAverageGHGEmissions(BSElement):
+    """Annual Average GHG Emissions. (MtCO2e)"""
+
+    element_type = "xs:decimal"
+
+
+# AllResourceTotalType.AnnualMarginalGHGEmissions
+class AnnualMarginalGHGEmissions(BSElement):
+    """Annual Marginal GHG Emissions. (MtCO2e)"""
+
+    element_type = "xs:decimal"
+
+
+# AllResourceTotalType.AnnualGHGEmissionIntensity
+class AnnualGHGEmissionIntensity(BSElement):
+    """Annual GHG Emission Intensity. (kg CO2e/ft2/year)"""
+
+    element_type = "xs:decimal"
+
+
 # TimeSeriesType.ReadingType
 class ReadingType(BSElement):
     """Type of data recorded by the meter or other source."""
@@ -2565,9 +2612,9 @@ class TimeSeriesReadingQuantity(BSElement):
         "Current Angle",
         "Demand",
         "Frequency",
-        "Greenhouse Gas Emissions",
         "Power",
         "Power Factor",
+        "Greenhouse Gas Emissions",
         "Energy",
         "Voltage",
         "Voltage Angle",
@@ -2953,7 +3000,7 @@ ExistingSystemRemoved.element_attributes = [
 class MeasureRank(BSElement):
     """Sequence in which the measure was analyzed relative to other measures. Ranking should be 1 if it is analyzed first, 2 if analyzed after Measure 1 is applied, etc. This accounts for interactive effects between measures. Ranking may be 1 for all measures if they are not analyzed as a package."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # MeasureType.MeasureSavingsAnalysis.OtherCostAnnualSavings
@@ -3329,6 +3376,32 @@ class FrequencyOfMaintenance(BSElement):
     ]
 
 
+# HVACSystemType.PrimaryHVACSystemType
+class PrimaryHVACSystemType(BSElement):
+    """Primary HVAC type. WARNING: This element is being deprecated, use PrincipalHVACSystemType instead."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Packaged Terminal Air Conditioner",
+        "Four Pipe Fan Coil Unit",
+        "Packaged Terminal Heat Pump",
+        "Packaged Rooftop Air Conditioner",
+        "Packaged Rooftop Heat Pump",
+        "Packaged Rooftop VAV with Hot Water Reheat",
+        "Packaged Rooftop VAV with Electric Reheat",
+        "VAV with Hot Water Reheat",
+        "VAV with Electric Reheat",
+        "Warm Air Furnace",
+        "Ventilation Only",
+        "Dedicated Outdoor Air System",
+        "Water Loop Heat Pump",
+        "Ground Source Heat Pump",
+        "VRF Terminal Unit",
+        "Chilled Beam",
+        "Other",
+    ]
+
+
 # HVACSystemType.PrincipalHVACSystemType
 class PrincipalHVACSystemType(BSElement):
     """Principal HVAC type."""
@@ -3359,7 +3432,7 @@ class PrincipalHVACSystemType(BSElement):
 class Quantity(BSElement):
     """Number of systems of this type."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.Furnace.FurnaceType
@@ -4072,6 +4145,13 @@ class MinimumOutsideAirPercentage(BSElement):
     element_type = "xs:decimal"
 
 
+# DuctSystemType.MaximumOAFlowRate
+class MaximumOAFlowRate(BSElement):
+    """WARNING:This element is being deprecated in version 3.0, use MaximumOutsideAirFlowRate. The maximum flow rate of outside air that the system is able to deliver. For systems with economizing or demand controlled ventilation capability, this is the outdoor air flow rate when the outdoor air (OA) damper is fully open and the fan speed is at maximum. (cfm)"""
+
+    element_type = "xs:decimal"
+
+
 # DuctSystemType.MaximumOutsideAirFlowRate
 class MaximumOutsideAirFlowRate(BSElement):
     """The maximum flow rate of outside air that the system is able to deliver. For systems with economizing or demand controlled ventilation capability, this is the outdoor air flow rate when the outdoor air (OA) damper is fully open and the fan speed is at maximum. (cfm)"""
@@ -4561,7 +4641,7 @@ class CoolingTowerCellControl(BSElement):
 class CellCount(BSElement):
     """The number of cells in the cooling tower. Each cell has its own fan, water flow allowing for responding to lower load conditions."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # CondenserPlantType.GroundSource.WaterSideEconomizer.WaterSideEconomizerTemperatureSetpoint
@@ -4584,7 +4664,7 @@ class GroundSourceType(BSElement):
 
 # CondenserPlantType.GroundSource.WellCount
 class WellCount(BSElement):
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # OtherHVACSystemType.OtherHVACSystemCondition
@@ -4855,14 +4935,14 @@ class LampPower(BSElement):
 class NumberOfLampsPerLuminaire(BSElement):
     """The number of lamps in the luminaire."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # LightingSystemType.NumberOfLampsPerBallast
 class NumberOfLampsPerBallast(BSElement):
     """The number of lamps driven by the ballast."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # LightingSystemType.NumberOfBallastsPerLuminaire
@@ -4876,7 +4956,7 @@ class NumberOfBallastsPerLuminaire(BSElement):
 class NumberOfLuminaires(BSElement):
     """Total number of luminaires/fixtures in this system."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # LightingSystemType.OutsideLighting
@@ -5216,7 +5296,7 @@ class HeatExchanger(BSElement):
 class RecirculationLoopCount(BSElement):
     """The total number of hot water recirculation loops coming from and returning to a specific water heater."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # DomesticHotWaterSystemType.Recirculation.RecirculationFlowRate
@@ -5303,7 +5383,7 @@ class TypeOfCookingEquipment(BSElement):
 class NumberOfMeals(BSElement):
     """Number of meals cooked per year using this equipment."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # CookingSystemType.CookingEnergyPerMeal
@@ -5324,7 +5404,7 @@ class DailyWaterUse(BSElement):
 class CompressorUnloaderStages(BSElement):
     """Number of stages available for unloading the compressor."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # RefrigerationSystemType.RefrigerationSystemCategory.CentralRefrigerationSystem.RefrigerationCompressor.RefrigerationCompressorType
@@ -5381,7 +5461,7 @@ class SuctionVaporTemperature(BSElement):
 class NumberOfRefrigerantReturnLines(BSElement):
     """Number of return lines from refrigerated cases to the compressor."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # RefrigerationSystemType.RefrigerationSystemCategory.CentralRefrigerationSystem.EvaporatorPressureRegulators
@@ -5765,6 +5845,13 @@ class FanSize(BSElement):
     element_type = "xs:decimal"
 
 
+# FanSystemType.InstalledFlowRate
+class InstalledFlowRate(BSElement):
+    """Actual flow rate of fan under normal operating conditions. WARNING: this element is being deprecated, use FanInstalledFlowRate instead. (cfm)"""
+
+    element_type = "xs:decimal"
+
+
 # FanSystemType.FanInstalledFlowRate
 class FanInstalledFlowRate(BSElement):
     """Actual flow rate of fan under normal operating conditions. (cfm)"""
@@ -5864,21 +5951,21 @@ class DesignStaticPressure(BSElement):
 class NumberOfDiscreteFanSpeedsCooling(BSElement):
     """The number of discrete operating speeds for the supply-fan motor when the unit is in cooling mode, excluding "off." Only used if flow control is "stepped." """
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # FanSystemType.NumberOfDiscreteFanSpeedsHeating
 class NumberOfDiscreteFanSpeedsHeating(BSElement):
     """The number of discrete operating speeds for the supply-fan motor when the unit is in heating mode, excluding "off." Only used if flow control is "stepped." """
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # MotorSystemType.MotorRPM
 class MotorRPM(BSElement):
     """The number of full revolutions in a unit of time and is used to assign MotorEfficiency. 2008 NR ACM table N2-20 has four speeds: 3600 rpm, 1800 rpm, 1200 rpm, 900 rpm."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # MotorSystemType.MotorBrakeHP
@@ -5920,7 +6007,7 @@ class FullLoadAmps(BSElement):
 class MotorPoleCount(BSElement):
     """The number of pole electromagnetic windings in the motor's stator and used to assign MotorEfficiency. Pole count is always a multiple of 2."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # MotorSystemType.MotorEnclosureType
@@ -6459,7 +6546,7 @@ class RoofExteriorSolarAbsorptance(BSElement):
 class RoofExteriorSolarReflectanceIndex(BSElement):
     """A measure of a roof's ability to reject solar heat, as shown by a small temperature rise. It is defined so that a standard black (reflectance 0.05, emittance 0.90) is 0 and a standard white (reflectance 0.80, emittance 0.90) is 100."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # RoofSystemType.RoofExteriorThermalAbsorptance
@@ -7325,14 +7412,14 @@ class ThermalMedium(BSElement):
 class PhotovoltaicSystemNumberOfModulesPerArray(BSElement):
     """Number of modules in each array of a photovoltaic system."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # OnsiteStorageTransmissionGenerationSystemType.EnergyConversionType.Generation.OnsiteGenerationType.PV.PhotovoltaicSystemNumberOfArrays
 class PhotovoltaicSystemNumberOfArrays(BSElement):
     """Number of arrays in a photovoltaic system."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # OnsiteStorageTransmissionGenerationSystemType.EnergyConversionType.Generation.OnsiteGenerationType.PV.PhotovoltaicSystemMaximumPowerOutput
@@ -7619,7 +7706,7 @@ class SpatialUnitType(BSElement):
 class NumberOfUnits(BSElement):
     """Number of individual units within the premises."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # SpatialUnitTypeType.UnitDensity
@@ -7670,7 +7757,7 @@ class StreetNumberPrefix(BSElement):
 class StreetNumberNumeric(BSElement):
     """The numeric identifier for a land parcel, house, building, or other location along a thoroughfare or within a community."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # Address.StreetAddressDetail.Complex.StreetNumberSuffix
@@ -8753,7 +8840,7 @@ class ControlStrategyDaylightingType(BSElement):
 class ControlSteps(BSElement):
     """For stepped dimming, the number of equally spaced control steps."""
 
-    element_type = "xs:nonNegativeInteger"
+    element_type = "xs:integer"
 
 
 # CommunicationProtocolAnalogType
@@ -9479,6 +9566,15 @@ WallID.element_children = [
     ("WallArea", WallArea),
 ]
 
+# BuildingType.Sections.Section.Sides.Side.WallIDs
+class WallIDs(BSElement):
+    pass
+
+
+WallIDs.element_children = [
+    ("WallID", WallID),
+]
+
 # DoorID
 class DoorID(BSElement):
     """ID number of the door type associated with this side of the section."""
@@ -9489,6 +9585,15 @@ DoorID.element_attributes = [
 ]
 DoorID.element_children = [
     ("FenestrationArea", FenestrationArea),
+]
+
+# BuildingType.Sections.Section.Sides.Side.DoorIDs
+class DoorIDs(BSElement):
+    pass
+
+
+DoorIDs.element_children = [
+    ("DoorID", DoorID),
 ]
 
 # ThermalZoneIDs
@@ -9992,6 +10097,15 @@ UtilityIDs.element_children = [
     ("UtilityID", UtilityID),
 ]
 
+# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs
+class EmissionsLinkedTimeSeriesIDs(BSElement):
+    """Links to all time series data used to calculate the total GHG Emissions"""
+
+
+EmissionsLinkedTimeSeriesIDs.element_children = [
+    ("EmissionsLinkedTimeSeriesID", EmissionsLinkedTimeSeriesID),
+]
+
 # ResourceUseType.Emissions.Emission
 class Emission(BSElement):
     pass
@@ -10003,7 +10117,7 @@ Emission.element_children = [
     ("EmissionsFactor", EmissionsFactor),
     ("EmissionsFactorSource", EmissionsFactorSource),
     ("GHGEmissions", GHGEmissions),
-    ("GHGEmissionsIntensity", GHGEmissionsIntensity),
+    ("GHGEmissionIntensity", GHGEmissionIntensity),
     ("AvoidedEmissions", AvoidedEmissions),
     ("EmissionsLinkedTimeSeriesIDs", EmissionsLinkedTimeSeriesIDs),
 ]
@@ -10119,7 +10233,7 @@ class BoilerPlantImprovements(BSElement):
             "Clean and/or repair",
             "Implement training and/or documentation",
             "Upgrade operating protocols, calibration, and/or sequencing",
-            "Convert to cleaner fuels",
+            "Convert to Cleaner Fuels",
             "Other",
         ]
 
@@ -10163,6 +10277,7 @@ class BuildingAutomationSystems(BSElement):
 
         element_type = "xs:string"
         element_enumerations = [
+            "Add heat recovery",
             "Add or upgrade BAS/EMS/EMCS",
             "Add or upgrade controls",
             "Convert pneumatic controls to DDC",
@@ -10188,8 +10303,7 @@ class OtherHVAC(BSElement):
             "Improve distribution fans",
             "Improve ventilation fans",
             "Convert CV system to VAV system",
-            "Repair leaks in ducts",
-            "Seal ducts",
+            "Repair leaks / seal ducts",
             "Add duct insulation",
             "Balance ventilation/distribution system",
             "Repair or replace HVAC damper and controller",
@@ -10202,12 +10316,14 @@ class OtherHVAC(BSElement):
             "Install solar ventilation preheating system",
             "Add or repair economizer",
             "Add energy recovery",
+            "Add or replace cooling tower",
             "Install thermal destratification fans",
             "Install demand control ventilation",
             "Install gas cooling",
             "Install air source heat pump",
             "Install variable refrigerant flow system",
             "Capture and return condensate",
+            "Install or Upgrade Master Venting",
             "Clean and/or repair",
             "Implement training and/or documentation",
             "Upgrade operating protocols, calibration, and/or sequencing",
@@ -10270,8 +10386,7 @@ class BuildingEnvelopeModifications(BSElement):
             "Insulate thermal bypasses",
             "Increase ceiling insulation",
             "Increase roof insulation",
-            "Insulate attic hatch",
-            "Insulate attic stair box",
+            "Insulate attic hatch / stair box",
             "Add attic/knee wall insulation",
             "Install cool/green roof",
             "Add shading devices",
@@ -10308,6 +10423,7 @@ class ChilledWaterHotWaterAndSteamDistributionSystems(BSElement):
             "Replace or upgrade water heater",
             "Add energy recovery",
             "Install solar hot water system",
+            "Separate SHW from heating",
             "Replace with higher efficiency pump",
             "Replace with variable speed pump",
             "Install or upgrade master venting",
@@ -10529,6 +10645,7 @@ class EnergyCostReductionThroughRateAdjustments(BSElement):
         element_type = "xs:string"
         element_enumerations = [
             "Change to more favorable rate schedule",
+            "Energy cost reduction through rate adjustments - uncategorized",
             "Energy service billing and meter auditing recommendations",
             "Change to lower energy cost supplier(s)",
             "Other",
@@ -10619,6 +10736,7 @@ class DataCenterImprovements(BSElement):
         element_enumerations = [
             "Improve data center efficiency",
             "Implement hot aisle hold aisle design",
+            "Implement hot aisle cold aisle design",
             "Implement server virtualization",
             "Upgrade servers",
             "Clean and/or repair",
@@ -10630,6 +10748,21 @@ class DataCenterImprovements(BSElement):
 
 DataCenterImprovements.element_children = [
     ("MeasureName", DataCenterImprovements.MeasureName),
+]
+
+# MeasureType.TechnologyCategories.TechnologyCategory.FutureOtherECMs
+class FutureOtherECMs(BSElement):
+    """Measures reserved for future and other ECMs."""
+
+    class MeasureName(BSElement):
+        """Short description of measure."""
+
+        element_type = "xs:string"
+        element_enumerations = ["Other"]
+
+
+FutureOtherECMs.element_children = [
+    ("MeasureName", FutureOtherECMs.MeasureName),
 ]
 
 # MeasureType.TechnologyCategories.TechnologyCategory.HealthAndSafety
@@ -10711,6 +10844,7 @@ TechnologyCategory.element_children = [
     ("AdvancedMeteringSystems", AdvancedMeteringSystems),
     ("PlugLoadReductions", PlugLoadReductions),
     ("DataCenterImprovements", DataCenterImprovements),
+    ("FutureOtherECMs", FutureOtherECMs),
     ("HealthAndSafety", HealthAndSafety),
     ("Uncategorized", Uncategorized),
 ]
@@ -12544,15 +12678,6 @@ Assessments.element_children = [
     ("Assessment", Assessment),
 ]
 
-# BuildingType.Sections.Section.Sides.Side.WallIDs
-class WallIDs(BSElement):
-    pass
-
-
-WallIDs.element_children = [
-    ("WallID", WallID),
-]
-
 # WindowID
 class WindowID(BSElement):
     """ID number of the window type associated with this side of the section."""
@@ -12567,13 +12692,46 @@ WindowID.element_children = [
     ("PercentOfWindowAreaShaded", PercentOfWindowAreaShaded),
 ]
 
-# BuildingType.Sections.Section.Sides.Side.DoorIDs
-class DoorIDs(BSElement):
+# BuildingType.Sections.Section.Sides.Side.WindowIDs
+class WindowIDs(BSElement):
     pass
 
 
-DoorIDs.element_children = [
+WindowIDs.element_children = [
+    ("WindowID", WindowID),
+]
+
+# BuildingType.Sections.Section.Sides.Side
+class Side(BSElement):
+    class WallID(WallID):
+        pass
+
+    class WindowID(WindowID):
+        pass
+
+    class DoorID(DoorID):
+        pass
+
+
+Side.element_children = [
+    ("SideNumber", SideNumber),
+    ("SideLength", SideLength),
+    ("WallID", WallID),
+    ("WallIDs", WallIDs),
+    ("WindowID", WindowID),
+    ("WindowIDs", WindowIDs),
     ("DoorID", DoorID),
+    ("DoorIDs", DoorIDs),
+    ("ThermalZoneIDs", ThermalZoneIDs),
+]
+
+# BuildingType.Sections.Section.Sides
+class Sides(BSElement):
+    """List of sides."""
+
+
+Sides.element_children = [
+    ("Side", Side),
 ]
 
 # BuildingType.Sections.Section.Ceilings.Ceiling.CeilingID
@@ -12721,14 +12879,14 @@ Target.element_children = [
     ("AnnualPeakElectricityReduction", AnnualPeakElectricityReduction),
     ("AnnualWaterSavings", AnnualWaterSavings),
     ("AnnualWaterCostSavings", AnnualWaterCostSavings),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
     ("SimplePayback", SimplePayback),
     ("NetPresentValue", NetPresentValue),
     ("InternalRateOfReturn", InternalRateOfReturn),
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
-    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
-    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
-    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # AnnualSavingsByFuels
@@ -12757,21 +12915,6 @@ class AllResourceTotalType(BSElement):
 
         element_type = "xs:decimal"
 
-    class AnnualAverageGHGEmissions(BSElement):
-        """Annual Average GHG Emissions. (MtCO2e)"""
-
-        element_type = "xs:decimal"
-
-    class AnnualMarginalGHGEmissions(BSElement):
-        """Annual Marginal GHG Emissions. (MtCO2e)"""
-
-        element_type = "xs:decimal"
-
-    class AnnualGHGEmissionIntensity(BSElement):
-        """Annual GHG Emission Intensity. (kg CO2e/ft2/year)"""
-
-        element_type = "xs:decimal"
-
 
 AllResourceTotalType.element_attributes = [
     "ID",  # ID
@@ -12782,9 +12925,6 @@ AllResourceTotalType.element_children = [
     ("ResourceBoundary", ResourceBoundary),
     ("SiteEnergyUse", AllResourceTotalType.SiteEnergyUse),
     ("SiteEnergyUseIntensity", SiteEnergyUseIntensity),
-    ("AnnualAverageGHGEmissions", AllResourceTotalType.AnnualAverageGHGEmissions),
-    ("AnnualMarginalGHGEmissions", AllResourceTotalType.AnnualMarginalGHGEmissions),
-    ("AnnualGHGEmissionIntensity", AllResourceTotalType.AnnualGHGEmissionIntensity),
     ("SourceEnergyUse", AllResourceTotalType.SourceEnergyUse),
     ("SourceEnergyUseIntensity", SourceEnergyUseIntensity),
     ("BuildingEnergyUse", BuildingEnergyUse),
@@ -12813,6 +12953,9 @@ AllResourceTotalType.element_children = [
     ("WaterIntensity", WaterIntensity),
     ("WaterCost", WaterCost),
     ("WasteWaterVolume", WasteWaterVolume),
+    ("AnnualAverageGHGEmissions", AnnualAverageGHGEmissions),
+    ("AnnualMarginalGHGEmissions", AnnualMarginalGHGEmissions),
+    ("AnnualGHGEmissionIntensity", AnnualGHGEmissionIntensity),
     ("UserDefinedFields", UserDefinedFields),
 ]
 
@@ -13735,38 +13878,6 @@ TenantType.element_children = [
     ("TenantEmailAddresses", TenantEmailAddresses),
     ("ContactIDs", ContactIDs),
     ("UserDefinedFields", UserDefinedFields),
-]
-
-# BuildingType.Sections.Section.Sides.Side.WindowIDs
-class WindowIDs(BSElement):
-    pass
-
-
-WindowIDs.element_children = [
-    ("WindowID", WindowID),
-]
-
-# BuildingType.Sections.Section.Sides.Side
-class Side(BSElement):
-    pass
-
-
-Side.element_children = [
-    ("SideNumber", SideNumber),
-    ("SideLength", SideLength),
-    ("WallIDs", WallIDs),
-    ("WindowIDs", WindowIDs),
-    ("DoorIDs", DoorIDs),
-    ("ThermalZoneIDs", ThermalZoneIDs),
-]
-
-# BuildingType.Sections.Section.Sides
-class Sides(BSElement):
-    """List of sides."""
-
-
-Sides.element_children = [
-    ("Side", Side),
 ]
 
 # ResourceUseType
@@ -14773,6 +14884,9 @@ PackageOfMeasures.element_children = [
     ("AnnualDemandSavingsCost", AnnualDemandSavingsCost),
     ("AnnualWaterSavings", AnnualWaterSavings),
     ("AnnualWaterCostSavings", AnnualWaterCostSavings),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
     ("ImplementationPeriod", ImplementationPeriod),
     ("PackageFirstCost", PackageFirstCost),
     ("MVCost", MVCost),
@@ -14794,9 +14908,6 @@ PackageOfMeasures.element_children = [
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
     ("UserDefinedFields", UserDefinedFields),
-    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
-    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
-    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # ScenarioType.ResourceUses.ResourceUse
@@ -14856,9 +14967,6 @@ MeasureSavingsAnalysis.element_children = [
     ("SimplePayback", SimplePayback),
     ("NetPresentValue", NetPresentValue),
     ("InternalRateOfReturn", InternalRateOfReturn),
-    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
-    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
-    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # ReportType.Utilities.Utility
@@ -15020,6 +15128,7 @@ DuctSystemType.element_attributes = [
 DuctSystemType.element_children = [
     ("DuctConfiguration", DuctConfiguration),
     ("MinimumOutsideAirPercentage", MinimumOutsideAirPercentage),
+    ("MaximumOAFlowRate", MaximumOAFlowRate),
     ("MaximumOutsideAirFlowRate", MaximumOutsideAirFlowRate),
     ("DuctInsulationCondition", DuctInsulationCondition),
     ("DuctSealing", DuctSealing),
@@ -15320,6 +15429,7 @@ FanSystemType.element_attributes = [
 FanSystemType.element_children = [
     ("FanEfficiency", FanEfficiency),
     ("FanSize", FanSize),
+    ("InstalledFlowRate", InstalledFlowRate),
     ("FanInstalledFlowRate", FanInstalledFlowRate),
     ("MinimumFlowRate", MinimumFlowRate),
     ("MaximumFanPower", MaximumFanPower),
@@ -16397,6 +16507,7 @@ HVACSystemType.element_children = [
     ("Location", Location),
     ("Priority", Priority),
     ("FrequencyOfMaintenance", FrequencyOfMaintenance),
+    ("PrimaryHVACSystemType", PrimaryHVACSystemType),
     ("PrincipalHVACSystemType", PrincipalHVACSystemType),
     ("HVACControlSystemTypes", HVACControlSystemTypes),
     ("LinkedPremises", LinkedPremises),
@@ -16406,6 +16517,12 @@ HVACSystemType.element_children = [
 
 # BuildingType
 class BuildingType(BSElement):
+    class eGRIDRegionCode(eGRIDRegionCode):
+        pass
+
+    class eGRIDSubregionCodes(eGRIDSubregionCodes):
+        pass
+
     class WeatherDataStationID(WeatherDataStationID):
         pass
 
@@ -16428,6 +16545,7 @@ BuildingType.element_children = [
     ("PremisesIdentifiers", PremisesIdentifiers),
     ("Address", Address),
     ("ClimateZoneType", ClimateZoneType),
+    ("eGRIDRegionCode", eGRIDRegionCode),
     ("eGRIDSubregionCodes", eGRIDSubregionCodes),
     ("WeatherDataStationID", WeatherDataStationID),
     ("WeatherStationName", WeatherStationName),
@@ -16527,14 +16645,14 @@ ScenarioType.Other.element_children = [
     ("AnnualPeakElectricityReduction", AnnualPeakElectricityReduction),
     ("AnnualWaterSavings", AnnualWaterSavings),
     ("AnnualWaterCostSavings", AnnualWaterCostSavings),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
     ("SimplePayback", SimplePayback),
     ("NetPresentValue", NetPresentValue),
     ("InternalRateOfReturn", InternalRateOfReturn),
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
-    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
-    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
-    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 ScenarioType.ScenarioType.element_children = [
     ("CurrentBuilding", CurrentBuilding),
@@ -16657,6 +16775,12 @@ Buildings.element_children = [
 
 # SiteType
 class SiteType(BSElement):
+    class eGRIDRegionCode(eGRIDRegionCode):
+        pass
+
+    class eGRIDSubregionCodes(eGRIDSubregionCodes):
+        pass
+
     class WeatherDataStationID(WeatherDataStationID):
         pass
 
@@ -16680,6 +16804,7 @@ SiteType.element_children = [
     ("OccupancyClassification", OccupancyClassification),
     ("Address", Address),
     ("ClimateZoneType", ClimateZoneType),
+    ("eGRIDRegionCode", eGRIDRegionCode),
     ("eGRIDSubregionCodes", eGRIDSubregionCodes),
     ("WeatherDataStationID", WeatherDataStationID),
     ("WeatherStationName", WeatherStationName),
