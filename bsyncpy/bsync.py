@@ -1598,6 +1598,27 @@ class AnnualWaterCostSavings(BSElement):
     element_type = "xs:decimal"
 
 
+# AnnualSavingsAverageGHGEmissions
+class AnnualSavingsAverageGHGEmissions(BSElement):
+    """Average GHG emissions savings per year. (MtCO2e/year)"""
+
+    element_type = "xs:decimal"
+
+
+# AnnualSavingsMarginalGHGEmissions
+class AnnualSavingsMarginalGHGEmissions(BSElement):
+    """Marginal GHG emissions savings per year. (MtCO2e/year)"""
+
+    element_type = "xs:decimal"
+
+
+# AnnualSavingsGHGEmissionIntensity
+class AnnualSavingsGHGEmissionIntensity(BSElement):
+    """Annual GHG emissions intensity savings per year. (kg CO2e/ft2/year)"""
+
+    element_type = "xs:decimal"
+
+
 # SimplePayback
 class SimplePayback(BSElement):
     """The length of time required for the investment to pay for itself. (yrs)"""
@@ -2343,6 +2364,15 @@ LinkedTimeSeriesID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs.EmissionsLinkedTimeSeriesID
+class EmissionsLinkedTimeSeriesID(BSElement):
+    pass
+
+
+EmissionsLinkedTimeSeriesID.element_attributes = [
+    "IDref",  # IDREF
+]
+
 # ResourceUseType.UtilityIDs.UtilityID
 class UtilityID(BSElement):
     """ID of utility associated with this resource use."""
@@ -2385,16 +2415,35 @@ class EmissionsFactorSource(BSElement):
 
 # ResourceUseType.Emissions.Emission.GHGEmissions
 class GHGEmissions(BSElement):
-    """Emissions that result in gases that trap heat in the atmosphere. (kgCO2e)"""
+    """Emissions that result in gases that trap heat in the atmosphere. (MtCO2e)"""
+
+    element_type = "xs:decimal"
+
+
+# ResourceUseType.Emissions.Emission.GHGEmissionsIntensity
+class GHGEmissionsIntensity(BSElement):
+    """GHG Emission Intensity (kg CO2e/ft2)"""
 
     element_type = "xs:decimal"
 
 
 # ResourceUseType.Emissions.Emission.AvoidedEmissions
 class AvoidedEmissions(BSElement):
-    """The avoided Greenhouse gas (GHG) emissions resulting from a renewable energy source or a system. (kgCO2e)"""
+    """The avoided Greenhouse gas (GHG) emissions resulting from a renewable energy source or a system. (MtCO2e)"""
 
     element_type = "xs:decimal"
+
+
+# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs
+class EmissionsLinkedTimeSeriesIDs(BSElement):
+    """Links to all time series data used to calculate the total GHG Emissions"""
+
+    element_type = "xs:decimal"
+
+
+EmissionsLinkedTimeSeriesIDs.element_children = [
+    ("EmissionsLinkedTimeSeriesID", EmissionsLinkedTimeSeriesID),
+]
 
 
 # AllResourceTotalType.SiteEnergyUseIntensity
@@ -2554,6 +2603,7 @@ class TimeSeriesReadingQuantity(BSElement):
         "Current Angle",
         "Demand",
         "Frequency",
+        "Greenhouse Gas Emissions",
         "Power",
         "Power Factor",
         "Energy",
@@ -10031,7 +10081,9 @@ Emission.element_children = [
     ("EmissionsFactor", EmissionsFactor),
     ("EmissionsFactorSource", EmissionsFactorSource),
     ("GHGEmissions", GHGEmissions),
+    ("GHGEmissionsIntensity", GHGEmissionsIntensity),
     ("AvoidedEmissions", AvoidedEmissions),
+    ("EmissionsLinkedTimeSeriesIDs", EmissionsLinkedTimeSeriesIDs),
 ]
 
 # TimeSeriesType.IntervalDurationUnits
@@ -12744,6 +12796,9 @@ Target.element_children = [
     ("InternalRateOfReturn", InternalRateOfReturn),
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # AnnualSavingsByFuels
@@ -12772,6 +12827,21 @@ class AllResourceTotalType(BSElement):
 
         element_type = "xs:decimal"
 
+    class AnnualAverageGHGEmissions(BSElement):
+        """Annual Average GHG Emissions. (MtCO2e)"""
+
+        element_type = "xs:decimal"
+
+    class AnnualMarginalGHGEmissions(BSElement):
+        """Annual Marginal GHG Emissions. (MtCO2e)"""
+
+        element_type = "xs:decimal"
+
+    class AnnualGHGEmissionIntensity(BSElement):
+        """Annual GHG Emission Intensity. (kg CO2e/ft2/year)"""
+
+        element_type = "xs:decimal"
+
 
 AllResourceTotalType.element_attributes = [
     "ID",  # ID
@@ -12782,6 +12852,9 @@ AllResourceTotalType.element_children = [
     ("ResourceBoundary", ResourceBoundary),
     ("SiteEnergyUse", AllResourceTotalType.SiteEnergyUse),
     ("SiteEnergyUseIntensity", SiteEnergyUseIntensity),
+    ("AnnualAverageGHGEmissions", AllResourceTotalType.AnnualAverageGHGEmissions),
+    ("AnnualMarginalGHGEmissions", AllResourceTotalType.AnnualMarginalGHGEmissions),
+    ("AnnualGHGEmissionIntensity", AllResourceTotalType.AnnualGHGEmissionIntensity),
     ("SourceEnergyUse", AllResourceTotalType.SourceEnergyUse),
     ("SourceEnergyUseIntensity", SourceEnergyUseIntensity),
     ("BuildingEnergyUse", BuildingEnergyUse),
@@ -14731,6 +14804,9 @@ PackageOfMeasures.element_children = [
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
     ("UserDefinedFields", UserDefinedFields),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # ScenarioType.ResourceUses.ResourceUse
@@ -14790,6 +14866,9 @@ MeasureSavingsAnalysis.element_children = [
     ("SimplePayback", SimplePayback),
     ("NetPresentValue", NetPresentValue),
     ("InternalRateOfReturn", InternalRateOfReturn),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # ReportType.Utilities.Utility
@@ -16442,6 +16521,9 @@ ScenarioType.Other.element_children = [
     ("InternalRateOfReturn", InternalRateOfReturn),
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 ScenarioType.ScenarioType.element_children = [
     ("CurrentBuilding", CurrentBuilding),
