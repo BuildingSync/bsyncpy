@@ -2364,21 +2364,21 @@ LinkedTimeSeriesID.element_attributes = [
     "IDref",  # IDREF
 ]
 
-# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs.EmissionsLinkedTimeSeriesID
-class EmissionsLinkedTimeSeriesID(BSElement):
-    pass
-
-
-EmissionsLinkedTimeSeriesID.element_attributes = [
-    "IDref",  # IDREF
-]
-
 # ResourceUseType.UtilityIDs.UtilityID
 class UtilityID(BSElement):
     """ID of utility associated with this resource use."""
 
 
 UtilityID.element_attributes = [
+    "IDref",  # IDREF
+]
+
+# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs.EmissionsLinkedTimeSeriesID
+class EmissionsLinkedTimeSeriesID(BSElement):
+    pass
+
+
+EmissionsLinkedTimeSeriesID.element_attributes = [
     "IDref",  # IDREF
 ]
 
@@ -2420,8 +2420,8 @@ class GHGEmissions(BSElement):
     element_type = "xs:decimal"
 
 
-# ResourceUseType.Emissions.Emission.GHGEmissionsIntensity
-class GHGEmissionsIntensity(BSElement):
+# ResourceUseType.Emissions.Emission.GHGEmissionIntensity
+class GHGEmissionIntensity(BSElement):
     """GHG Emission Intensity (kg CO2e/ft2)"""
 
     element_type = "xs:decimal"
@@ -2429,21 +2429,9 @@ class GHGEmissionsIntensity(BSElement):
 
 # ResourceUseType.Emissions.Emission.AvoidedEmissions
 class AvoidedEmissions(BSElement):
-    """The avoided Greenhouse gas (GHG) emissions resulting from a renewable energy source or a system. (MtCO2e)"""
+    """The avoided Greenhouse gas (GHG) emissions resulting from a renewable energy source or a system. (kg CO2e)"""
 
     element_type = "xs:decimal"
-
-
-# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs
-class EmissionsLinkedTimeSeriesIDs(BSElement):
-    """Links to all time series data used to calculate the total GHG Emissions"""
-
-    element_type = "xs:decimal"
-
-
-EmissionsLinkedTimeSeriesIDs.element_children = [
-    ("EmissionsLinkedTimeSeriesID", EmissionsLinkedTimeSeriesID),
-]
 
 
 # AllResourceTotalType.SiteEnergyUseIntensity
@@ -2565,6 +2553,27 @@ class WasteWaterVolume(BSElement):
     element_type = "xs:decimal"
 
 
+# AllResourceTotalType.AnnualAverageGHGEmissions
+class AnnualAverageGHGEmissions(BSElement):
+    """Annual Average GHG Emissions. (MtCO2e)"""
+
+    element_type = "xs:decimal"
+
+
+# AllResourceTotalType.AnnualMarginalGHGEmissions
+class AnnualMarginalGHGEmissions(BSElement):
+    """Annual Marginal GHG Emissions. (MtCO2e)"""
+
+    element_type = "xs:decimal"
+
+
+# AllResourceTotalType.AnnualGHGEmissionIntensity
+class AnnualGHGEmissionIntensity(BSElement):
+    """Annual GHG Emission Intensity. (kg CO2e/ft2/year)"""
+
+    element_type = "xs:decimal"
+
+
 # TimeSeriesType.ReadingType
 class ReadingType(BSElement):
     """Type of data recorded by the meter or other source."""
@@ -2603,9 +2612,9 @@ class TimeSeriesReadingQuantity(BSElement):
         "Current Angle",
         "Demand",
         "Frequency",
-        "Greenhouse Gas Emissions",
         "Power",
         "Power Factor",
+        "Greenhouse Gas Emissions",
         "Energy",
         "Voltage",
         "Voltage Angle",
@@ -3687,6 +3696,13 @@ SourceHeatingPlantID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+# OutputCapacity
+class OutputCapacity(BSElement):
+    """Output capacity of equipment. WARNING: This element is being deprecated, use Capacity instead"""
+
+    element_type = "xs:decimal"
+
+
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceCondition
 class HeatingSourceCondition(EquipmentCondition):
     pass
@@ -3733,13 +3749,6 @@ class AnnualHeatingEfficiencyUnits(BSElement):
 # InputCapacity
 class InputCapacity(BSElement):
     """The rate of energy consumption of the heating equipment at full load."""
-
-    element_type = "xs:decimal"
-
-
-# OutputCapacity
-class OutputCapacity(BSElement):
-    """Output capacity of equipment. WARNING: This element is being deprecated, use Capacity instead"""
 
     element_type = "xs:decimal"
 
@@ -9557,6 +9566,15 @@ WallID.element_children = [
     ("WallArea", WallArea),
 ]
 
+# BuildingType.Sections.Section.Sides.Side.WallIDs
+class WallIDs(BSElement):
+    pass
+
+
+WallIDs.element_children = [
+    ("WallID", WallID),
+]
+
 # DoorID
 class DoorID(BSElement):
     """ID number of the door type associated with this side of the section."""
@@ -9567,6 +9585,15 @@ DoorID.element_attributes = [
 ]
 DoorID.element_children = [
     ("FenestrationArea", FenestrationArea),
+]
+
+# BuildingType.Sections.Section.Sides.Side.DoorIDs
+class DoorIDs(BSElement):
+    pass
+
+
+DoorIDs.element_children = [
+    ("DoorID", DoorID),
 ]
 
 # ThermalZoneIDs
@@ -10070,6 +10097,15 @@ UtilityIDs.element_children = [
     ("UtilityID", UtilityID),
 ]
 
+# ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs
+class EmissionsLinkedTimeSeriesIDs(BSElement):
+    """Links to all time series data used to calculate the total GHG Emissions"""
+
+
+EmissionsLinkedTimeSeriesIDs.element_children = [
+    ("EmissionsLinkedTimeSeriesID", EmissionsLinkedTimeSeriesID),
+]
+
 # ResourceUseType.Emissions.Emission
 class Emission(BSElement):
     pass
@@ -10081,7 +10117,7 @@ Emission.element_children = [
     ("EmissionsFactor", EmissionsFactor),
     ("EmissionsFactorSource", EmissionsFactorSource),
     ("GHGEmissions", GHGEmissions),
-    ("GHGEmissionsIntensity", GHGEmissionsIntensity),
+    ("GHGEmissionIntensity", GHGEmissionIntensity),
     ("AvoidedEmissions", AvoidedEmissions),
     ("EmissionsLinkedTimeSeriesIDs", EmissionsLinkedTimeSeriesIDs),
 ]
@@ -10700,6 +10736,7 @@ class DataCenterImprovements(BSElement):
         element_enumerations = [
             "Improve data center efficiency",
             "Implement hot aisle hold aisle design",
+            "Implement hot aisle cold aisle design",
             "Implement server virtualization",
             "Upgrade servers",
             "Clean and/or repair",
@@ -10876,6 +10913,11 @@ HVACControlSystemTypes.element_children = [
     ("HVACControlSystemType", HVACControlSystemType),
 ]
 
+# ElectricResistance
+class ElectricResistance(ElectricResistanceType):
+    pass
+
+
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.Furnace
 class Furnace(BSElement):
     pass
@@ -10900,11 +10942,6 @@ Furnace.element_children = [
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.HeatPump.HeatPumpBackupSystemFuel
 class HeatPumpBackupSystemFuel(FuelTypes):
     """Backup fuel used by the heat pump."""
-
-
-# ElectricResistance
-class ElectricResistance(ElectricResistanceType):
-    pass
 
 
 # OtherCombination
@@ -10989,6 +11026,9 @@ class SupplyFractionOfDuctLeakage(BoundedDecimalZeroToOneWithSourceAttribute):
 
 # HeatingPlantType.DistrictHeating
 class DistrictHeating(BSElement):
+    class OutputCapacity(OutputCapacity):
+        pass
+
     class Capacity(BSElement):
         """Output capacity of equipment."""
 
@@ -11011,6 +11051,9 @@ DistrictHeating.element_children = [
 
 # HeatingPlantType.SolarThermal
 class SolarThermal(BSElement):
+    class OutputCapacity(OutputCapacity):
+        pass
+
     class Capacity(BSElement):
         """Output capacity of equipment."""
 
@@ -11346,15 +11389,24 @@ Recirculation.element_children = [
 class DirectTankHeatingSource(BSElement):
     """Direct source of heat for hot water tank."""
 
+    class ElectricResistance(ElectricResistance):
+        pass
+
+    class Combustion(Combustion):
+        pass
+
     class Other(OtherType):
+        pass
+
+    class Unknown(Unknown):
         pass
 
 
 DirectTankHeatingSource.element_children = [
-    ("ElectricResistance", ElectricResistance),
-    ("Combustion", Combustion),
+    ("ElectricResistance", DirectTankHeatingSource.ElectricResistance),
+    ("Combustion", DirectTankHeatingSource.Combustion),
     ("Other", DirectTankHeatingSource.Other),
-    ("Unknown", Unknown),
+    ("Unknown", DirectTankHeatingSource.Unknown),
 ]
 
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType.Direct
@@ -11384,15 +11436,24 @@ SpaceHeatingSystem.element_children = [
 class InstantaneousWaterHeatingSource(BSElement):
     """Source of heat for instantaneous water heater."""
 
+    class ElectricResistance(ElectricResistance):
+        pass
+
+    class Combustion(Combustion):
+        pass
+
     class Other(OtherType):
+        pass
+
+    class Unknown(Unknown):
         pass
 
 
 InstantaneousWaterHeatingSource.element_children = [
-    ("ElectricResistance", ElectricResistance),
-    ("Combustion", Combustion),
+    ("ElectricResistance", InstantaneousWaterHeatingSource.ElectricResistance),
+    ("Combustion", InstantaneousWaterHeatingSource.Combustion),
     ("Other", InstantaneousWaterHeatingSource.Other),
-    ("Unknown", Unknown),
+    ("Unknown", InstantaneousWaterHeatingSource.Unknown),
 ]
 
 # DomesticHotWaterSystemType.DomesticHotWaterType.Instantaneous
@@ -11773,13 +11834,16 @@ class GroundCoupling(BSElement):
     class Other(OtherType):
         pass
 
+    class Unknown(Unknown):
+        pass
+
 
 GroundCoupling.element_children = [
     ("SlabOnGrade", SlabOnGrade),
     ("Crawlspace", Crawlspace),
     ("Basement", Basement),
     ("Other", GroundCoupling.Other),
-    ("Unknown", Unknown),
+    ("Unknown", GroundCoupling.Unknown),
 ]
 
 # ProcessGasElectricLoadType.HeatGainFraction
@@ -12614,15 +12678,6 @@ Assessments.element_children = [
     ("Assessment", Assessment),
 ]
 
-# BuildingType.Sections.Section.Sides.Side.WallIDs
-class WallIDs(BSElement):
-    pass
-
-
-WallIDs.element_children = [
-    ("WallID", WallID),
-]
-
 # WindowID
 class WindowID(BSElement):
     """ID number of the window type associated with this side of the section."""
@@ -12637,13 +12692,46 @@ WindowID.element_children = [
     ("PercentOfWindowAreaShaded", PercentOfWindowAreaShaded),
 ]
 
-# BuildingType.Sections.Section.Sides.Side.DoorIDs
-class DoorIDs(BSElement):
+# BuildingType.Sections.Section.Sides.Side.WindowIDs
+class WindowIDs(BSElement):
     pass
 
 
-DoorIDs.element_children = [
+WindowIDs.element_children = [
+    ("WindowID", WindowID),
+]
+
+# BuildingType.Sections.Section.Sides.Side
+class Side(BSElement):
+    class WallID(WallID):
+        pass
+
+    class WindowID(WindowID):
+        pass
+
+    class DoorID(DoorID):
+        pass
+
+
+Side.element_children = [
+    ("SideNumber", SideNumber),
+    ("SideLength", SideLength),
+    ("WallID", WallID),
+    ("WallIDs", WallIDs),
+    ("WindowID", WindowID),
+    ("WindowIDs", WindowIDs),
     ("DoorID", DoorID),
+    ("DoorIDs", DoorIDs),
+    ("ThermalZoneIDs", ThermalZoneIDs),
+]
+
+# BuildingType.Sections.Section.Sides
+class Sides(BSElement):
+    """List of sides."""
+
+
+Sides.element_children = [
+    ("Side", Side),
 ]
 
 # BuildingType.Sections.Section.Ceilings.Ceiling.CeilingID
@@ -12791,14 +12879,14 @@ Target.element_children = [
     ("AnnualPeakElectricityReduction", AnnualPeakElectricityReduction),
     ("AnnualWaterSavings", AnnualWaterSavings),
     ("AnnualWaterCostSavings", AnnualWaterCostSavings),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
     ("SimplePayback", SimplePayback),
     ("NetPresentValue", NetPresentValue),
     ("InternalRateOfReturn", InternalRateOfReturn),
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
-    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
-    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
-    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # AnnualSavingsByFuels
@@ -12827,21 +12915,6 @@ class AllResourceTotalType(BSElement):
 
         element_type = "xs:decimal"
 
-    class AnnualAverageGHGEmissions(BSElement):
-        """Annual Average GHG Emissions. (MtCO2e)"""
-
-        element_type = "xs:decimal"
-
-    class AnnualMarginalGHGEmissions(BSElement):
-        """Annual Marginal GHG Emissions. (MtCO2e)"""
-
-        element_type = "xs:decimal"
-
-    class AnnualGHGEmissionIntensity(BSElement):
-        """Annual GHG Emission Intensity. (kg CO2e/ft2/year)"""
-
-        element_type = "xs:decimal"
-
 
 AllResourceTotalType.element_attributes = [
     "ID",  # ID
@@ -12852,9 +12925,6 @@ AllResourceTotalType.element_children = [
     ("ResourceBoundary", ResourceBoundary),
     ("SiteEnergyUse", AllResourceTotalType.SiteEnergyUse),
     ("SiteEnergyUseIntensity", SiteEnergyUseIntensity),
-    ("AnnualAverageGHGEmissions", AllResourceTotalType.AnnualAverageGHGEmissions),
-    ("AnnualMarginalGHGEmissions", AllResourceTotalType.AnnualMarginalGHGEmissions),
-    ("AnnualGHGEmissionIntensity", AllResourceTotalType.AnnualGHGEmissionIntensity),
     ("SourceEnergyUse", AllResourceTotalType.SourceEnergyUse),
     ("SourceEnergyUseIntensity", SourceEnergyUseIntensity),
     ("BuildingEnergyUse", BuildingEnergyUse),
@@ -12883,6 +12953,9 @@ AllResourceTotalType.element_children = [
     ("WaterIntensity", WaterIntensity),
     ("WaterCost", WaterCost),
     ("WasteWaterVolume", WasteWaterVolume),
+    ("AnnualAverageGHGEmissions", AnnualAverageGHGEmissions),
+    ("AnnualMarginalGHGEmissions", AnnualMarginalGHGEmissions),
+    ("AnnualGHGEmissionIntensity", AnnualGHGEmissionIntensity),
     ("UserDefinedFields", UserDefinedFields),
 ]
 
@@ -12892,6 +12965,9 @@ class TypeOfRateStructure(BSElement):
 
     class Other(OtherType):
         """Other type of rate structure, or combination of other types."""
+
+    class Unknown(Unknown):
+        pass
 
 
 TypeOfRateStructure.element_children = [
@@ -12903,7 +12979,7 @@ TypeOfRateStructure.element_children = [
     ("CriticalPeakPricing", CriticalPeakPricing),
     ("CriticalPeakRebates", CriticalPeakRebates),
     ("Other", TypeOfRateStructure.Other),
-    ("Unknown", Unknown),
+    ("Unknown", TypeOfRateStructure.Unknown),
 ]
 
 # UtilityType.RateSchedules.RateSchedule
@@ -13018,18 +13094,30 @@ Qualifications.element_children = [
 class HeatingSourceType(BSElement):
     """Source of energy used for heating the zone."""
 
+    class ElectricResistance(ElectricResistance):
+        pass
+
     class HeatPump(BSElement):
+        pass
+
+    class OtherCombination(OtherCombination):
+        pass
+
+    class NoHeating(NoHeating):
+        pass
+
+    class Unknown(Unknown):
         pass
 
 
 HeatingSourceType.element_children = [
     ("SourceHeatingPlantID", SourceHeatingPlantID),
-    ("ElectricResistance", ElectricResistance),
+    ("ElectricResistance", HeatingSourceType.ElectricResistance),
     ("Furnace", Furnace),
     ("HeatPump", HeatingSourceType.HeatPump),
-    ("OtherCombination", OtherCombination),
-    ("NoHeating", NoHeating),
-    ("Unknown", Unknown),
+    ("OtherCombination", HeatingSourceType.OtherCombination),
+    ("NoHeating", HeatingSourceType.NoHeating),
+    ("Unknown", HeatingSourceType.Unknown),
 ]
 HeatingSourceType.HeatPump.element_children = [
     ("HeatPumpType", HeatPumpType),
@@ -13063,18 +13151,30 @@ DX.element_children = [
 class CoolingSourceType(BSElement):
     """Source of energy used for cooling the zone."""
 
+    class OtherCombination(OtherCombination):
+        pass
+
+    class NoCooling(NoCooling):
+        pass
+
+    class Unknown(Unknown):
+        pass
+
 
 CoolingSourceType.element_children = [
     ("CoolingPlantID", CoolingPlantID),
     ("DX", DX),
     ("EvaporativeCooler", EvaporativeCooler),
-    ("OtherCombination", OtherCombination),
-    ("NoCooling", NoCooling),
-    ("Unknown", Unknown),
+    ("OtherCombination", CoolingSourceType.OtherCombination),
+    ("NoCooling", CoolingSourceType.NoCooling),
+    ("Unknown", CoolingSourceType.Unknown),
 ]
 
 # HeatingPlantType.Boiler
 class Boiler(BSElement):
+    class OutputCapacity(OutputCapacity):
+        pass
+
     class Capacity(BSElement):
         """Output capacity of equipment."""
 
@@ -13271,6 +13371,12 @@ MechanicalVentilation.element_children = [
 class LampType(BSElement):
     """A lamp is a replaceable component, or bulb, which is designed to produce light from electricity, though, non-electric lamps also exist."""
 
+    class OtherCombination(OtherCombination):
+        pass
+
+    class Unknown(Unknown):
+        pass
+
 
 LampType.element_children = [
     ("Incandescent", Incandescent),
@@ -13284,8 +13390,8 @@ LampType.element_children = [
     ("Plasma", Plasma),
     ("Photoluminescent", Photoluminescent),
     ("SelfLuminous", SelfLuminous),
-    ("OtherCombination", OtherCombination),
-    ("Unknown", Unknown),
+    ("OtherCombination", LampType.OtherCombination),
+    ("Unknown", LampType.Unknown),
 ]
 
 # LightingSystemType.DimmingCapability
@@ -13315,13 +13421,16 @@ class LaundryType(BSElement):
     class Other(OtherType):
         pass
 
+    class Unknown(Unknown):
+        pass
+
 
 LaundryType.element_children = [
     ("Washer", Washer),
     ("Dryer", Dryer),
     ("Combination", Combination),
     ("Other", LaundryType.Other),
-    ("Unknown", Unknown),
+    ("Unknown", LaundryType.Unknown),
 ]
 
 # WallSystemType.WallInsulations
@@ -13771,41 +13880,6 @@ TenantType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
-# BuildingType.Sections.Section.Sides.Side.WindowIDs
-class WindowIDs(BSElement):
-    pass
-
-
-WindowIDs.element_children = [
-    ("WindowID", WindowID),
-]
-
-# BuildingType.Sections.Section.Sides.Side
-class Side(BSElement):
-    pass
-
-
-Side.element_children = [
-    ("SideNumber", SideNumber),
-    ("SideLength", SideLength),
-    ("WallID", WallID),
-    ("WallIDs", WallIDs),
-    ("WindowID", WindowID),
-    ("WindowIDs", WindowIDs),
-    ("DoorID", DoorID),
-    ("DoorIDs", DoorIDs),
-    ("ThermalZoneIDs", ThermalZoneIDs),
-]
-
-# BuildingType.Sections.Section.Sides
-class Sides(BSElement):
-    """List of sides."""
-
-
-Sides.element_children = [
-    ("Side", Side),
-]
-
 # ResourceUseType
 class ResourceUseType(BSElement):
     pass
@@ -13911,6 +13985,15 @@ LinkedPremisesOrSystem.Space.element_children = [
 
 # CoolingPlantType
 class CoolingPlantType(BSElement):
+    class OtherCombination(OtherCombination):
+        pass
+
+    class NoCooling(NoCooling):
+        pass
+
+    class Unknown(Unknown):
+        pass
+
     class ControlSystemTypes(BSElement):
         """CoolingPlant equipment control strategies."""
 
@@ -13940,6 +14023,9 @@ CoolingPlantType.ControlSystemTypes.element_children = [
 # CondenserPlantType
 class CondenserPlantType(BSElement):
     class Other(OtherType):
+        pass
+
+    class Unknown(Unknown):
         pass
 
     class ControlSystemTypes(BSElement):
@@ -14080,6 +14166,12 @@ CoolingSources.element_children = [
 class OtherHVACType(BSElement):
     """Type of space conditioning equipment that is not classified as heating, cooling, or air-distribution. This category includes ventilation, dehumidification, humidification, and air cleaning systems."""
 
+    class OtherCombination(OtherCombination):
+        pass
+
+    class Unknown(Unknown):
+        pass
+
 
 OtherHVACType.element_children = [
     ("Humidifier", Humidifier),
@@ -14088,8 +14180,8 @@ OtherHVACType.element_children = [
     ("MechanicalVentilation", MechanicalVentilation),
     ("SpotExhaust", SpotExhaust),
     ("NaturalVentilation", NaturalVentilation),
-    ("OtherCombination", OtherCombination),
-    ("Unknown", Unknown),
+    ("OtherCombination", OtherHVACType.OtherCombination),
+    ("Unknown", OtherHVACType.Unknown),
 ]
 
 # ControlLightingType
@@ -14199,13 +14291,16 @@ class IndirectTankHeatingSource(BSElement):
     class Other(OtherType):
         pass
 
+    class Unknown(Unknown):
+        pass
+
 
 IndirectTankHeatingSource.element_children = [
     ("HeatPump", IndirectTankHeatingSource.HeatPump),
     ("Solar", Solar),
     ("SpaceHeatingSystem", SpaceHeatingSystem),
     ("Other", IndirectTankHeatingSource.Other),
-    ("Unknown", Unknown),
+    ("Unknown", IndirectTankHeatingSource.Unknown),
 ]
 IndirectTankHeatingSource.HeatPump.element_children = [
     ("RatedHeatPumpSensibleHeatRatio", RatedHeatPumpSensibleHeatRatio),
@@ -14229,12 +14324,15 @@ class TankHeatingType(BSElement):
     class Other(OtherType):
         pass
 
+    class Unknown(Unknown):
+        pass
+
 
 TankHeatingType.element_children = [
     ("Direct", Direct),
     ("Indirect", Indirect),
     ("Other", TankHeatingType.Other),
-    ("Unknown", Unknown),
+    ("Unknown", TankHeatingType.Unknown),
 ]
 
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank
@@ -14727,6 +14825,9 @@ StandardPractice.element_children = [
 class BenchmarkType(BSElement):
     """Source of energy data or building characteristics for benchmarking energy performance."""
 
+    class PortfolioManager(PortfolioManager):
+        pass
+
     class CBECS(CBECSType):
         pass
 
@@ -14735,7 +14836,7 @@ class BenchmarkType(BSElement):
 
 
 BenchmarkType.element_children = [
-    ("PortfolioManager", PortfolioManager),
+    ("PortfolioManager", BenchmarkType.PortfolioManager),
     ("CBECS", BenchmarkType.CBECS),
     ("CodeMinimum", CodeMinimum),
     ("StandardPractice", StandardPractice),
@@ -14783,6 +14884,9 @@ PackageOfMeasures.element_children = [
     ("AnnualDemandSavingsCost", AnnualDemandSavingsCost),
     ("AnnualWaterSavings", AnnualWaterSavings),
     ("AnnualWaterCostSavings", AnnualWaterCostSavings),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
     ("ImplementationPeriod", ImplementationPeriod),
     ("PackageFirstCost", PackageFirstCost),
     ("MVCost", MVCost),
@@ -14804,9 +14908,6 @@ PackageOfMeasures.element_children = [
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
     ("UserDefinedFields", UserDefinedFields),
-    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
-    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
-    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # ScenarioType.ResourceUses.ResourceUse
@@ -14866,9 +14967,6 @@ MeasureSavingsAnalysis.element_children = [
     ("SimplePayback", SimplePayback),
     ("NetPresentValue", NetPresentValue),
     ("InternalRateOfReturn", InternalRateOfReturn),
-    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
-    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
-    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 
 # ReportType.Utilities.Utility
@@ -14878,6 +14976,15 @@ class Utility(UtilityType):
 
 # HeatingPlantType
 class HeatingPlantType(BSElement):
+    class OtherCombination(OtherCombination):
+        pass
+
+    class NoHeating(NoHeating):
+        pass
+
+    class Unknown(Unknown):
+        pass
+
     class ControlSystemTypes(BSElement):
         """HeatingPlant equipment control strategies."""
 
@@ -14935,6 +15042,9 @@ CondenserPlants.element_children = [
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource
 class HeatingSource(BSElement):
+    class OutputCapacity(OutputCapacity):
+        pass
+
     class Capacity(BSElement):
         """Output capacity of equipment."""
 
@@ -15051,13 +15161,16 @@ class DomesticHotWaterType(BSElement):
     class Other(OtherType):
         pass
 
+    class Unknown(Unknown):
+        pass
+
 
 DomesticHotWaterType.element_children = [
     ("StorageTank", StorageTank),
     ("Instantaneous", Instantaneous),
     ("HeatExchanger", HeatExchanger),
     ("Other", DomesticHotWaterType.Other),
-    ("Unknown", Unknown),
+    ("Unknown", DomesticHotWaterType.Unknown),
 ]
 
 # PoolType.Heated
@@ -16404,7 +16517,23 @@ HVACSystemType.element_children = [
 
 # BuildingType
 class BuildingType(BSElement):
-    pass
+    class eGRIDRegionCode(eGRIDRegionCode):
+        pass
+
+    class eGRIDSubregionCodes(eGRIDSubregionCodes):
+        pass
+
+    class WeatherDataStationID(WeatherDataStationID):
+        pass
+
+    class WeatherStationName(WeatherStationName):
+        pass
+
+    class WeatherStationCategory(WeatherStationCategory):
+        pass
+
+    class WeatherStations(WeatherStations):
+        pass
 
 
 BuildingType.element_attributes = [
@@ -16516,14 +16645,14 @@ ScenarioType.Other.element_children = [
     ("AnnualPeakElectricityReduction", AnnualPeakElectricityReduction),
     ("AnnualWaterSavings", AnnualWaterSavings),
     ("AnnualWaterCostSavings", AnnualWaterCostSavings),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
     ("SimplePayback", SimplePayback),
     ("NetPresentValue", NetPresentValue),
     ("InternalRateOfReturn", InternalRateOfReturn),
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
-    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
-    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
-    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
 ScenarioType.ScenarioType.element_children = [
     ("CurrentBuilding", CurrentBuilding),
@@ -16646,7 +16775,23 @@ Buildings.element_children = [
 
 # SiteType
 class SiteType(BSElement):
-    pass
+    class eGRIDRegionCode(eGRIDRegionCode):
+        pass
+
+    class eGRIDSubregionCodes(eGRIDSubregionCodes):
+        pass
+
+    class WeatherDataStationID(WeatherDataStationID):
+        pass
+
+    class WeatherStationName(WeatherStationName):
+        pass
+
+    class WeatherStationCategory(WeatherStationCategory):
+        pass
+
+    class WeatherStations(WeatherStations):
+        pass
 
 
 SiteType.element_attributes = [
