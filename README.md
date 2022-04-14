@@ -68,7 +68,8 @@ Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/githu
 ## Releasing New Version
 
 * Bump version using poetry by calling `poetry version X.Y.Z`
-* Merge everything down to `main`
+* Make sure CHANGELOG.md is up to date
+* Create pull request to merge `develop` to `main`
 * `git tag <version>`. Version in the form of vX.Y.Z.
 * `git push --tags`.
 * Go to GitHub and convert the tag to a release.
