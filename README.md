@@ -61,13 +61,15 @@ Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/githu
 
 * See the notes above on downloading and generating the new bsync.py file. 
 * Bump version in `pyproject.toml` file
-* Add CHANGELOG entry
+* Add/update CHANGELOG entry
 * Update (or add) generator test in `.github/ci.yml`
 * Update this README with the latest version of testing.
 
 ## Releasing New Version
 
-* Merge everything down to `main`
+* Bump version using poetry by calling `poetry version X.Y.Z`
+* Make sure CHANGELOG.md is up to date
+* Create pull request to merge `develop` to `main`
 * `git tag <version>`. Version in the form of vX.Y.Z.
 * `git push --tags`.
 * Go to GitHub and convert the tag to a release.

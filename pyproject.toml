@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bsyncpy"
-version = "0.2.0"
+version = "0.3.0-alpha.0"
 description = "Tools to autogenerate a Python SDK for BuildingSync given an XSD"
 authors = ["Joel Bender <joel@carrickbender.com>", "Nicholas Long <nicholas.lee.long@gmail.com>"]
 
