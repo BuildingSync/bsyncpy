@@ -1,6 +1,7 @@
-# Version 0.3.0 (Unreleased)
+# Version 0.3.0.alpha.0
 
 * Generated for BuildingSync 2.5 (which is currently develop-v2)
+    * Added GHG emission metrics
 
 # Version 0.2.0
 

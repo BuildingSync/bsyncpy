@@ -67,6 +67,7 @@ Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/githu
 
 ## Releasing New Version
 
+* Bump version using poetry by calling `poetry version X.Y.Z`
 * Merge everything down to `main`
 * `git tag <version>`. Version in the form of vX.Y.Z.
 * `git push --tags`.
