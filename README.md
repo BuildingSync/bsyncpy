@@ -54,7 +54,7 @@ with open('output.xml', 'wb+') as f:
 
 ## Comprehensive example
 
-Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/github/BuildingSync/schema/blob/develop-v2/docs/notebooks/bsync_examples/Small-Office-Level-1.ipynb).
+Check out some more detailed examples of bsyncpy usage in the main BuildingSync repository [here](https://github.com/BuildingSync/schema/tree/develop-v2/docs/notebooks/bsync_examples).
 
 
 # Updating Version
