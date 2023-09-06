@@ -509,6 +509,7 @@ PrimaryContactID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # BuildingType.BuildingClassification
 class BuildingClassification(BSElement):
     """Specify the type of building."""
@@ -1115,6 +1116,7 @@ DeliveryID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # ThermalZoneType.HVACScheduleIDs.HVACScheduleID
 class HVACScheduleID(BSElement):
     """ID numbers of the heating, cooling, or other HVAC schedules associated with the zone."""
@@ -1123,6 +1125,7 @@ class HVACScheduleID(BSElement):
 HVACScheduleID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # SpaceType.OccupantsActivityLevel
 class OccupantsActivityLevel(BSElement):
@@ -1168,6 +1171,7 @@ class OccupancyScheduleID(BSElement):
 OccupancyScheduleID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # ScheduleType.SchedulePeriodBeginDate
 class SchedulePeriodBeginDate(BSElement):
@@ -1383,6 +1387,35 @@ ContactID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
+# AuditCycleType.AuditCycleName
+class AuditCycleName(BSElement):
+    """Name identifying the audit cycle other than the ID"""
+
+    element_type = "xs:string"
+
+
+# AuditCycleType.AuditCycleNotes
+class AuditCycleNotes(BSElement):
+    """Details about the Audit Cycle"""
+
+    element_type = "xs:string"
+
+
+# AuditCycleType.AuditCycleStartYear
+class AuditCycleStartYear(BSElement):
+    """Year the Audit Cycle starts (inclusive, CCYY)"""
+
+    element_type = "xs:gYear"
+
+
+# AuditCycleType.AuditCycleEndYear
+class AuditCycleEndYear(BSElement):
+    """Year the Audit Cycle ends (inclusive, CCYY)"""
+
+    element_type = "xs:gYear"
+
+
 # ScenarioType.ScenarioName
 class ScenarioName(BSElement):
     """Name of the scenario for which energy use data is included. This may include benchmarks, baselines, and improved cases. For retrofits, each package represents a different scenario."""
@@ -1542,6 +1575,7 @@ ReferenceCase.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # AnnualSavingsSiteEnergy
 class AnnualSavingsSiteEnergy(BSElement):
     """Site energy savings per year. (MMBtu/year)"""
@@ -1639,15 +1673,6 @@ class InternalRateOfReturn(BSElement):
 
     element_type = "xs:decimal"
 
-
-# ScenarioType.ScenarioType.PackageOfMeasures.MeasureIDs.MeasureID
-class MeasureID(BSElement):
-    """ID number of measure."""
-
-
-MeasureID.element_attributes = [
-    "IDref",  # IDREF
-]
 
 # LowMedHigh
 class LowMedHigh(BSElement):
@@ -1850,6 +1875,7 @@ class Actual(BSElement):
 Actual.element_children = [
     ("WeatherDataSource", WeatherDataSource),
 ]
+
 
 # OtherType
 class OtherType(BSElement):
@@ -2355,6 +2381,7 @@ ParentResourceUseID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # ResourceUseType.AnnualFuelUseLinkedTimeSeriesIDs.LinkedTimeSeriesID
 class LinkedTimeSeriesID(BSElement):
     pass
@@ -2363,6 +2390,7 @@ class LinkedTimeSeriesID(BSElement):
 LinkedTimeSeriesID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # ResourceUseType.UtilityIDs.UtilityID
 class UtilityID(BSElement):
@@ -2373,6 +2401,7 @@ UtilityID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # ResourceUseType.Emissions.Emission.EmissionsLinkedTimeSeriesIDs.EmissionsLinkedTimeSeriesID
 class EmissionsLinkedTimeSeriesID(BSElement):
     pass
@@ -2381,6 +2410,7 @@ class EmissionsLinkedTimeSeriesID(BSElement):
 EmissionsLinkedTimeSeriesID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # ResourceUseType.Emissions.Emission.EmissionBoundary
 class EmissionBoundary(BSElement):
@@ -2718,6 +2748,7 @@ ResourceUseID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # TimeSeriesType.WeatherStationID
 class WeatherStationID(BSElement):
     """ID number of weather station this time series contributes to."""
@@ -2726,6 +2757,7 @@ class WeatherStationID(BSElement):
 WeatherStationID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # IntervalFrequencyType
 class IntervalFrequencyType(BSElement):
@@ -2836,7 +2868,7 @@ class MVOption(BSElement):
 class UsefulLife(BSElement):
     """Productive life that can be expected of measure or a project. (yrs)"""
 
-    element_type = "xs:decimal"
+    element_type = "xs:nonNegativeInteger"
 
 
 # MeasureType.MeasureTotalFirstCost
@@ -2933,6 +2965,7 @@ ExistingSystemReplaced.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # MeasureType.TypeOfMeasure.Replacements.Replacement.AlternativeSystemReplacement
 class AlternativeSystemReplacement(BSElement):
     """ID numbers of alternative systems that would replace the existing systems."""
@@ -2941,6 +2974,7 @@ class AlternativeSystemReplacement(BSElement):
 AlternativeSystemReplacement.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # ExistingScheduleAffected
 class ExistingScheduleAffected(BSElement):
@@ -2951,6 +2985,7 @@ ExistingScheduleAffected.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # ModifiedSchedule
 class ModifiedSchedule(BSElement):
     """ID numbers of schedules associated with the improved systems."""
@@ -2959,6 +2994,7 @@ class ModifiedSchedule(BSElement):
 ModifiedSchedule.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # MeasureType.TypeOfMeasure.ModificationRetrocommissions.ModificationRetrocommissioning.ExistingSystemAffected
 class ExistingSystemAffected(BSElement):
@@ -2969,6 +3005,7 @@ ExistingSystemAffected.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # MeasureType.TypeOfMeasure.ModificationRetrocommissions.ModificationRetrocommissioning.ModifiedSystem
 class ModifiedSystem(BSElement):
     """ID numbers of alternative systems that represent "improvements" to existing systems."""
@@ -2977,6 +3014,7 @@ class ModifiedSystem(BSElement):
 ModifiedSystem.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # MeasureType.TypeOfMeasure.Additions.Addition.AlternativeSystemAdded
 class AlternativeSystemAdded(BSElement):
@@ -2987,6 +3025,7 @@ AlternativeSystemAdded.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # MeasureType.TypeOfMeasure.Removals.Removal.ExistingSystemRemoved
 class ExistingSystemRemoved(BSElement):
     """ID numbers of any existing systems removed as part of the measure."""
@@ -2995,6 +3034,7 @@ class ExistingSystemRemoved(BSElement):
 ExistingSystemRemoved.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # MeasureType.MeasureSavingsAnalysis.MeasureRank
 class MeasureRank(BSElement):
@@ -3059,6 +3099,13 @@ class DiscountFactor(BSElement):
     element_type = "xs:decimal"
 
 
+# ReportType.DiscountFactor
+class DiscountRate(BSElement):
+    """Discount rate applied to calculate present values of future cash flows. (0-100) (%)"""
+
+    element_type = "xs:decimal"
+
+
 # ReportType.AnalysisPeriod
 class AnalysisPeriod(BSElement):
     """Period used for financial analysis. Can be combined with IntervalFrequency to specify the units. (yrs)"""
@@ -3118,6 +3165,7 @@ AuditorContactID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # ReportType.AuditDates.AuditDate.Date
 class Date(BSElement):
     """Date of DateType enumeration. (CCYY-MM-DD)"""
@@ -3149,64 +3197,83 @@ class EscalationRate(BSElement):
 
 # AuditorQualificationType
 class AuditorQualificationType(BSElement):
+
     element_type = "xs:string"
     element_enumerations = [
-        "Professional Engineer (PE)",
-        "Associated Air Balance Council (AABC) Certified Member Agency",
-        "Associated Air Balance Council (AABC) Test and Balance Technician",
-        "Association of Energy Engineers Certified Carbon Reduction Manager (CRM)",
-        "Association of Energy Engineers Certified Sustainable Development Professional (CSDP)",
-        "Association of Energy Engineers Certified Power Quality Professional (CPQ)",
-        "Association of Energy Engineers Certified Demand Side Manager (CDSM)",
-        "Association of Energy Engineers Certified Energy Procurement Professional (CEP)",
-        "Association of Energy Engineers Certified Lighting Efficiency Professional (CLEP)",
-        "Association of Energy Engineers Certified Measurement & Verification Professional (CMVP)",
-        "Association of Energy Engineers Certified GeoExchange Designer Program (CGD)",
-        "Association of Energy Engineers Certified Business Energy Professional (BEP)",
-        "Association of Energy Engineers Certified Industrial Energy Professional (CIEP)",
-        "Association of Energy Engineers Certified Water Efficiency Professional (CWEP)",
-        "Association of Energy Engineers Energy Efficiency Practitioner (EEP)",
-        "Association of Energy Engineers Renewable Energy Professional (REP)",
-        "Association of Energy Engineers Distributed Generation Certified Professional (DGCP)",
-        "Association of Energy Engineers Certified Building Energy Simulation Analyst (BESA)",
-        "Association of Energy Engineers Performance Contracting and Funding Professional (PCF)",
-        "Association of Energy Engineers Certified Residential Energy Auditor (REA)",
-        "Association of Energy Engineers Certified Building Commissioning Firm Program (CBCF)",
-        "Association of Energy Engineers Certified Green Building Engineer (GBE)",
-        "Association of Energy Engineers Certified Energy Manager (CEM)",
-        "Association of Energy Engineers Certified Energy Auditor (CEA)",
-        "Association of Energy Engineers Certified Building Commissioning Professional (CBCP)",
-        "Building Operator Certification (BOC): Level 1",
-        "Building Operator Certification (BOC): Level 2",
-        "Building Performance Institute (BPI) Certification",
-        "Building Performance Institute (BPI): Building Analyst (BA)",
-        "Building Performance Institute (BPI): Advanced Home Energy Professional (HEP)",
-        "Building Performance Institute (BPI): Advanced Home Energy Professional - Energy Auditor (HEP-EA)",
-        "Building Performance Institute (BPI): Advanced Home Energy Professional - Quality Control Inspector (HEP-QCI)",
-        "Building Performance Institute (BPI): Advanced Home Energy Professional - Retrofit Installer (HEP-RI)",
-        "Building Performance Institute (BPI): Advanced Home Energy Professional - Crew Leader (HEP-CL)",
-        "Building Performance Institute (BPI): Multifamily Building Analyst",
-        "Residential Energy Services Network (RESNET) Certification",
-        "Residential Energy Services Network (RESNET) - Home Partner",
-        "Registered Architect (RA)",
-        "Refrigerating System Operating Engineer",
-        "High Pressure Boiler Operating Engineer",
-        "Certified Commissioning Professional (CCP)",
-        "Associate Commissioning Professional (ACP)",
-        "Existing Building Commissioning Professional (EBCP)",
-        "Commissioning Process Management Professional (CPMP)",
-        "Accredited Commissioning Process Authority Professional (CxAP)",
-        "NYSERDA FlexTech Consultant",
+        "AABC Commissioning Group (ACG) Commissioning Authority (CxA)",
         "ASHRAE Building Commissioning Professional (BCxP)",
         "ASHRAE Building Energy Assessment Professional (BEAP)",
         "ASHRAE Building Energy Modeling Professional (BEMP)",
+        "Accredited Commissioning Process Authority Professional (CxAP)",
+        "Associate Commissioning Professional (ACP)",
+        "Associated Air Balance Council (AABC) Certified Member Agency",
+        "Associated Air Balance Council (AABC) Test and Balance Technician",
+        "Association of Energy Engineers Certified Building Commissioning Firm Program (CBCF)",
+        "Association of Energy Engineers Certified Building Commissioning Professional (CBCP)",
+        "Association of Energy Engineers Certified Building Energy Simulation Analyst (BESA)",
+        "Association of Energy Engineers Certified Business Energy Professional (BEP)",
+        "Association of Energy Engineers Certified Carbon Reduction Manager (CRM)",
+        "Association of Energy Engineers Certified Demand Side Manager (CDSM)",
+        "Association of Energy Engineers Certified Energy Auditor (CEA)",
+        "Association of Energy Engineers Certified Energy Manager (CEM)",
+        "Association of Energy Engineers Certified Energy Procurement Professional (CEP)",
+        "Association of Energy Engineers Certified GeoExchange Designer Program (CGD)",
+        "Association of Energy Engineers Certified Green Building Engineer (GBE)",
+        "Association of Energy Engineers Certified Industrial Energy Professional (CIEP)",
+        "Association of Energy Engineers Certified Lighting Efficiency Professional (CLEP)",
+        "Association of Energy Engineers Certified Measurement & Verification Professional (CMVP)",
+        "Association of Energy Engineers Certified Power Quality Professional (CPQ)",
+        "Association of Energy Engineers Certified Residential Energy Auditor (REA)",
+        "Association of Energy Engineers Certified Sustainable Development Professional (CSDP)",
+        "Association of Energy Engineers Certified Water Efficiency Professional (CWEP)",
+        "Association of Energy Engineers Distributed Generation Certified Professional (DGCP)",
+        "Association of Energy Engineers Energy Efficiency Practitioner (EEP)",
+        "Association of Energy Engineers Performance Contracting and Funding Professional (PCF)",
+        "Association of Energy Engineers Renewable Energy Professional (REP)",
+        "Building Commissioning Association (BCA) Certified Commissioning Professional (CCP)",
+        "Building Commissioning Certification Board (BCCB) Certified Commissioning Professional (CCP)",
+        "Building Operator Certification (BOC): Level 1",
+        "Building Operator Certification (BOC): Level 2",
+        "Building Owners and Managers Institute (BOMI) International - Facilities Management Administrator (FMA)",
+        "Building Owners and Managers Institute (BOMI) International - High-Performance Sustainable Building Management (BOMI-HP)",
+        "Building Owners and Managers Institute (BOMI) International - Real Property Administrator (RPA)",
+        "Building Owners and Managers Institute (BOMI) International - System Maintenance Administrator (SMA)",
+        "Building Owners and Managers Institute (BOMI) International - System Maintenance Technician (SMT)",
+        "Building Performance Institute (BPI) Certification",
+        "Building Performance Institute (BPI): Advanced Home Energy Professional (HEP)",
+        "Building Performance Institute (BPI): Advanced Home Energy Professional - Crew Leader (HEP-CL)",
+        "Building Performance Institute (BPI): Advanced Home Energy Professional - Energy Auditor (HEP-EA)",
+        "Building Performance Institute (BPI): Advanced Home Energy Professional - Quality Control Inspector (HEP-QCI)",
+        "Building Performance Institute (BPI): Advanced Home Energy Professional - Retrofit Installer (HEP-RI)",
+        "Building Performance Institute (BPI): Building Analyst (BA)",
+        "Building Performance Institute (BPI): Multifamily Building Analyst",
+        "Certified Commissioning Professional (CCP)",
+        "Commissioning Process Management Professional (CPMP)",
         "Department of Buildings (DOB) Approved Agent",
-        "High-Performance Building Design Professional (HBDP)",
+        "Energy Management Association (EMA): Energy Management Professional (EMP)",
+        "Existing Building Commissioning Professional (EBCP)",
         "GreenPoint Rater Existing Home Multifamily Rater",
         "HERS Whole House (HERS II) Rater",
+        "High Pressure Boiler Operating Engineer",
+        "High-Performance Building Design Professional (HBDP)",
+        "International Facility Management Association (IFMA) Certified Facilities Manager (CFM)",
+        "International Facility Management Association (IFMA) Facility Management Professional (FMP)",
+        "International Facility Management Association (IFMA) Sustainability Facility Professional (SFP)",
         "International Union of Operating Engineers Certified Energy Specialist",
+        "MEP Professional Engineer",
+        "NYSERDA FlexTech Consultant",
+        "National Environmental Balancing Bureau (NEBB) Building Systems Commissioning (BSC)",
+        "National Environmental Balancing Bureau (NEBB) Commissioning Process Professional (CxPP)",
         "Northwest Energy Education Institute Energy Management Certification",
         "PhD in Mechanical Engineering",
+        "Professional Engineer (PE)",
+        "Refrigerating System Operating Engineer",
+        "Registered Architect (RA)",
+        "Residential Energy Services Network (RESNET) - Home Partner",
+        "Residential Energy Services Network (RESNET) Certification",
+        "University of Wisconsin Accredited Commissioning Process Authority Professional (CxAP or CAP)",
+        "University of Wisconsin Accredited Commissioning Process Manager (CxM)",
+        "University of Wisconsin Accredited Green Commissioning Process Provider (GCxP or GCP)"
         "Other",
         "None",
     ]
@@ -3402,7 +3469,7 @@ class PrimaryHVACSystemType(BSElement):
     ]
 
 
-# HVACSystemType.PrincipalHVACSystemType
+# PrincipalHVACSystemType
 class PrincipalHVACSystemType(BSElement):
     """Principal HVAC type."""
 
@@ -3678,6 +3745,7 @@ CoolingSourceID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.HeatPump.LinkedHeatingPlantID
 class LinkedHeatingPlantID(BSElement):
     """ID number of HeatingPlant serving as the source for this heat pump."""
@@ -3687,6 +3755,7 @@ LinkedHeatingPlantID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.SourceHeatingPlantID
 class SourceHeatingPlantID(BSElement):
     """ID number of HeatingPlant serving as the source for this zonal system."""
@@ -3695,6 +3764,7 @@ class SourceHeatingPlantID(BSElement):
 SourceHeatingPlantID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # OutputCapacity
 class OutputCapacity(BSElement):
@@ -3828,6 +3898,12 @@ class YearOfManufacture(BSElement):
 # Manufacturer
 class Manufacturer(BSElement):
     """Company that manufactured the equipment."""
+
+    element_type = "xs:string"
+
+# EquipmentID
+class EquipmentID(BSElement):
+    """Identifier for the equipment."""
 
     element_type = "xs:string"
 
@@ -4100,6 +4176,7 @@ ReheatPlantID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems.Deliveries.Delivery.DeliveryCondition
 class DeliveryCondition(EquipmentCondition):
     pass
@@ -4113,6 +4190,7 @@ class HeatingSourceID(BSElement):
 HeatingSourceID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.ZoningSystemType
 class ZoningSystemType(BSElement):
@@ -4266,6 +4344,7 @@ HeatingDeliveryID.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # DuctSystemType.CoolingDeliveryID
 class CoolingDeliveryID(BSElement):
     """Cooling delivery system supported by the air-distribution system."""
@@ -4274,6 +4353,7 @@ class CoolingDeliveryID(BSElement):
 CoolingDeliveryID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # InsulationCondition
 class InsulationCondition(BSElement):
@@ -4586,6 +4666,19 @@ class WaterCooledCondenserType(BSElement):
     element_enumerations = ["Cooling tower", "Other", "Unknown"]
 
 
+# CoolingPlant.CondenserType
+class CondenserType(BSElement):
+    """condenser associated with the cooling plant. The usage of this element is not recommended except for Audit Template use cases. User is recommended to use CondenserPlant instead."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Air Cooled",
+        "Water Cooled",
+        "Other",
+        "Unknown"
+    ]
+
+
 # CondenserWaterTemperature
 class CondenserWaterTemperature(BSElement):
     """The temperature of water supplied to a water-cooled condenser under normal operating conditions. (°F)"""
@@ -4742,6 +4835,7 @@ AirCleaner.element_children = [
     ("SystemPerformanceRatio", SystemPerformanceRatio),
 ]
 
+
 # VentilationRate
 class VentilationRate(BSElement):
     """Installed flow rate for mechanical ventilation system. (cfm)"""
@@ -4840,6 +4934,7 @@ class LinkedDeliveryID(BSElement):
 LinkedDeliveryID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # LightingSystemType.BallastType
 class BallastType(BSElement):
@@ -5146,6 +5241,7 @@ Combustion.element_children = [
     ("CondensingOperation", CondensingOperation),
 ]
 
+
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType.Indirect.IndirectTankHeatingSource.HeatPump.HPWHMinimumAirTemperature
 class HPWHMinimumAirTemperature(BSElement):
     """The minimum ambient operating temperature for the compressor. This can be inferred from the operating range of the heat pump. Below this value, the heat pump will not operate and the supplemental heating system is required to produce hot water, thus reducing the efficiency of the heat pump water heater. (°F)"""
@@ -5237,6 +5333,7 @@ class HeatingPlantID(BSElement):
 HeatingPlantID.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankVolume
 class TankVolume(BSElement):
@@ -6077,6 +6174,7 @@ SystemIDReceivingHeat.element_attributes = [
     "IDref",  # IDREF
 ]
 
+
 # HeatRecoverySystemType.SystemIDProvidingHeat
 class SystemIDProvidingHeat(BSElement):
     """ID number of the system that usually provides heat to another system."""
@@ -6085,6 +6183,7 @@ class SystemIDProvidingHeat(BSElement):
 SystemIDProvidingHeat.element_attributes = [
     "IDref",  # IDREF
 ]
+
 
 # WallSystemType.WallRValue
 class WallRValue(BSElement):
@@ -8903,7 +9002,6 @@ class eGRIDSubregionCode(BSElement):
         "FRCC",
         "HIMS",
         "HIOA",
-        "MORE",
         "MROE",
         "MROW",
         "NEWE",
@@ -9853,14 +9951,6 @@ CBECSType.element_children = [
     ("ClimateZone", CBECSType.ClimateZone),
 ]
 
-# ScenarioType.ScenarioType.PackageOfMeasures.MeasureIDs
-class MeasureIDs(BSElement):
-    """ID numbers for measures included in the package. Multiple items may be selected."""
-
-
-MeasureIDs.element_children = [
-    ("MeasureID", MeasureID),
-]
 
 # ScenarioType.ScenarioType.PackageOfMeasures.SimpleImpactAnalysis.EstimatedCost
 class EstimatedCost(LowMedHigh):
@@ -10230,6 +10320,13 @@ class BoilerPlantImprovements(BSElement):
             "Add energy recovery",
             "Convert gas-fired unit to boiler loop",
             "Convert system from steam to hot water",
+            "Add boiler automatic chemical feed system",
+            "Install boiler condensate return system",
+            "Install boiler automatic blowdown system",
+            "Install boiler blowdown heat exchanger",
+            "Install boiler expansion flash tank",
+            "Install meters on boiler make-up lines",
+            "Install dehumidification system",
             "Clean and/or repair",
             "Implement training and/or documentation",
             "Upgrade operating protocols, calibration, and/or sequencing",
@@ -10257,6 +10354,13 @@ class ChillerPlantImprovements(BSElement):
             "Install gas cooling",
             "Add or repair economizer cycle",
             "Add or replace cooling tower",
+            "Implement advanced cooling tower controls to manage cycles of concentration",
+            "Install cooling tower water treatment system",
+            "Install automated chemical feed systems for cooling tower management",
+            "Install conductivity controller for cooling tower management",
+            "Install covers on open distribution decks on top of cooling tower",
+            "Install flow meters on make-up and blowdown lines for cooling tower management",
+            "Install side-stream filtration system for cooling tower management",
             "Clean and/or repair",
             "Implement training and/or documentation",
             "Upgrade operating protocols, calibration, and/or sequencing",
@@ -10324,6 +10428,10 @@ class OtherHVAC(BSElement):
             "Install variable refrigerant flow system",
             "Capture and return condensate",
             "Install or Upgrade Master Venting",
+            "Retrofit single-pass cooling with an automatic shut-off device",
+            "Retrofit single-pass cooling with closed loop/recirculation system",
+            "Install water-efficient evaporative cooler",
+            "Replace water-cooled equipment with air-cooled equipment",
             "Clean and/or repair",
             "Implement training and/or documentation",
             "Upgrade operating protocols, calibration, and/or sequencing",
@@ -10429,6 +10537,7 @@ class ChilledWaterHotWaterAndSteamDistributionSystems(BSElement):
             "Install or upgrade master venting",
             "Replace steam traps with orifice plates",
             "Install steam condensate heat recovery",
+            "Install leak detection system",
             "Clean and/or repair",
             "Implement training and/or documentation",
             "Upgrade operating protocols, calibration, and/or sequencing",
@@ -10604,6 +10713,15 @@ class WaterAndSewerConservationSystems(BSElement):
             "Install low-flow plumbing equipment",
             "Install onsite sewer treatment systems",
             "Implement water efficient irrigation",
+            "Remove water softeners with timers",
+            "Install high-efficiency faucet aerator in lavatory public restrooms",
+            "Install WaterSense-qualified faucet aerator in lavatory private restrooms",
+            "Install WaterSense-qualified showerhead",
+            "Install WaterSense-qualified flushometer toilets",
+            "Install WaterSense-qualified tank toilets",
+            "Install WaterSense-qualified flushing urinal",
+            "Install leak detection system",
+            "Install temporary shut-off or foot-operated valves with kitchen faucets",
             "Clean and/or repair",
             "Implement training and/or documentation",
             "Upgrade operating protocols, calibration, and/or sequencing",
@@ -10739,6 +10857,9 @@ class DataCenterImprovements(BSElement):
             "Implement hot aisle cold aisle design",
             "Implement server virtualization",
             "Upgrade servers",
+            "Eliminate redundant power supplies",
+            "Install battery storage",
+            "Replace inefficient hardware",
             "Clean and/or repair",
             "Implement training and/or documentation",
             "Upgrade operating protocols, calibration, and/or sequencing",
@@ -10749,6 +10870,163 @@ class DataCenterImprovements(BSElement):
 DataCenterImprovements.element_children = [
     ("MeasureName", DataCenterImprovements.MeasureName),
 ]
+
+
+# MeasureType.TechnologyCategories.TechnologyCategory.AlternativeWaterSources
+class AlternativeWaterSources(BSElement):
+    """Measures reserved for future and other ECMs.Alternative water sources options for water saving."""
+
+    class MeasureName(BSElement):
+        """Short description of measure."""
+
+        element_type = "xs:string"
+        element_enumerations = [
+            "Install condensate capture equipment",
+            "Install atmospheric water generator",
+            "Install wastewater treatment plant",
+            "Install rainwater harvesting system",
+            "Install cooling tower blowdown for appropriate applications",
+            "Install desalinated water treatment for reuse",
+            "Use discharged water from water purification processes",
+            "Install foundation water treatment for reuse",
+            "Install greywater reuse system",
+            "Clean and/or repair",
+            "Implement training and/or documentation",
+            "Upgrade operating protocols, calibration, and/or sequencing",
+            "Other",
+        ]
+
+
+AlternativeWaterSources.element_children = [
+    ("MeasureName", AlternativeWaterSources.MeasureName),
+]
+
+
+# MeasureType.TechnologyCategories.TechnologyCategory.KitchenImprovements
+class KitchenImprovements(BSElement):
+    """Kitchen improvements."""
+
+    class MeasureName(BSElement):
+        """Short description of measure."""
+
+        element_type = "xs:string"
+        element_enumerations = [
+            "Retrofit single-pass cooling ice machine to closed loop",
+            "Install food disposal load sensing device",
+            "Replace with ENERGY STAR-qualified commercial dishwashers",
+            "Replace with ENERGY STAR-qualified steam cookers or boilerless commercial steam cookers",
+            "Replace with ENERGY STAR-qualified ice machine",
+            "Replace food disposal with food pulper system",
+            "Install WaterSense-qualified pre-rinse spray valves",
+            "Install in-line flow restrictor on dipper wells",
+            "Install steam kettle with condensate return",
+            "Clean and/or repair",
+            "Implement training and/or documentation",
+            "Upgrade operating protocols, calibration, and/or sequencing",
+            "Other",
+        ]
+
+
+KitchenImprovements.element_children = [
+    ("MeasureName", KitchenImprovements.MeasureName),
+]
+
+
+# MeasureType.TechnologyCategories.TechnologyCategory.LaboratoryAndMedicalEquipments
+class LaboratoryAndMedicalEquipments(BSElement):
+    """Improvements for laboratory and medical equipments."""
+
+    class MeasureName(BSElement):
+        """Short description of measure."""
+
+        element_type = "xs:string"
+        element_enumerations = [
+            "Install dry vacuum or air-cooled vacuum pump",
+            "Retrofit liquid-ring vacuum pump with a water recovery system",
+            "Install digital photographic or X-ray equipment",
+            "Retrofit traditional photographic or X-ray equipment with a water recycling system",
+            "Install water-efficient glassware washer with water recycling system",
+            "Retrofit glassware washer with water recycling system",
+            "Install pretreatment of water purification equipment to increase system recovery",
+            "Install high efficiency water purification system with high recovery rate",
+            "Install steam sterilizer system with automated tempering system and automatic shut off",
+            "Retrofit vivarium washing equipment with water recycling system",
+            "Install water-efficient vivarium washing equipment with advanced controls and water recycling",
+            "Install water-efficient vivarium watering equipment with recirculation system",
+            "Install steam sterilizer condensate retrofit kit",
+            "Clean and/or repair",
+            "Implement training and/or documentation",
+            "Upgrade operating protocols, calibration, and/or sequencing",
+            "Other",
+        ]
+
+
+LaboratoryAndMedicalEquipments.element_children = [
+    ("MeasureName", LaboratoryAndMedicalEquipments.MeasureName),
+]
+
+
+# MeasureType.TechnologyCategories.TechnologyCategory.IrrigationSystemsAndLandscapingImprovements
+class IrrigationSystemsAndLandscapingImprovements(BSElement):
+    """Improvements for irrigation systems and landscaping."""
+
+    class MeasureName(BSElement):
+        """Short description of measure."""
+
+        element_type = "xs:string"
+        element_enumerations = [
+            "Install advanced weather-based irrigation controller",
+            "Install advanced soil-moisture based irrigation controller",
+            "Install water-efficient irrigation sprinkler heads",
+            "Reprogram irrigation controller to water-efficient settings",
+            "Install irrigation meter",
+            "Install micro-irrigation or drip irrigation",
+            "Install irrigation sprinkler shut-off device",
+            "Remove or Recirculate ornamental water feature",
+            "Install native/adaptive plants",
+            "Remove high water consuming plants or replace with native/adaptive plants",
+            "Clean and/or repair",
+            "Implement training and/or documentation",
+            "Upgrade operating protocols, calibration, and/or sequencing",
+            "Other",
+        ]
+
+
+IrrigationSystemsAndLandscapingImprovements.element_children = [
+    ("MeasureName", IrrigationSystemsAndLandscapingImprovements.MeasureName),
+]
+
+
+# MeasureType.TechnologyCategories.TechnologyCategory.WashingEquipmentsAndTechiques
+class WashingEquipmentsAndTechiques(BSElement):
+    """Improvements for washing equipments and techiques."""
+
+    class MeasureName(BSElement):
+        """Short description of measure."""
+
+        element_type = "xs:string"
+        element_enumerations = [
+            "Install automatic shutoff nozzle for self-service vehicle wash",
+            "Implement water-efficient optimization for vehicle washing equipment",
+            "Retrofit vehicle washing equipment with water recycling system",
+            "Install high-pressure self-service vehicle washer",
+            "Install ozone system for laundry equipment",
+            "Install water-efficient conveyor/in-bay vehicle washing equipment",
+            "Install ENERGY STAR-qualified laundry washing machines",
+            "Install water-efficient industrial/commercial laundry equipment",
+            "Retrofit laundry washing equipment with water recycling system",
+            "Install meter on vehicle wash system",
+            "Clean and/or repair",
+            "Implement training and/or documentation",
+            "Upgrade operating protocols, calibration, and/or sequencing",
+            "Other",
+        ]
+
+
+WashingEquipmentsAndTechiques.element_children = [
+    ("MeasureName", WashingEquipmentsAndTechiques.MeasureName),
+]
+
 
 # MeasureType.TechnologyCategories.TechnologyCategory.FutureOtherECMs
 class FutureOtherECMs(BSElement):
@@ -10765,6 +11043,7 @@ FutureOtherECMs.element_children = [
     ("MeasureName", FutureOtherECMs.MeasureName),
 ]
 
+
 # MeasureType.TechnologyCategories.TechnologyCategory.HealthAndSafety
 class HealthAndSafety(BSElement):
     """Category heading for measures that are necessary for health, comfort, or safety reasons, not for energy efficiency reasons."""
@@ -10778,6 +11057,7 @@ class HealthAndSafety(BSElement):
 HealthAndSafety.element_children = [
     ("MeasureName", HealthAndSafety.MeasureName),
 ]
+
 
 # MeasureType.TechnologyCategories.TechnologyCategory.Uncategorized
 class Uncategorized(BSElement):
@@ -10793,6 +11073,7 @@ class Uncategorized(BSElement):
 Uncategorized.element_children = [
     ("MeasureName", Uncategorized.MeasureName),
 ]
+
 
 # MeasureType.TechnologyCategories.TechnologyCategory
 class TechnologyCategory(BSElement):
@@ -10844,6 +11125,14 @@ TechnologyCategory.element_children = [
     ("AdvancedMeteringSystems", AdvancedMeteringSystems),
     ("PlugLoadReductions", PlugLoadReductions),
     ("DataCenterImprovements", DataCenterImprovements),
+    ("AlternativeWaterSources", AlternativeWaterSources),
+    ("KitchenImprovements", KitchenImprovements),
+    ("LaboratoryAndMedicalEquipments", LaboratoryAndMedicalEquipments),
+    (
+        "IrrigationSystemsAndLandscapingImprovements",
+        IrrigationSystemsAndLandscapingImprovements,
+    ),
+    ("WashingEquipmentsAndTechiques", WashingEquipmentsAndTechiques),
     ("FutureOtherECMs", FutureOtherECMs),
     ("HealthAndSafety", HealthAndSafety),
     ("Uncategorized", Uncategorized),
@@ -10851,6 +11140,7 @@ TechnologyCategory.element_children = [
 TechnologyCategory.ConveyanceSystems.element_children = [
     ("MeasureName", TechnologyCategory.ConveyanceSystems.MeasureName),
 ]
+
 
 # ReportType.AuditDates.AuditDate
 class AuditDate(BSElement):
@@ -10862,6 +11152,7 @@ AuditDate.element_children = [
     ("DateType", DateType),
     ("CustomDateType", CustomDateType),
 ]
+
 
 # ReportType.OtherEscalationRates.OtherEscalationRate
 class OtherEscalationRate(BSElement):
@@ -10875,6 +11166,7 @@ OtherEscalationRate.element_children = [
     ("EnergyResource", EnergyResource),
     ("EscalationRate", EscalationRate),
 ]
+
 
 # ReportType.Qualifications.Qualification.AuditorQualification
 class AuditorQualification(AuditorQualificationType):
@@ -10904,6 +11196,7 @@ Qualification.element_children = [
     ("AuditorYearsOfExperience", AuditorYearsOfExperience),
 ]
 
+
 # HVACSystemType.HVACControlSystemTypes
 class HVACControlSystemTypes(BSElement):
     """HVAC equipment control strategies."""
@@ -10912,6 +11205,7 @@ class HVACControlSystemTypes(BSElement):
 HVACControlSystemTypes.element_children = [
     ("HVACControlSystemType", HVACControlSystemType),
 ]
+
 
 # ElectricResistance
 class ElectricResistance(ElectricResistanceType):
@@ -10938,6 +11232,7 @@ Furnace.element_children = [
     ("ThermalEfficiency", ThermalEfficiency),
     ("ThirdPartyCertification", ThirdPartyCertification),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType.HeatPump.HeatPumpBackupSystemFuel
 class HeatPumpBackupSystemFuel(FuelTypes):
@@ -10968,6 +11263,7 @@ CondenserPlantIDs.element_children = [
     ("CondenserPlantID", CondenserPlantID),
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType.EvaporativeCooler
 class EvaporativeCooler(BSElement):
     pass
@@ -10976,6 +11272,7 @@ class EvaporativeCooler(BSElement):
 EvaporativeCooler.element_children = [
     ("EvaporativeCoolingType", EvaporativeCoolingType),
 ]
+
 
 # NoCooling
 class NoCooling(NoCoolingType):
@@ -11003,6 +11300,7 @@ Convection.element_children = [
     ("PipeLocation", PipeLocation),
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems.Deliveries.Delivery.DeliveryType.ZoneEquipment.Radiant
 class Radiant(BSElement):
     pass
@@ -11013,6 +11311,7 @@ Radiant.element_children = [
     ("PipeInsulationThickness", PipeInsulationThickness),
     ("PipeLocation", PipeLocation),
 ]
+
 
 # DuctSystemType.DuctInsulationCondition
 class DuctInsulationCondition(InsulationCondition):
@@ -11049,6 +11348,7 @@ DistrictHeating.element_children = [
     ("Quantity", Quantity),
 ]
 
+
 # HeatingPlantType.SolarThermal
 class SolarThermal(BSElement):
     class OutputCapacity(OutputCapacity):
@@ -11069,6 +11369,7 @@ SolarThermal.element_children = [
     ("Quantity", Quantity),
 ]
 
+
 # CoolingPlantType.DistrictChilledWater
 class DistrictChilledWater(BSElement):
     pass
@@ -11083,6 +11384,7 @@ DistrictChilledWater.element_children = [
     ("ChilledWaterSupplyTemperature", ChilledWaterSupplyTemperature),
     ("ActiveDehumidification", ActiveDehumidification),
 ]
+
 
 # CoolingPlantType.Chiller.PartLoadRatioBelowWhichHotGasBypassOperates
 class PartLoadRatioBelowWhichHotGasBypassOperates(
@@ -11101,6 +11403,7 @@ GlycolCooledDryCooler.element_children = [
     ("Capacity", Capacity),
     ("CapacityUnits", CapacityUnits),
 ]
+
 
 # CondenserPlantType.AirCooled.EvaporativelyCooledCondenser
 class EvaporativelyCooledCondenser(BSElement):
@@ -11121,6 +11424,7 @@ EvaporativelyCooledCondenser.element_children = [
     ),
 ]
 
+
 # OtherHVACSystemType.LinkedDeliveryIDs
 class LinkedDeliveryIDs(BSElement):
     """List of connections to air distribution systems."""
@@ -11129,6 +11433,7 @@ class LinkedDeliveryIDs(BSElement):
 LinkedDeliveryIDs.element_children = [
     ("LinkedDeliveryID", LinkedDeliveryID),
 ]
+
 
 # OtherHVACSystemType.OtherHVACType.Humidifier
 class Humidifier(BSElement):
@@ -11143,6 +11448,7 @@ Humidifier.element_children = [
     ("DutyCycle", DutyCycle),
     ("SystemPerformanceRatio", SystemPerformanceRatio),
 ]
+
 
 # OtherHVACSystemType.OtherHVACType.Dehumidifier
 class Dehumidifier(BSElement):
@@ -11159,6 +11465,7 @@ Dehumidifier.element_children = [
     ("ThirdPartyCertification", ThirdPartyCertification),
 ]
 
+
 # VentilationControlMethods
 class VentilationControlMethods(BSElement):
     """List of ventilation control methods."""
@@ -11167,6 +11474,7 @@ class VentilationControlMethods(BSElement):
 VentilationControlMethods.element_children = [
     ("VentilationControlMethod", VentilationControlMethod),
 ]
+
 
 # OtherHVACSystemType.OtherHVACType.SpotExhaust
 class SpotExhaust(BSElement):
@@ -11186,6 +11494,7 @@ SpotExhaust.element_children = [
     ("ThirdPartyCertification", ThirdPartyCertification),
 ]
 
+
 # OtherHVACSystemType.OtherHVACType.NaturalVentilation
 class NaturalVentilation(BSElement):
     pass
@@ -11199,6 +11508,7 @@ NaturalVentilation.element_children = [
     ("CapacityUnits", CapacityUnits),
     ("DutyCycle", DutyCycle),
 ]
+
 
 # LightingSystemType.LampType.Incandescent
 class Incandescent(BSElement):
@@ -11232,6 +11542,7 @@ Incandescent.element_children = [
     ("LampLabel", Incandescent.LampLabel),
 ]
 
+
 # LightingSystemType.LampType.LinearFluorescent
 class LinearFluorescent(BSElement):
     class LampLabel(BSElement):
@@ -11257,6 +11568,7 @@ LinearFluorescent.element_children = [
     ("LampLength", LampLength),
 ]
 
+
 # LightingSystemType.LampType.CompactFluorescent
 class CompactFluorescent(BSElement):
     class LampLabel(BSElement):
@@ -11277,6 +11589,7 @@ CompactFluorescent.element_children = [
     ("LampLabel", CompactFluorescent.LampLabel),
     ("FluorescentStartType", FluorescentStartType),
 ]
+
 
 # LightingSystemType.LampType.Halogen
 class Halogen(BSElement):
@@ -11306,6 +11619,7 @@ Halogen.element_children = [
     ("TransformerNeeded", TransformerNeeded),
 ]
 
+
 # LightingSystemType.LampType.HighIntensityDischarge
 class HighIntensityDischarge(BSElement):
     class LampLabel(BSElement):
@@ -11327,6 +11641,7 @@ HighIntensityDischarge.element_children = [
     ("MetalHalideStartType", MetalHalideStartType),
 ]
 
+
 # LightingSystemType.LampType.SolidStateLighting
 class SolidStateLighting(BSElement):
     class LampLabel(BSElement):
@@ -11340,6 +11655,7 @@ SolidStateLighting.element_children = [
     ("LampLabel", SolidStateLighting.LampLabel),
     ("TransformerNeeded", TransformerNeeded),
 ]
+
 
 # LightingSystemType.LampType.Neon
 class Neon(NeonType):
@@ -11385,6 +11701,7 @@ Recirculation.element_children = [
     ("RecirculationEnergyLossRate", RecirculationEnergyLossRate),
 ]
 
+
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType.Direct.DirectTankHeatingSource
 class DirectTankHeatingSource(BSElement):
     """Direct source of heat for hot water tank."""
@@ -11409,6 +11726,7 @@ DirectTankHeatingSource.element_children = [
     ("Unknown", DirectTankHeatingSource.Unknown),
 ]
 
+
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType.Direct
 class Direct(BSElement):
     pass
@@ -11417,6 +11735,7 @@ class Direct(BSElement):
 Direct.element_children = [
     ("DirectTankHeatingSource", DirectTankHeatingSource),
 ]
+
 
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType.Indirect.IndirectTankHeatingSource.HeatPump.RatedHeatPumpSensibleHeatRatio
 class RatedHeatPumpSensibleHeatRatio(BoundedDecimalZeroToOneWithSourceAttribute):
@@ -11431,6 +11750,7 @@ class SpaceHeatingSystem(BSElement):
 SpaceHeatingSystem.element_children = [
     ("HeatingPlantID", HeatingPlantID),
 ]
+
 
 # DomesticHotWaterSystemType.DomesticHotWaterType.Instantaneous.InstantaneousWaterHeatingSource
 class InstantaneousWaterHeatingSource(BSElement):
@@ -11456,6 +11776,7 @@ InstantaneousWaterHeatingSource.element_children = [
     ("Unknown", InstantaneousWaterHeatingSource.Unknown),
 ]
 
+
 # DomesticHotWaterSystemType.DomesticHotWaterType.Instantaneous
 class Instantaneous(BSElement):
     pass
@@ -11465,6 +11786,7 @@ Instantaneous.element_children = [
     ("InstantaneousWaterHeatingSource", InstantaneousWaterHeatingSource),
 ]
 
+
 # RefrigerationSystemType.RefrigerationSystemCategory.CentralRefrigerationSystem.RefrigerationCompressor.CompressorUnloader
 class CompressorUnloader(BSElement):
     """If exists then a device is used for controlling compressor capacity by rendering one or more cylinders ineffective."""
@@ -11473,6 +11795,7 @@ class CompressorUnloader(BSElement):
 CompressorUnloader.element_children = [
     ("CompressorUnloaderStages", CompressorUnloaderStages),
 ]
+
 
 # RefrigerationSystemType.RefrigerationSystemCategory.CentralRefrigerationSystem.RefrigerationCompressor
 class RefrigerationCompressor(BSElement):
@@ -11488,6 +11811,7 @@ RefrigerationCompressor.element_children = [
     ("DesuperheatValve", DesuperheatValve),
     ("CrankcaseHeater", CrankcaseHeater),
 ]
+
 
 # RefrigerationSystemType.RefrigerationSystemCategory.CentralRefrigerationSystem
 class CentralRefrigerationSystem(BSElement):
@@ -11507,6 +11831,7 @@ CentralRefrigerationSystem.element_children = [
     ("CondenserPlantIDs", CondenserPlantIDs),
 ]
 
+
 # RefrigerationSystemType.RefrigerationSystemCategory.RefrigerationUnit.AntiSweatHeaters
 class AntiSweatHeaters(BSElement):
     """If exists then refrigerated cases include anti-sweat heaters."""
@@ -11517,7 +11842,9 @@ AntiSweatHeaters.element_children = [
     ("AntiSweatHeaterControls", AntiSweatHeaterControls),
     ("Manufacturer", Manufacturer),
     ("ModelNumber", ModelNumber),
+    ("EquipmentID", EquipmentID),
 ]
+
 
 # RefrigerationSystemType.RefrigerationSystemCategory.RefrigerationUnit
 class RefrigerationUnit(BSElement):
@@ -11536,6 +11863,7 @@ RefrigerationUnit.element_children = [
     ("RefrigerationEnergy", RefrigerationEnergy),
 ]
 
+
 # LaundrySystemType.LaundryType.Washer
 class Washer(BSElement):
     pass
@@ -11549,6 +11877,7 @@ Washer.element_children = [
     ("ClothesWasherCapacity", ClothesWasherCapacity),
 ]
 
+
 # LaundrySystemType.LaundryType.Dryer
 class Dryer(BSElement):
     pass
@@ -11559,6 +11888,7 @@ Dryer.element_children = [
     ("DryerElectricEnergyUsePerLoad", DryerElectricEnergyUsePerLoad),
     ("DryerGasEnergyUsePerLoad", DryerGasEnergyUsePerLoad),
 ]
+
 
 # LaundrySystemType.LaundryType.Combination
 class Combination(BSElement):
@@ -11576,6 +11906,7 @@ Combination.element_children = [
     ("DryerElectricEnergyUsePerLoad", DryerElectricEnergyUsePerLoad),
     ("DryerGasEnergyUsePerLoad", DryerGasEnergyUsePerLoad),
 ]
+
 
 # LinkedSystemIDs
 class LinkedSystemIDs(BSElement):
@@ -11636,6 +11967,7 @@ WallInsulation.element_children = [
     ("WallInsulationRValue", WallInsulationRValue),
 ]
 
+
 # CeilingSystemType.CeilingInsulations.CeilingInsulation
 class CeilingInsulation(BSElement):
     pass
@@ -11648,6 +11980,7 @@ CeilingInsulation.element_children = [
     ("CeilingInsulationContinuity", CeilingInsulationContinuity),
     ("CeilingInsulationCondition", CeilingInsulationCondition),
 ]
+
 
 # RoofSystemType.RoofInsulations.RoofInsulation
 class RoofInsulation(BSElement):
@@ -11663,6 +11996,7 @@ RoofInsulation.element_children = [
     ("RoofInsulationRValue", RoofInsulationRValue),
 ]
 
+
 # FenestrationSystemType.FenestrationType.Window.LightShelves
 class LightShelves(BSElement):
     """If exists then light shelves are used with this window group, otherwise false."""
@@ -11673,6 +12007,7 @@ LightShelves.element_children = [
     ("LightShelfExteriorProtrusion", LightShelfExteriorProtrusion),
     ("LightShelfInteriorProtrusion", LightShelfInteriorProtrusion),
 ]
+
 
 # FenestrationSystemType.FenestrationType.Window
 class Window(BSElement):
@@ -11701,6 +12036,7 @@ Window.element_children = [
     ("InteriorShadingType", InteriorShadingType),
 ]
 
+
 # FenestrationSystemType.FenestrationType.Skylight
 class Skylight(BSElement):
     class AssemblyType(BSElement):
@@ -11717,6 +12053,7 @@ Skylight.element_children = [
     ("SkylightWindowTreatments", SkylightWindowTreatments),
     ("SkylightSolarTube", SkylightSolarTube),
 ]
+
 
 # FenestrationSystemType.FenestrationType.Door.DoorGlazedAreaFraction
 class DoorGlazedAreaFraction(BoundedDecimalZeroToOneWithSourceAttribute):
@@ -11735,6 +12072,7 @@ Door.element_children = [
     ("DoorGlazedAreaFraction", DoorGlazedAreaFraction),
 ]
 
+
 # FoundationSystemType.GroundCouplings.GroundCoupling.SlabOnGrade
 class SlabOnGrade(BSElement):
     pass
@@ -11752,6 +12090,7 @@ SlabOnGrade.element_children = [
     ("SlabHeating", SlabHeating),
 ]
 
+
 # FoundationSystemType.GroundCouplings.GroundCoupling.Crawlspace.CrawlspaceVenting.Ventilated
 class Ventilated(BSElement):
     pass
@@ -11766,6 +12105,7 @@ Ventilated.element_children = [
     ("FloorFramingDepth", FloorFramingDepth),
     ("FloorFramingFactor", FloorFramingFactor),
 ]
+
 
 # FoundationSystemType.GroundCouplings.GroundCoupling.Crawlspace.CrawlspaceVenting.Unventilated
 class Unventilated(BSElement):
@@ -11782,6 +12122,7 @@ Unventilated.element_children = [
     ("FoundationWallInsulationCondition", FoundationWallInsulationCondition),
 ]
 
+
 # FoundationSystemType.GroundCouplings.GroundCoupling.Crawlspace.CrawlspaceVenting
 class CrawlspaceVenting(BSElement):
     class Other(OtherType):
@@ -11795,6 +12136,7 @@ CrawlspaceVenting.element_children = [
     ("Unknown", Unknown),
 ]
 
+
 # FoundationSystemType.GroundCouplings.GroundCoupling.Crawlspace
 class Crawlspace(BSElement):
     pass
@@ -11803,6 +12145,7 @@ class Crawlspace(BSElement):
 Crawlspace.element_children = [
     ("CrawlspaceVenting", CrawlspaceVenting),
 ]
+
 
 # FoundationSystemType.GroundCouplings.GroundCoupling.Basement
 class Basement(BSElement):
@@ -11827,6 +12170,7 @@ Basement.element_children = [
     ("SlabHeating", SlabHeating),
 ]
 
+
 # FoundationSystemType.GroundCouplings.GroundCoupling
 class GroundCoupling(BSElement):
     """The manner in which the building is connected to the ground."""
@@ -11846,6 +12190,7 @@ GroundCoupling.element_children = [
     ("Unknown", GroundCoupling.Unknown),
 ]
 
+
 # ProcessGasElectricLoadType.HeatGainFraction
 class HeatGainFraction(BoundedDecimalZeroToOneWithSourceAttribute):
     """Fraction of installed power that results in heat gain to the space. (0-1) (fraction)"""
@@ -11860,6 +12205,7 @@ Storage.element_children = [
     ("EnergyStorageTechnology", EnergyStorageTechnology),
     ("ThermalMedium", ThermalMedium),
 ]
+
 
 # OnsiteStorageTransmissionGenerationSystemType.EnergyConversionType.Generation.OnsiteGenerationType.PV
 class PV(BSElement):
@@ -11889,6 +12235,7 @@ PV.element_children = [
     ("PhotovoltaicModuleWidth", PhotovoltaicModuleWidth),
 ]
 
+
 # OnsiteStorageTransmissionGenerationSystemType.EnergyConversionType.Generation.OnsiteGenerationType
 class OnsiteGenerationType(BSElement):
     """Identifies whether the onsite generation is provided by a photovoltaic system or by another technology."""
@@ -11906,6 +12253,7 @@ OnsiteGenerationType.Other.element_children = [
     ("OutputResourceType", OutputResourceType),
 ]
 
+
 # OnsiteStorageTransmissionGenerationSystemType.EnergyConversionType.Generation
 class Generation(BSElement):
     pass
@@ -11915,6 +12263,7 @@ Generation.element_children = [
     ("OnsiteGenerationType", OnsiteGenerationType),
     ("ExternalPowerSupply", ExternalPowerSupply),
 ]
+
 
 # WaterUseType.WaterFixtureFractionHotWater
 class WaterFixtureFractionHotWater(BoundedDecimalZeroToOneWithSourceAttribute):
@@ -11932,6 +12281,7 @@ Modeled.element_children = [
     ("WeatherDataType", WeatherDataType),
     ("SimulationCompletionStatus", SimulationCompletionStatus),
 ]
+
 
 # CalculationMethodType.Estimated
 class Estimated(EstimatedType):
@@ -11955,6 +12305,7 @@ MeasuredEnergySource.element_children = [
     ("Other", MeasuredEnergySource.Other),
 ]
 
+
 # SpatialUnitTypeType
 class SpatialUnitTypeType(BSElement):
     pass
@@ -11967,6 +12318,7 @@ SpatialUnitTypeType.element_children = [
     ("SpatialUnitOccupiedPercentage", SpatialUnitOccupiedPercentage),
 ]
 
+
 # LinkedPremisesOrSystem.System
 class System(BSElement):
     pass
@@ -11975,6 +12327,7 @@ class System(BSElement):
 System.element_children = [
     ("LinkedSystemID", LinkedSystemID),
 ]
+
 
 # Address.StreetAddressDetail.Simplified
 class Simplified(BSElement):
@@ -11985,6 +12338,7 @@ Simplified.element_children = [
     ("StreetAddress", StreetAddress),
     ("StreetAdditionalInfo", StreetAdditionalInfo),
 ]
+
 
 # Address.StreetAddressDetail.Complex
 class Complex(BSElement):
@@ -12005,6 +12359,7 @@ Complex.element_children = [
     ("SubaddressIdentifier", SubaddressIdentifier),
 ]
 
+
 # Address.StreetAddressDetail
 class StreetAddressDetail(BSElement):
     """Choice of simplified or more complex address format."""
@@ -12014,6 +12369,7 @@ StreetAddressDetail.element_children = [
     ("Simplified", Simplified),
     ("Complex", Complex),
 ]
+
 
 # PremisesIdentifiers.PremisesIdentifier
 class PremisesIdentifier(BSElement):
@@ -12026,6 +12382,7 @@ PremisesIdentifier.element_children = [
     ("IdentifierValue", IdentifierValue),
 ]
 
+
 # TypicalOccupantUsages.TypicalOccupantUsage
 class TypicalOccupantUsage(BSElement):
     pass
@@ -12035,6 +12392,7 @@ TypicalOccupantUsage.element_children = [
     ("TypicalOccupantUsageValue", TypicalOccupantUsageValue),
     ("TypicalOccupantUsageUnits", TypicalOccupantUsageUnits),
 ]
+
 
 # UserDefinedFields.UserDefinedField
 class UserDefinedField(BSElement):
@@ -12046,6 +12404,7 @@ UserDefinedField.element_children = [
     ("FieldValue", FieldValue),
 ]
 
+
 # FloorAreas.FloorArea.ExcludedSectionIDs
 class ExcludedSectionIDs(BSElement):
     """Links to Sections not included in the floor area calculation."""
@@ -12054,6 +12413,7 @@ class ExcludedSectionIDs(BSElement):
 ExcludedSectionIDs.element_children = [
     ("ExcludedSectionID", ExcludedSectionID),
 ]
+
 
 # FloorAreas.FloorArea
 class FloorArea(BSElement):
@@ -12069,6 +12429,7 @@ FloorArea.element_children = [
     ("ExcludedSectionIDs", ExcludedSectionIDs),
 ]
 
+
 # OccupancyLevels.OccupancyLevel
 class OccupancyLevel(BSElement):
     pass
@@ -12080,6 +12441,7 @@ OccupancyLevel.element_children = [
     ("OccupantQuantity", OccupantQuantity),
 ]
 
+
 # EnergyUseByFuelTypes.EnergyUseByFuelType
 class EnergyUseByFuelType(BSElement):
     pass
@@ -12090,6 +12452,7 @@ EnergyUseByFuelType.element_children = [
     ("EnergyUse", EnergyUse),
 ]
 
+
 # EnergyUseByFuelTypes
 class EnergyUseByFuelTypes(BSElement):
     pass
@@ -12098,6 +12461,7 @@ class EnergyUseByFuelTypes(BSElement):
 EnergyUseByFuelTypes.element_children = [
     ("EnergyUseByFuelType", EnergyUseByFuelType),
 ]
+
 
 # AssetScoreData
 class AssetScoreData(BSElement):
@@ -12123,6 +12487,7 @@ AssetScoreData.SourceEnergyUse.element_children = [
     ("SourceEnergyUseIntensity", SourceEnergyUseIntensity),
 ]
 
+
 # AssetScore.WholeBuilding.EnergyUseByEndUses.EnergyUseByEndUse
 class EnergyUseByEndUse(BSElement):
     pass
@@ -12133,6 +12498,7 @@ EnergyUseByEndUse.element_children = [
     ("EndUse", EndUse),
 ]
 
+
 # AssetScore.WholeBuilding.EnergyUseByEndUses
 class EnergyUseByEndUses(BSElement):
     pass
@@ -12141,6 +12507,7 @@ class EnergyUseByEndUses(BSElement):
 EnergyUseByEndUses.element_children = [
     ("EnergyUseByEndUse", EnergyUseByEndUse),
 ]
+
 
 # AssetScore.WholeBuilding.Rankings.Ranking.Type
 class Type(BSElement):
@@ -12151,6 +12518,7 @@ Type.element_children = [
     ("SystemsType", SystemsType),
     ("EnvelopeType", EnvelopeType),
 ]
+
 
 # AssetScore.WholeBuilding.Rankings.Ranking.Rank
 class Rank(RankType):
@@ -12167,6 +12535,7 @@ Ranking.element_children = [
     ("Rank", Rank),
 ]
 
+
 # AssetScore.WholeBuilding.Rankings
 class Rankings(BSElement):
     pass
@@ -12175,6 +12544,7 @@ class Rankings(BSElement):
 Rankings.element_children = [
     ("Ranking", Ranking),
 ]
+
 
 # AssetScore.WholeBuilding
 class WholeBuilding(BSElement):
@@ -12187,6 +12557,7 @@ WholeBuilding.element_children = [
     ("Rankings", Rankings),
 ]
 
+
 # AssetScore.UseTypes.UseType
 class UseType(BSElement):
     pass
@@ -12197,6 +12568,7 @@ UseType.element_children = [
     ("AssetScoreUseType", AssetScoreUseType),
 ]
 
+
 # AssetScore.UseTypes
 class UseTypes(BSElement):
     pass
@@ -12205,6 +12577,7 @@ class UseTypes(BSElement):
 UseTypes.element_children = [
     ("UseType", UseType),
 ]
+
 
 # PortfolioManagerType
 class PortfolioManagerType(BSElement):
@@ -12220,6 +12593,7 @@ PortfolioManagerType.element_children = [
     ),
 ]
 
+
 # FanBasedDistributionTypeType.FanCoil
 class FanCoil(BSElement):
     pass
@@ -12231,6 +12605,7 @@ FanCoil.element_children = [
     ("PipeInsulationThickness", PipeInsulationThickness),
     ("PipeLocation", PipeLocation),
 ]
+
 
 # FanBasedType.AirSideEconomizer
 class AirSideEconomizer(BSElement):
@@ -12249,6 +12624,7 @@ AirSideEconomizer.element_children = [
     ("EconomizerLowTemperatureLockout", EconomizerLowTemperatureLockout),
 ]
 
+
 # ControlSystemType.Analog
 class Analog(BSElement):
     """Analog control system."""
@@ -12261,6 +12637,7 @@ Analog.element_children = [
     ("CommunicationProtocol", Analog.CommunicationProtocol),
 ]
 
+
 # ControlSystemType.Digital
 class Digital(BSElement):
     """Digital (or Direct Digital Control [DDC]) system."""
@@ -12272,6 +12649,7 @@ class Digital(BSElement):
 Digital.element_children = [
     ("CommunicationProtocol", Digital.CommunicationProtocol),
 ]
+
 
 # ClimateZoneType.ASHRAE
 class ASHRAE(BSElement):
@@ -12322,6 +12700,7 @@ EnergyStar.element_children = [
     ("ClimateZone", EnergyStar.ClimateZone),
 ]
 
+
 # ClimateZoneType.CaliforniaTitle24
 class CaliforniaTitle24(BSElement):
     class ClimateZone(BSElement):
@@ -12352,6 +12731,7 @@ CaliforniaTitle24.element_children = [
     ("ClimateZone", CaliforniaTitle24.ClimateZone),
 ]
 
+
 # ClimateZoneType.IECC
 class IECC(BSElement):
     class ClimateZone(BSElement):
@@ -12375,6 +12755,7 @@ IECC.element_children = [
     ("ClimateZone", IECC.ClimateZone),
 ]
 
+
 # ClimateZoneType.BuildingAmerica
 class BuildingAmerica(BSElement):
     class ClimateZone(BSElement):
@@ -12396,6 +12777,7 @@ class BuildingAmerica(BSElement):
 BuildingAmerica.element_children = [
     ("ClimateZone", BuildingAmerica.ClimateZone),
 ]
+
 
 # ClimateZoneType.DOE
 class DOE(BSElement):
@@ -12419,6 +12801,7 @@ DOE.element_children = [
     ("ClimateZone", DOE.ClimateZone),
 ]
 
+
 # WindowID.WindowToWallRatio
 class WindowToWallRatio(BoundedDecimalZeroToOneWithSourceAttribute):
     """Ratio of total window area to total wall area. (0-1) (fraction)"""
@@ -12433,6 +12816,7 @@ ResourceUnitsType.element_union = [
     OtherUnitsType,
     ResourceUnitsBaseType,
 ]
+
 
 # DerivedModelType.Models.Model.DerivedModelInputs.ResponseVariable.ResponseVariableEndUse
 class ResponseVariableEndUse(EndUseType):
@@ -12453,6 +12837,7 @@ Guideline14Model.element_children = [
     ("Beta4", Beta4),
 ]
 
+
 # DerivedModelType.Models.Model.DerivedModelCoefficients
 class DerivedModelCoefficients(BSElement):
     pass
@@ -12462,6 +12847,7 @@ DerivedModelCoefficients.element_children = [
     ("Guideline14Model", Guideline14Model),
     ("TimeOfWeekTemperatureModel", TimeOfWeekTemperatureModel),
 ]
+
 
 # DerivedModelType.Models.Model.DerivedModelPerformance
 class DerivedModelPerformance(BSElement):
@@ -12478,6 +12864,7 @@ DerivedModelPerformance.element_children = [
     ("NMBE", NMBE),
 ]
 
+
 # DerivedModelType.Models.Model.SummaryInformation
 class SummaryInformation(BSElement):
     pass
@@ -12491,6 +12878,7 @@ SummaryInformation.element_children = [
     ("AggregateModeledEnergyUse", AggregateModeledEnergyUse),
 ]
 
+
 # PressureUnitsType
 class PressureUnitsType(BSElement):
     pass
@@ -12500,6 +12888,7 @@ PressureUnitsType.element_union = [
     OtherUnitsType,
     PressureUnitsBaseType,
 ]
+
 
 # PeakResourceUnitsType
 class PeakResourceUnitsType(BSElement):
@@ -12511,6 +12900,7 @@ PeakResourceUnitsType.element_union = [
     PeakResourceUnitsBaseType,
 ]
 
+
 # TemperatureUnitsType
 class TemperatureUnitsType(BSElement):
     pass
@@ -12520,6 +12910,7 @@ TemperatureUnitsType.element_union = [
     OtherUnitsType,
     TemperatureUnitsBaseType,
 ]
+
 
 # DimensionlessUnitsType
 class DimensionlessUnitsType(BSElement):
@@ -12531,6 +12922,7 @@ DimensionlessUnitsType.element_union = [
     DimensionlessUnitsBaseType,
 ]
 
+
 # AnnualSavingsByFuels.AnnualSavingsByFuel
 class AnnualSavingsByFuel(BSElement):
     pass
@@ -12540,7 +12932,11 @@ AnnualSavingsByFuel.element_children = [
     ("EnergyResource", EnergyResource),
     ("ResourceUnits", ResourceUnits),
     ("AnnualSavingsNativeUnits", AnnualSavingsNativeUnits),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
 ]
+
 
 # LinkedScheduleIDs
 class LinkedScheduleIDs(BSElement):
@@ -12550,6 +12946,7 @@ class LinkedScheduleIDs(BSElement):
 LinkedScheduleIDs.element_children = [
     ("LinkedScheduleID", LinkedScheduleID),
 ]
+
 
 # SpatialUnits.SpatialUnit
 class SpatialUnit(SpatialUnitTypeType):
@@ -12565,6 +12962,7 @@ UserDefinedFields.element_children = [
     ("UserDefinedField", UserDefinedField),
 ]
 
+
 # PremisesIdentifiers
 class PremisesIdentifiers(BSElement):
     """Identifier used in a specific program or dataset. There can be multiple instances of Identifier Types within a dataset."""
@@ -12573,6 +12971,7 @@ class PremisesIdentifiers(BSElement):
 PremisesIdentifiers.element_children = [
     ("PremisesIdentifier", PremisesIdentifier),
 ]
+
 
 # Address
 class Address(BSElement):
@@ -12589,6 +12988,7 @@ Address.element_children = [
     ("County", County),
     ("Country", Country),
 ]
+
 
 # ClimateZoneType
 class ClimateZoneType(BSElement):
@@ -12618,6 +13018,7 @@ ClimateZoneType.Other.element_children = [
     ("ClimateZone", ClimateZoneType.Other.ClimateZone),
 ]
 
+
 # FloorAreas
 class FloorAreas(BSElement):
     pass
@@ -12627,6 +13028,7 @@ FloorAreas.element_children = [
     ("FloorArea", FloorArea),
 ]
 
+
 # OccupancyLevels
 class OccupancyLevels(BSElement):
     pass
@@ -12635,6 +13037,7 @@ class OccupancyLevels(BSElement):
 OccupancyLevels.element_children = [
     ("OccupancyLevel", OccupancyLevel),
 ]
+
 
 # TypicalOccupantUsages
 class TypicalOccupantUsages(BSElement):
@@ -12653,6 +13056,7 @@ class SpatialUnits(BSElement):
 SpatialUnits.element_children = [
     ("SpatialUnit", SpatialUnit),
 ]
+
 
 # PortfolioManager
 class PortfolioManager(PortfolioManagerType):
@@ -12678,6 +13082,7 @@ Assessments.element_children = [
     ("Assessment", Assessment),
 ]
 
+
 # WindowID
 class WindowID(BSElement):
     """ID number of the window type associated with this side of the section."""
@@ -12692,6 +13097,7 @@ WindowID.element_children = [
     ("PercentOfWindowAreaShaded", PercentOfWindowAreaShaded),
 ]
 
+
 # BuildingType.Sections.Section.Sides.Side.WindowIDs
 class WindowIDs(BSElement):
     pass
@@ -12700,6 +13106,7 @@ class WindowIDs(BSElement):
 WindowIDs.element_children = [
     ("WindowID", WindowID),
 ]
+
 
 # BuildingType.Sections.Section.Sides.Side
 class Side(BSElement):
@@ -12725,6 +13132,7 @@ Side.element_children = [
     ("ThermalZoneIDs", ThermalZoneIDs),
 ]
 
+
 # BuildingType.Sections.Section.Sides
 class Sides(BSElement):
     """List of sides."""
@@ -12733,6 +13141,7 @@ class Sides(BSElement):
 Sides.element_children = [
     ("Side", Side),
 ]
+
 
 # BuildingType.Sections.Section.Ceilings.Ceiling.CeilingID
 class CeilingID(BSElement):
@@ -12749,6 +13158,7 @@ CeilingID.element_children = [
     ("SpaceIDs", SpaceIDs),
 ]
 
+
 # BuildingType.Sections.Section.Ceilings.Ceiling
 class Ceiling(BSElement):
     """A finished construction under the roof or adjacent floor."""
@@ -12758,6 +13168,7 @@ Ceiling.element_children = [
     ("CeilingID", CeilingID),
 ]
 
+
 # BuildingType.Sections.Section.Ceilings
 class Ceilings(BSElement):
     """List of ceilings."""
@@ -12766,6 +13177,7 @@ class Ceilings(BSElement):
 Ceilings.element_children = [
     ("Ceiling", Ceiling),
 ]
+
 
 # SpaceType
 class SpaceType(BSElement):
@@ -12794,6 +13206,7 @@ SpaceType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # ScheduleType.ScheduleDetails
 class ScheduleDetails(BSElement):
     pass
@@ -12802,6 +13215,7 @@ class ScheduleDetails(BSElement):
 ScheduleDetails.element_children = [
     ("ScheduleDetail", ScheduleDetail),
 ]
+
 
 # ContactType.ContactTelephoneNumbers
 class ContactTelephoneNumbers(BSElement):
@@ -12812,6 +13226,7 @@ ContactTelephoneNumbers.element_children = [
     ("ContactTelephoneNumber", ContactTelephoneNumber),
 ]
 
+
 # ContactType.ContactEmailAddresses
 class ContactEmailAddresses(BSElement):
     pass
@@ -12820,6 +13235,7 @@ class ContactEmailAddresses(BSElement):
 ContactEmailAddresses.element_children = [
     ("ContactEmailAddress", ContactEmailAddress),
 ]
+
 
 # TenantType.TenantTelephoneNumbers
 class TenantTelephoneNumbers(BSElement):
@@ -12830,6 +13246,7 @@ TenantTelephoneNumbers.element_children = [
     ("TenantTelephoneNumber", TenantTelephoneNumber),
 ]
 
+
 # TenantType.TenantEmailAddresses
 class TenantEmailAddresses(BSElement):
     pass
@@ -12838,6 +13255,7 @@ class TenantEmailAddresses(BSElement):
 TenantEmailAddresses.element_children = [
     ("TenantEmailAddress", TenantEmailAddress),
 ]
+
 
 # ScenarioType.WeatherType
 class WeatherType(BSElement):
@@ -12854,6 +13272,7 @@ WeatherType.element_children = [
     ("Other", WeatherType.Other),
 ]
 
+
 # AssetScore
 class AssetScore(BSElement):
     """A facility's Commercial Building Energy Asset Score Data."""
@@ -12863,6 +13282,7 @@ AssetScore.element_children = [
     ("WholeBuilding", WholeBuilding),
     ("UseTypes", UseTypes),
 ]
+
 
 # ScenarioType.ScenarioType.Target
 class Target(BSElement):
@@ -12889,6 +13309,7 @@ Target.element_children = [
     ("ENERGYSTARScore", ENERGYSTARScore),
 ]
 
+
 # AnnualSavingsByFuels
 class AnnualSavingsByFuels(BSElement):
     pass
@@ -12897,6 +13318,7 @@ class AnnualSavingsByFuels(BSElement):
 AnnualSavingsByFuels.element_children = [
     ("AnnualSavingsByFuel", AnnualSavingsByFuel),
 ]
+
 
 # AllResourceTotalType
 class AllResourceTotalType(BSElement):
@@ -12959,6 +13381,7 @@ AllResourceTotalType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # UtilityType.RateSchedules.RateSchedule.TypeOfRateStructure
 class TypeOfRateStructure(BSElement):
     """Basic type of rate structure used by the utility."""
@@ -12982,6 +13405,7 @@ TypeOfRateStructure.element_children = [
     ("Unknown", TypeOfRateStructure.Unknown),
 ]
 
+
 # UtilityType.RateSchedules.RateSchedule
 class RateSchedule(BSElement):
     """Rate structure characteristics."""
@@ -13004,6 +13428,7 @@ RateSchedule.element_children = [
     ("AverageMarginalCostRate", AverageMarginalCostRate),
 ]
 
+
 # ResourceUseType.Emissions
 class Emissions(BSElement):
     pass
@@ -13012,6 +13437,7 @@ class Emissions(BSElement):
 Emissions.element_children = [
     ("Emission", Emission),
 ]
+
 
 # TimeSeriesType
 class TimeSeriesType(BSElement):
@@ -13042,6 +13468,7 @@ TimeSeriesType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # MeasureType.TypeOfMeasure
 class TypeOfMeasure(BSElement):
     """Type of action associated with the measure."""
@@ -13054,6 +13481,7 @@ TypeOfMeasure.element_children = [
     ("Removals", Removals),
 ]
 
+
 # MeasureType.TechnologyCategories
 class TechnologyCategories(BSElement):
     pass
@@ -13062,6 +13490,7 @@ class TechnologyCategories(BSElement):
 TechnologyCategories.element_children = [
     ("TechnologyCategory", TechnologyCategory),
 ]
+
 
 # ReportType.AuditDates
 class AuditDates(BSElement):
@@ -13072,6 +13501,7 @@ AuditDates.element_children = [
     ("AuditDate", AuditDate),
 ]
 
+
 # ReportType.OtherEscalationRates
 class OtherEscalationRates(BSElement):
     pass
@@ -13081,6 +13511,7 @@ OtherEscalationRates.element_children = [
     ("OtherEscalationRate", OtherEscalationRate),
 ]
 
+
 # ReportType.Qualifications
 class Qualifications(BSElement):
     pass
@@ -13089,6 +13520,7 @@ class Qualifications(BSElement):
 Qualifications.element_children = [
     ("Qualification", Qualification),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource.HeatingSourceType
 class HeatingSourceType(BSElement):
@@ -13132,6 +13564,7 @@ HeatingSourceType.HeatPump.element_children = [
     ("LinkedHeatingPlantID", LinkedHeatingPlantID),
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType.DX
 class DX(BSElement):
     pass
@@ -13146,6 +13579,7 @@ DX.element_children = [
     ("RefrigerantChargeFactor", RefrigerantChargeFactor),
     ("ActiveDehumidification", ActiveDehumidification),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource.CoolingSourceType
 class CoolingSourceType(BSElement):
@@ -13169,6 +13603,7 @@ CoolingSourceType.element_children = [
     ("NoCooling", CoolingSourceType.NoCooling),
     ("Unknown", CoolingSourceType.Unknown),
 ]
+
 
 # HeatingPlantType.Boiler
 class Boiler(BSElement):
@@ -13219,6 +13654,7 @@ Boiler.element_children = [
     ("Quantity", Quantity),
 ]
 
+
 # ControlSystemType
 class ControlSystemType(BSElement):
     """Identifier for the type of control (e.g., Pneumatic, Analog, Digital)."""
@@ -13236,6 +13672,7 @@ ControlSystemType.element_children = [
 ControlSystemType.Other.element_children = [
     ("OtherCommunicationProtocolName", OtherCommunicationProtocolName),
 ]
+
 
 # CoolingPlantType.Chiller
 class Chiller(BSElement):
@@ -13271,6 +13708,7 @@ Chiller.element_children = [
     ("Quantity", Quantity),
 ]
 
+
 # CondenserPlantType.AirCooled
 class AirCooled(BSElement):
     pass
@@ -13286,6 +13724,7 @@ AirCooled.element_children = [
     ("Capacity", Capacity),
     ("CapacityUnits", CapacityUnits),
 ]
+
 
 # CondenserPlantType.WaterCooled
 class WaterCooled(BSElement):
@@ -13318,6 +13757,7 @@ WaterCooled.WaterSideEconomizer.element_children = [
     ),
 ]
 
+
 # CondenserPlantType.GroundSource
 class GroundSource(BSElement):
     class WaterSideEconomizer(BSElement):
@@ -13347,6 +13787,7 @@ GroundSource.WaterSideEconomizer.element_children = [
     ),
 ]
 
+
 # OtherHVACSystemType.OtherHVACType.MechanicalVentilation
 class MechanicalVentilation(BSElement):
     pass
@@ -13366,6 +13807,7 @@ MechanicalVentilation.element_children = [
     ("SystemPerformanceRatio", SystemPerformanceRatio),
     ("ThirdPartyCertification", ThirdPartyCertification),
 ]
+
 
 # LightingSystemType.LampType
 class LampType(BSElement):
@@ -13394,6 +13836,7 @@ LampType.element_children = [
     ("Unknown", LampType.Unknown),
 ]
 
+
 # LightingSystemType.DimmingCapability
 class DimmingCapability(BSElement):
     """If exists then the lighting system can be dimmed across a range of outputs."""
@@ -13404,6 +13847,7 @@ DimmingCapability.element_children = [
     ("MinimumDimmingPowerFraction", MinimumDimmingPowerFraction),
 ]
 
+
 # RefrigerationSystemType.RefrigerationSystemCategory
 class RefrigerationSystemCategory(BSElement):
     """Basic type of refrigeration equipment."""
@@ -13413,6 +13857,7 @@ RefrigerationSystemCategory.element_children = [
     ("CentralRefrigerationSystem", CentralRefrigerationSystem),
     ("RefrigerationUnit", RefrigerationUnit),
 ]
+
 
 # LaundrySystemType.LaundryType
 class LaundryType(BSElement):
@@ -13433,6 +13878,7 @@ LaundryType.element_children = [
     ("Unknown", LaundryType.Unknown),
 ]
 
+
 # WallSystemType.WallInsulations
 class WallInsulations(BSElement):
     """A description of the type of insulation and how it is applied."""
@@ -13441,6 +13887,7 @@ class WallInsulations(BSElement):
 WallInsulations.element_children = [
     ("WallInsulation", WallInsulation),
 ]
+
 
 # CeilingSystemType.CeilingInsulations
 class CeilingInsulations(BSElement):
@@ -13451,6 +13898,7 @@ CeilingInsulations.element_children = [
     ("CeilingInsulation", CeilingInsulation),
 ]
 
+
 # RoofSystemType.RoofInsulations
 class RoofInsulations(BSElement):
     pass
@@ -13459,6 +13907,7 @@ class RoofInsulations(BSElement):
 RoofInsulations.element_children = [
     ("RoofInsulation", RoofInsulation),
 ]
+
 
 # FenestrationSystemType.FenestrationType
 class FenestrationType(BSElement):
@@ -13475,6 +13924,7 @@ FenestrationType.element_children = [
     ("Other", FenestrationType.Other),
 ]
 
+
 # FoundationSystemType.GroundCouplings
 class GroundCouplings(BSElement):
     pass
@@ -13483,6 +13933,7 @@ class GroundCouplings(BSElement):
 GroundCouplings.element_children = [
     ("GroundCoupling", GroundCoupling),
 ]
+
 
 # OnsiteStorageTransmissionGenerationSystemType.EnergyConversionType
 class EnergyConversionType(BSElement):
@@ -13494,6 +13945,7 @@ EnergyConversionType.element_children = [
     ("Generation", Generation),
 ]
 
+
 # CalculationMethodType.Measured
 class Measured(BSElement):
     """The 'Measured' calculation method is used to represent a scenario in which actual measurements were used to derive data represented by this scenario type."""
@@ -13502,6 +13954,7 @@ class Measured(BSElement):
 Measured.element_children = [
     ("MeasuredEnergySource", MeasuredEnergySource),
 ]
+
 
 # LinkedFacilityID
 class LinkedFacilityID(BSElement):
@@ -13516,6 +13969,7 @@ LinkedFacilityID.element_children = [
     ("FloorAreas", FloorAreas),
 ]
 
+
 # LinkedSiteID
 class LinkedSiteID(BSElement):
     """ID numbers of the sites associated with the system."""
@@ -13528,6 +13982,7 @@ LinkedSiteID.element_children = [
     ("LinkedScheduleIDs", LinkedScheduleIDs),
     ("FloorAreas", FloorAreas),
 ]
+
 
 # LinkedBuildingID
 class LinkedBuildingID(BSElement):
@@ -13542,6 +13997,7 @@ LinkedBuildingID.element_children = [
     ("FloorAreas", FloorAreas),
 ]
 
+
 # LinkedSectionID
 class LinkedSectionID(BSElement):
     """ID numbers of the associated sections."""
@@ -13554,6 +14010,7 @@ LinkedSectionID.element_children = [
     ("LinkedScheduleIDs", LinkedScheduleIDs),
     ("FloorAreas", FloorAreas),
 ]
+
 
 # LinkedThermalZoneID
 class LinkedThermalZoneID(BSElement):
@@ -13568,6 +14025,7 @@ LinkedThermalZoneID.element_children = [
     ("FloorAreas", FloorAreas),
 ]
 
+
 # LinkedSpaceID
 class LinkedSpaceID(BSElement):
     """ID numbers of the associated spaces."""
@@ -13581,6 +14039,38 @@ LinkedSpaceID.element_children = [
     ("FloorAreas", FloorAreas),
 ]
 
+
+# LinkedAuditCycle.IndexYearOfAuditCycle
+class IndexYearOfAuditCycle(BSElement):
+    """Index number of the year when the audit is conducted from the start of the audit cycle. 1 corresponds to auc:AuditCycleStartYear."""
+    element_type = "xs:integer"
+
+
+# LinkedAuditCycles.LinkedAuditCycle
+class LinkedAuditCycle(BSElement):
+    """ID number of the associated Audit Cycle for the report"""
+    pass
+
+
+LinkedAuditCycle.element_attributes = [
+    "IDref",  # IDREF
+]
+LinkedAuditCycle.element_children = [
+    ("IndexYearOfAuditCycle", IndexYearOfAuditCycle),
+]
+
+
+# LinkedAuditCycles
+class LinkedAuditCycles(BSElement):
+    """ID numbers of the associated zones."""
+    pass
+
+
+LinkedAuditCycles.element_children = [
+    ("LinkedAuditCycle", LinkedAuditCycle),
+]
+
+
 # FanBasedDistributionTypeType
 class FanBasedDistributionTypeType(BSElement):
     pass
@@ -13589,6 +14079,7 @@ class FanBasedDistributionTypeType(BSElement):
 FanBasedDistributionTypeType.element_children = [
     ("FanCoil", FanCoil),
 ]
+
 
 # FanBasedType.FanBasedDistributionType
 class FanBasedDistributionType(FanBasedDistributionTypeType):
@@ -13613,6 +14104,7 @@ Occupancy.element_children = [
     ("OtherControlStrategyName", OtherControlStrategyName),
 ]
 
+
 # ControlGeneralType.Thermostat
 class Thermostat(BSElement):
     """Thermostat-based control technology."""
@@ -13626,6 +14118,7 @@ Thermostat.element_children = [
     ("ControlStrategy", Thermostat.ControlStrategy),
     ("OtherControlStrategyName", OtherControlStrategyName),
 ]
+
 
 # ControlLightingType.Daylighting
 class Daylighting(BSElement):
@@ -13646,6 +14139,7 @@ Daylighting.element_children = [
     ("OtherControlStrategyName", OtherControlStrategyName),
 ]
 
+
 # DerivedModelType.Models.Model.DerivedModelInputs.ResponseVariable.ResponseVariableUnits
 class ResponseVariableUnits(ResourceUnitsType):
     pass
@@ -13662,6 +14156,7 @@ ResponseVariable.element_children = [
     ("ResponseVariableEndUse", ResponseVariableEndUse),
 ]
 
+
 # UnitsType
 class UnitsType(BSElement):
     """Enumeration for different potential units."""
@@ -13673,6 +14168,7 @@ UnitsType.element_union = [
     PeakResourceUnitsType,
     TemperatureUnitsType,
 ]
+
 
 # WallSystemType
 class WallSystemType(BSElement):
@@ -13703,6 +14199,7 @@ WallSystemType.element_children = [
     ("YearInstalled", YearInstalled),
     ("UserDefinedFields", UserDefinedFields),
 ]
+
 
 # RoofSystemType
 class RoofSystemType(BSElement):
@@ -13738,6 +14235,7 @@ RoofSystemType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # CeilingSystemType
 class CeilingSystemType(BSElement):
     pass
@@ -13763,6 +14261,7 @@ CeilingSystemType.element_children = [
     ("YearInstalled", YearInstalled),
     ("UserDefinedFields", UserDefinedFields),
 ]
+
 
 # FenestrationSystemType
 class FenestrationSystemType(BSElement):
@@ -13792,7 +14291,9 @@ FenestrationSystemType.element_children = [
     ("Manufacturer", Manufacturer),
     ("ModelNumber", ModelNumber),
     ("UserDefinedFields", UserDefinedFields),
+    ("EquipmentID", EquipmentID),
 ]
+
 
 # ExteriorFloorSystemType
 class ExteriorFloorSystemType(BSElement):
@@ -13825,6 +14326,7 @@ ExteriorFloorSystemType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # FoundationSystemType
 class FoundationSystemType(BSElement):
     pass
@@ -13843,6 +14345,7 @@ FoundationSystemType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
 ]
+
 
 # ContactType
 class ContactType(BSElement):
@@ -13863,6 +14366,7 @@ ContactType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # TenantType
 class TenantType(BSElement):
     pass
@@ -13879,6 +14383,24 @@ TenantType.element_children = [
     ("ContactIDs", ContactIDs),
     ("UserDefinedFields", UserDefinedFields),
 ]
+
+
+# AuditCycleType
+class AuditCycleType(BSElement):
+    pass
+
+
+AuditCycleType.element_attributes = [
+    "ID",  # ID
+]
+AuditCycleType.element_children = [
+    ("AuditCycleName", AuditCycleName),
+    ("AuditCycleNotes", AuditCycleNotes),
+    ("AuditCycleStartYear", AuditCycleStartYear),
+    ("AuditCycleEndYear", AuditCycleEndYear),
+    ("UserDefinedFields", UserDefinedFields),
+]
+
 
 # ResourceUseType
 class ResourceUseType(BSElement):
@@ -13913,6 +14435,7 @@ ResourceUseType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # TimeSeries
 class TimeSeries(TimeSeriesType):
     pass
@@ -13931,6 +14454,7 @@ class RateSchedules(BSElement):
 RateSchedules.element_children = [
     ("RateSchedule", RateSchedule),
 ]
+
 
 # LinkedPremisesOrSystem
 class LinkedPremisesOrSystem(BSElement):
@@ -13983,6 +14507,7 @@ LinkedPremisesOrSystem.Space.element_children = [
     ("LinkedSpaceID", LinkedSpaceID),
 ]
 
+
 # CoolingPlantType
 class CoolingPlantType(BSElement):
     class OtherCombination(OtherCombination):
@@ -14008,6 +14533,7 @@ CoolingPlantType.element_children = [
     ("OtherCombination", OtherCombination),
     ("NoCooling", NoCooling),
     ("Unknown", Unknown),
+    ("CondenserType", CondenserType),
     ("CoolingPlantCondition", CoolingPlantCondition),
     ("Location", Location),
     ("YearInstalled", YearInstalled),
@@ -14019,6 +14545,7 @@ CoolingPlantType.element_children = [
 CoolingPlantType.ControlSystemTypes.element_children = [
     ("ControlSystemType", ControlSystemType),
 ]
+
 
 # CondenserPlantType
 class CondenserPlantType(BSElement):
@@ -14053,6 +14580,7 @@ CondenserPlantType.element_children = [
 CondenserPlantType.ControlSystemTypes.element_children = [
     ("ControlSystemType", ControlSystemType),
 ]
+
 
 # ControlGeneralType
 class ControlGeneralType(BSElement):
@@ -14113,6 +14641,7 @@ ControlGeneralType.OtherControlTechnology.element_children = [
     ("OtherControlStrategyName", OtherControlStrategyName),
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources.CoolingSource
 class CoolingSource(BSElement):
     class Controls(BSElement):
@@ -14148,10 +14677,12 @@ CoolingSource.element_children = [
     ("ModelNumber", ModelNumber),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 CoolingSource.Controls.element_children = [
     ("Control", CoolingSource.Controls.Control),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.CoolingSources
 class CoolingSources(BSElement):
@@ -14161,6 +14692,7 @@ class CoolingSources(BSElement):
 CoolingSources.element_children = [
     ("CoolingSource", CoolingSource),
 ]
+
 
 # OtherHVACSystemType.OtherHVACType
 class OtherHVACType(BSElement):
@@ -14183,6 +14715,7 @@ OtherHVACType.element_children = [
     ("OtherCombination", OtherHVACType.OtherCombination),
     ("Unknown", OtherHVACType.Unknown),
 ]
+
 
 # ControlLightingType
 class ControlLightingType(BSElement):
@@ -14252,6 +14785,7 @@ ControlLightingType.OtherControlTechnology.element_children = [
     ("OtherControlStrategyName", OtherControlStrategyName),
 ]
 
+
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType.Indirect.IndirectTankHeatingSource.Solar
 class Solar(BSElement):
     class Controls(BSElement):
@@ -14276,10 +14810,12 @@ Solar.element_children = [
     ("Manufacturer", Manufacturer),
     ("ModelNumber", ModelNumber),
     ("Location", Location),
+    ("EquipmentID", EquipmentID),
 ]
 Solar.Controls.element_children = [
     ("Control", Solar.Controls.Control),
 ]
+
 
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType.Indirect.IndirectTankHeatingSource
 class IndirectTankHeatingSource(BSElement):
@@ -14308,6 +14844,7 @@ IndirectTankHeatingSource.HeatPump.element_children = [
     ("Refrigerant", Refrigerant),
 ]
 
+
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType.Indirect
 class Indirect(BSElement):
     pass
@@ -14316,6 +14853,7 @@ class Indirect(BSElement):
 Indirect.element_children = [
     ("IndirectTankHeatingSource", IndirectTankHeatingSource),
 ]
+
 
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank.TankHeatingType
 class TankHeatingType(BSElement):
@@ -14335,6 +14873,7 @@ TankHeatingType.element_children = [
     ("Unknown", TankHeatingType.Unknown),
 ]
 
+
 # DomesticHotWaterSystemType.DomesticHotWaterType.StorageTank
 class StorageTank(BSElement):
     pass
@@ -14351,6 +14890,7 @@ StorageTank.element_children = [
     ("OffCycleHeatLossCoefficient", OffCycleHeatLossCoefficient),
 ]
 
+
 # CalculationMethodType
 class CalculationMethodType(BSElement):
     class Other(OtherType):
@@ -14364,6 +14904,7 @@ CalculationMethodType.element_children = [
     ("EngineeringCalculation", EngineeringCalculation),
     ("Other", CalculationMethodType.Other),
 ]
+
 
 # FanBasedType
 class FanBasedType(BSElement):
@@ -14413,6 +14954,7 @@ FanBasedType.element_children = [
     ("StaticPressureResetControl", StaticPressureResetControl),
 ]
 
+
 # DerivedModelType.Models.Model.DerivedModelInputs.ExplanatoryVariables.ExplanatoryVariable.ExplanatoryVariableUnits
 class ExplanatoryVariableUnits(UnitsType):
     pass
@@ -14428,6 +14970,7 @@ ExplanatoryVariable.element_children = [
     ("ExplanatoryVariableUnits", ExplanatoryVariableUnits),
 ]
 
+
 # DerivedModelType.Models.Model.DerivedModelInputs.ExplanatoryVariables
 class ExplanatoryVariables(BSElement):
     pass
@@ -14436,6 +14979,7 @@ class ExplanatoryVariables(BSElement):
 ExplanatoryVariables.element_children = [
     ("ExplanatoryVariable", ExplanatoryVariable),
 ]
+
 
 # DerivedModelType.Models.Model.DerivedModelInputs
 class DerivedModelInputs(BSElement):
@@ -14448,6 +14992,7 @@ DerivedModelInputs.element_children = [
     ("ExplanatoryVariables", ExplanatoryVariables),
 ]
 
+
 # DerivedModelType.Models.Model.ModeledTimeSeriesData
 class ModeledTimeSeriesData(BSElement):
     """This element stores the timeseries data generated when the model is applied to the training data, oftentimes referred to as yhat. The difference between each pairwise element in this series with its corresponding data from the Current Building Modeled Scenario would generate the residuals."""
@@ -14456,6 +15001,7 @@ class ModeledTimeSeriesData(BSElement):
 ModeledTimeSeriesData.element_children = [
     ("TimeSeries", TimeSeries),
 ]
+
 
 # DerivedModelType.Models.Model
 class Model(BSElement):
@@ -14475,6 +15021,7 @@ Model.element_children = [
     ("ModeledTimeSeriesData", ModeledTimeSeriesData),
 ]
 
+
 # DerivedModelType.SavingsSummaries.SavingsSummary.ComparisonPeriodModeledTimeSeriesData
 class ComparisonPeriodModeledTimeSeriesData(BSElement):
     """Applicable when the NormalizationMethod is Forecast or Backcast. Used to capture the modeled timeseries data associated with the comparison period."""
@@ -14483,6 +15030,7 @@ class ComparisonPeriodModeledTimeSeriesData(BSElement):
 ComparisonPeriodModeledTimeSeriesData.element_children = [
     ("TimeSeries", TimeSeries),
 ]
+
 
 # DerivedModelType.SavingsSummaries.SavingsSummary.StandardConditionsBaselinePeriodModeledTimeSeriesData
 class StandardConditionsBaselinePeriodModeledTimeSeriesData(BSElement):
@@ -14493,6 +15041,7 @@ StandardConditionsBaselinePeriodModeledTimeSeriesData.element_children = [
     ("TimeSeries", TimeSeries),
 ]
 
+
 # DerivedModelType.SavingsSummaries.SavingsSummary.StandardConditionsReportingPeriodModeledTimeSeriesData
 class StandardConditionsReportingPeriodModeledTimeSeriesData(BSElement):
     """Applicable when the NormalizationMethod is Standard Conditions. Used to capture the modeled timeseries data associated with the reporting period at standard conditions."""
@@ -14502,6 +15051,7 @@ StandardConditionsReportingPeriodModeledTimeSeriesData.element_children = [
     ("TimeSeries", TimeSeries),
 ]
 
+
 # DerivedModelType.SavingsSummaries.SavingsSummary.StandardConditionsTimeSeriesData
 class StandardConditionsTimeSeriesData(BSElement):
     """Applicable when the NormalizationMethod is Standard Conditions. Used to capture timeseries data inputs (i.e. temperature or weather data from a TMY3 file, etc.)."""
@@ -14510,6 +15060,7 @@ class StandardConditionsTimeSeriesData(BSElement):
 StandardConditionsTimeSeriesData.element_children = [
     ("TimeSeries", TimeSeries),
 ]
+
 
 # DerivedModelType.SavingsSummaries.SavingsSummary
 class SavingsSummary(BSElement):
@@ -14557,6 +15108,7 @@ SavingsSummary.element_children = [
     ("StandardConditionsTimeSeriesData", StandardConditionsTimeSeriesData),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.WallSystems.WallSystem
 class WallSystem(WallSystemType):
     pass
@@ -14570,6 +15122,7 @@ class WallSystems(BSElement):
 WallSystems.element_children = [
     ("WallSystem", WallSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.RoofSystems.RoofSystem
 class RoofSystem(RoofSystemType):
@@ -14585,6 +15138,7 @@ RoofSystems.element_children = [
     ("RoofSystem", RoofSystem),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.CeilingSystems.CeilingSystem
 class CeilingSystem(CeilingSystemType):
     pass
@@ -14598,6 +15152,7 @@ class CeilingSystems(BSElement):
 CeilingSystems.element_children = [
     ("CeilingSystem", CeilingSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.FenestrationSystems.FenestrationSystem
 class FenestrationSystem(FenestrationSystemType):
@@ -14627,6 +15182,7 @@ ExteriorFloorSystems.element_children = [
     ("ExteriorFloorSystem", ExteriorFloorSystem),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.FoundationSystems.FoundationSystem
 class FoundationSystem(FoundationSystemType):
     pass
@@ -14640,6 +15196,7 @@ class FoundationSystems(BSElement):
 FoundationSystems.element_children = [
     ("FoundationSystem", FoundationSystem),
 ]
+
 
 # LinkedPremises
 class LinkedPremises(BSElement):
@@ -14691,6 +15248,7 @@ LinkedPremises.Space.element_children = [
     ("LinkedSpaceID", LinkedSpaceID),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.WaterInfiltrationSystems.WaterInfiltrationSystem
 class WaterInfiltrationSystem(BSElement):
     """Description of the infiltration characteristics for an opaque surface, fenestration unit, a thermal zone."""
@@ -14710,6 +15268,7 @@ WaterInfiltrationSystem.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.WaterInfiltrationSystems
 class WaterInfiltrationSystems(BSElement):
     pass
@@ -14718,6 +15277,7 @@ class WaterInfiltrationSystems(BSElement):
 WaterInfiltrationSystems.element_children = [
     ("WaterInfiltrationSystem", WaterInfiltrationSystem),
 ]
+
 
 # ScheduleType
 class ScheduleType(BSElement):
@@ -14736,6 +15296,7 @@ ScheduleType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # BuildingSync.Facilities.Facility.Contacts.Contact
 class Contact(ContactType):
     pass
@@ -14749,6 +15310,7 @@ class Contacts(BSElement):
 Contacts.element_children = [
     ("Contact", Contact),
 ]
+
 
 # BuildingSync.Facilities.Facility.Tenants.Tenant
 class Tenant(TenantType):
@@ -14764,6 +15326,22 @@ Tenants.element_children = [
     ("Tenant", Tenant),
 ]
 
+
+# BuildingSync.Facilities.Facility.AuditCycles.AuditCycle
+class AuditCycle(AuditCycleType):
+    pass
+
+
+# BuildingSync.Facilities.Facility.AuditCycles
+class AuditCycles(BSElement):
+    pass
+
+
+AuditCycles.element_children = [
+    ("AuditCycle", AuditCycle),
+]
+
+
 # ThermalZoneType.Spaces
 class Spaces(BSElement):
     """Areas of a building that share systems characteristics such as occupancy, plug loads, or lighting."""
@@ -14776,6 +15354,7 @@ Spaces.element_children = [
     ("Space", Spaces.Space),
 ]
 
+
 # ScenarioType.TimeSeriesData
 class TimeSeriesData(BSElement):
     pass
@@ -14785,6 +15364,7 @@ TimeSeriesData.element_children = [
     ("TimeSeries", TimeSeries),
 ]
 
+
 # ScenarioType.AllResourceTotals
 class AllResourceTotals(BSElement):
     pass
@@ -14793,6 +15373,7 @@ class AllResourceTotals(BSElement):
 AllResourceTotals.element_children = [
     ("AllResourceTotal", AllResourceTotal),
 ]
+
 
 # CalculationMethod
 class CalculationMethod(CalculationMethodType):
@@ -14811,6 +15392,7 @@ CodeMinimum.element_children = [
     ("CalculationMethod", CalculationMethod),
 ]
 
+
 # ScenarioType.ScenarioType.Benchmark.BenchmarkType.StandardPractice
 class StandardPractice(BSElement):
     pass
@@ -14820,6 +15402,7 @@ StandardPractice.element_children = [
     ("StandardPracticeDescription", StandardPracticeDescription),
     ("CalculationMethod", CalculationMethod),
 ]
+
 
 # ScenarioType.ScenarioType.Benchmark.BenchmarkType
 class BenchmarkType(BSElement):
@@ -14847,6 +15430,7 @@ BenchmarkType.Other.element_children = [
     ("CalculationMethod", CalculationMethod),
 ]
 
+
 # ScenarioType.ScenarioType.Benchmark
 class Benchmark(BSElement):
     pass
@@ -14859,6 +15443,65 @@ Benchmark.element_children = [
     ("BenchmarkValue", BenchmarkValue),
     ("LinkedPremises", LinkedPremises),
 ]
+
+
+# MeasureType.MeasureSavingsAnalysis
+class MeasureSavingsAnalysis(BSElement):
+    """Energy and cost effectiveness data for an individual measure. In most cases, this data depends on the other measures included in the package, and should be entered at the package level under Scenarios."""
+
+
+MeasureSavingsAnalysis.element_children = [
+    ("MeasureRank", MeasureRank),
+    ("ReferenceCase", ReferenceCase),
+    ("CalculationMethod", CalculationMethod),
+    ("AnnualSavingsSiteEnergy", AnnualSavingsSiteEnergy),
+    ("AnnualSavingsSourceEnergy", AnnualSavingsSourceEnergy),
+    ("AnnualSavingsCost", AnnualSavingsCost),
+    ("AnnualSavingsByFuels", AnnualSavingsByFuels),
+    ("SummerPeakElectricityReduction", SummerPeakElectricityReduction),
+    ("WinterPeakElectricityReduction", WinterPeakElectricityReduction),
+    ("AnnualPeakElectricityReduction", AnnualPeakElectricityReduction),
+    ("AnnualDemandSavingsCost", AnnualDemandSavingsCost),
+    ("AnnualWaterSavings", AnnualWaterSavings),
+    ("AnnualWaterCostSavings", AnnualWaterCostSavings),
+    ("AnnualSavingsAverageGHGEmissions", AnnualSavingsAverageGHGEmissions),
+    ("AnnualSavingsMarginalGHGEmissions", AnnualSavingsMarginalGHGEmissions),
+    ("AnnualSavingsGHGEmissionIntensity", AnnualSavingsGHGEmissionIntensity),
+    ("OMCostAnnualSavings", OMCostAnnualSavings),
+    ("OtherCostAnnualSavings", OtherCostAnnualSavings),
+    ("EquipmentDisposalAndSalvageCosts", EquipmentDisposalAndSalvageCosts),
+    ("FundingFromIncentives", FundingFromIncentives),
+    ("FundingFromTaxCredits", FundingFromTaxCredits),
+    ("NPVofTaxImplications", NPVofTaxImplications),
+    ("CostEffectivenessScreeningMethod", CostEffectivenessScreeningMethod),
+    ("SimplePayback", SimplePayback),
+    ("NetPresentValue", NetPresentValue),
+    ("InternalRateOfReturn", InternalRateOfReturn),
+]
+
+
+# ScenarioType.ScenarioType.PackageOfMeasures.MeasureIDs.MeasureID
+class MeasureID(BSElement):
+    """ID number of measure."""
+
+
+MeasureID.element_attributes = [
+    "IDref",  # IDREF
+]
+MeasureID.element_children = [
+    ("MeasureSavingsAnalysis", MeasureSavingsAnalysis),
+]
+
+
+# ScenarioType.ScenarioType.PackageOfMeasures.MeasureIDs
+class MeasureIDs(BSElement):
+    """ID numbers for measures included in the package. Multiple items may be selected."""
+
+
+MeasureIDs.element_children = [
+    ("MeasureID", MeasureID),
+]
+
 
 # ScenarioType.ScenarioType.PackageOfMeasures
 class PackageOfMeasures(BSElement):
@@ -14910,6 +15553,7 @@ PackageOfMeasures.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # ScenarioType.ResourceUses.ResourceUse
 class ResourceUse(ResourceUseType):
     pass
@@ -14938,36 +15582,6 @@ UtilityType.element_children = [
     ("SourceSiteRatio", SourceSiteRatio),
 ]
 
-# MeasureType.MeasureSavingsAnalysis
-class MeasureSavingsAnalysis(BSElement):
-    """Energy and cost effectiveness data for an individual measure. In most cases, this data depends on the other measures included in the package, and should be entered at the package level under Scenarios."""
-
-
-MeasureSavingsAnalysis.element_children = [
-    ("MeasureRank", MeasureRank),
-    ("ReferenceCase", ReferenceCase),
-    ("CalculationMethod", CalculationMethod),
-    ("AnnualSavingsSiteEnergy", AnnualSavingsSiteEnergy),
-    ("AnnualSavingsSourceEnergy", AnnualSavingsSourceEnergy),
-    ("AnnualSavingsCost", AnnualSavingsCost),
-    ("AnnualSavingsByFuels", AnnualSavingsByFuels),
-    ("SummerPeakElectricityReduction", SummerPeakElectricityReduction),
-    ("WinterPeakElectricityReduction", WinterPeakElectricityReduction),
-    ("AnnualPeakElectricityReduction", AnnualPeakElectricityReduction),
-    ("AnnualDemandSavingsCost", AnnualDemandSavingsCost),
-    ("AnnualWaterSavings", AnnualWaterSavings),
-    ("AnnualWaterCostSavings", AnnualWaterCostSavings),
-    ("OMCostAnnualSavings", OMCostAnnualSavings),
-    ("OtherCostAnnualSavings", OtherCostAnnualSavings),
-    ("EquipmentDisposalAndSalvageCosts", EquipmentDisposalAndSalvageCosts),
-    ("FundingFromIncentives", FundingFromIncentives),
-    ("FundingFromTaxCredits", FundingFromTaxCredits),
-    ("NPVofTaxImplications", NPVofTaxImplications),
-    ("CostEffectivenessScreeningMethod", CostEffectivenessScreeningMethod),
-    ("SimplePayback", SimplePayback),
-    ("NetPresentValue", NetPresentValue),
-    ("InternalRateOfReturn", InternalRateOfReturn),
-]
 
 # ReportType.Utilities.Utility
 class Utility(UtilityType):
@@ -15012,6 +15626,7 @@ HeatingPlantType.ControlSystemTypes.element_children = [
     ("ControlSystemType", ControlSystemType),
 ]
 
+
 # HVACSystemType.Plants.CoolingPlants.CoolingPlant
 class CoolingPlant(CoolingPlantType):
     """Type of cooling plant. Zonal cooling is recorded in a separate data field. Use of fans or blowers by themselves without chilled air or water is not included in this definition of cooling. Stand-alone dehumidifiers are also not included."""
@@ -15026,6 +15641,7 @@ CoolingPlants.element_children = [
     ("CoolingPlant", CoolingPlant),
 ]
 
+
 # HVACSystemType.Plants.CondenserPlants.CondenserPlant
 class CondenserPlant(CondenserPlantType):
     """Type of condenser used for refrigerant-based systems."""
@@ -15039,6 +15655,7 @@ class CondenserPlants(BSElement):
 CondenserPlants.element_children = [
     ("CondenserPlant", CondenserPlant),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources.HeatingSource
 class HeatingSource(BSElement):
@@ -15083,10 +15700,12 @@ HeatingSource.element_children = [
     ("ModelNumber", ModelNumber),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 HeatingSource.Controls.element_children = [
     ("Control", HeatingSource.Controls.Control),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.HeatingSources
 class HeatingSources(BSElement):
@@ -15096,6 +15715,7 @@ class HeatingSources(BSElement):
 HeatingSources.element_children = [
     ("HeatingSource", HeatingSource),
 ]
+
 
 # FanBased
 class FanBased(FanBasedType):
@@ -15115,6 +15735,7 @@ CentralAirDistribution.element_children = [
     ("ReheatPlantID", ReheatPlantID),
     ("FanBased", FanBased),
 ]
+
 
 # DuctSystemType
 class DuctSystemType(BSElement):
@@ -15152,7 +15773,9 @@ DuctSystemType.element_children = [
     ("CoolingDeliveryID", CoolingDeliveryID),
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
+    ("EquipmentID", EquipmentID),
 ]
+
 
 # DomesticHotWaterSystemType.DomesticHotWaterType
 class DomesticHotWaterType(BSElement):
@@ -15172,6 +15795,7 @@ DomesticHotWaterType.element_children = [
     ("Other", DomesticHotWaterType.Other),
     ("Unknown", DomesticHotWaterType.Unknown),
 ]
+
 
 # PoolType.Heated
 class Heated(BSElement):
@@ -15194,6 +15818,7 @@ Heated.Controls.element_children = [
     ("Control", Heated.Controls.Control),
 ]
 
+
 # DerivedModelType.Models
 class Models(BSElement):
     pass
@@ -15203,6 +15828,7 @@ Models.element_children = [
     ("Model", Model),
 ]
 
+
 # DerivedModelType.SavingsSummaries
 class SavingsSummaries(BSElement):
     pass
@@ -15211,6 +15837,7 @@ class SavingsSummaries(BSElement):
 SavingsSummaries.element_children = [
     ("SavingsSummary", SavingsSummary),
 ]
+
 
 # DomesticHotWaterSystemType
 class DomesticHotWaterSystemType(BSElement):
@@ -15249,10 +15876,12 @@ DomesticHotWaterSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 DomesticHotWaterSystemType.Controls.element_children = [
     ("Control", DomesticHotWaterSystemType.Controls.Control),
 ]
+
 
 # CookingSystemType
 class CookingSystemType(BSElement):
@@ -15280,7 +15909,9 @@ CookingSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
+
 
 # RefrigerationSystemType
 class RefrigerationSystemType(BSElement):
@@ -15303,7 +15934,9 @@ RefrigerationSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
+
 
 # DishwasherSystemType
 class DishwasherSystemType(BSElement):
@@ -15336,10 +15969,12 @@ DishwasherSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 DishwasherSystemType.Controls.element_children = [
     ("Control", DishwasherSystemType.Controls.Control),
 ]
+
 
 # LaundrySystemType
 class LaundrySystemType(BSElement):
@@ -15369,10 +16004,12 @@ LaundrySystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 LaundrySystemType.Controls.element_children = [
     ("Control", LaundrySystemType.Controls.Control),
 ]
+
 
 # PumpSystemType
 class PumpSystemType(BSElement):
@@ -15408,10 +16045,12 @@ PumpSystemType.element_children = [
     ("Location", Location),
     ("LinkedSystemIDs", LinkedSystemIDs),
     ("UserDefinedFields", UserDefinedFields),
+    ("EquipmentID", EquipmentID),
 ]
 PumpSystemType.Controls.element_children = [
     ("Control", PumpSystemType.Controls.Control),
 ]
+
 
 # FanSystemType
 class FanSystemType(BSElement):
@@ -15455,10 +16094,12 @@ FanSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("LinkedSystemIDs", LinkedSystemIDs),
     ("UserDefinedFields", UserDefinedFields),
+    ("EquipmentID", EquipmentID),
 ]
 FanSystemType.Controls.element_children = [
     ("Control", FanSystemType.Controls.Control),
 ]
+
 
 # MotorSystemType
 class MotorSystemType(BSElement):
@@ -15495,10 +16136,12 @@ MotorSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("LinkedSystemIDs", LinkedSystemIDs),
     ("UserDefinedFields", UserDefinedFields),
+    ("EquipmentID", EquipmentID),
 ]
 MotorSystemType.Controls.element_children = [
     ("Control", MotorSystemType.Controls.Control),
 ]
+
 
 # HeatRecoverySystemType
 class HeatRecoverySystemType(BSElement):
@@ -15528,10 +16171,12 @@ HeatRecoverySystemType.element_children = [
     ("ModelNumber", ModelNumber),
     ("Location", Location),
     ("UserDefinedFields", UserDefinedFields),
+    ("EquipmentID", EquipmentID),
 ]
 HeatRecoverySystemType.Controls.element_children = [
     ("Control", HeatRecoverySystemType.Controls.Control),
 ]
+
 
 # CriticalITSystemType
 class CriticalITSystemType(BSElement):
@@ -15562,10 +16207,12 @@ CriticalITSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 CriticalITSystemType.Controls.element_children = [
     ("Control", CriticalITSystemType.Controls.Control),
 ]
+
 
 # PlugElectricLoadType
 class PlugElectricLoadType(BSElement):
@@ -15598,10 +16245,12 @@ PlugElectricLoadType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 PlugElectricLoadType.Controls.element_children = [
     ("Control", PlugElectricLoadType.Controls.Control),
 ]
+
 
 # ProcessGasElectricLoadType
 class ProcessGasElectricLoadType(BSElement):
@@ -15635,10 +16284,12 @@ ProcessGasElectricLoadType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 ProcessGasElectricLoadType.Controls.element_children = [
     ("Control", ProcessGasElectricLoadType.Controls.Control),
 ]
+
 
 # ConveyanceSystemType
 class ConveyanceSystemType(BSElement):
@@ -15683,10 +16334,12 @@ ConveyanceSystemType.element_children = [
     ("Location", Location),
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
+    ("EquipmentID", EquipmentID),
 ]
 ConveyanceSystemType.Controls.element_children = [
     ("Control", ConveyanceSystemType.Controls.Control),
 ]
+
 
 # OnsiteStorageTransmissionGenerationSystemType
 class OnsiteStorageTransmissionGenerationSystemType(BSElement):
@@ -15718,10 +16371,12 @@ OnsiteStorageTransmissionGenerationSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 OnsiteStorageTransmissionGenerationSystemType.Controls.element_children = [
     ("Control", OnsiteStorageTransmissionGenerationSystemType.Controls.Control),
 ]
+
 
 # PoolType
 class PoolType(BSElement):
@@ -15751,7 +16406,9 @@ PoolType.element_children = [
     ("Location", Location),
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
+    ("EquipmentID", EquipmentID),
 ]
+
 
 # WaterUseType
 class WaterUseType(BSElement):
@@ -15813,10 +16470,12 @@ WaterUseType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 WaterUseType.Controls.element_children = [
     ("Control", WaterUseType.Controls.Control),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.AirInfiltrationSystems.AirInfiltrationSystem
 class AirInfiltrationSystem(BSElement):
@@ -15839,6 +16498,7 @@ AirInfiltrationSystem.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.AirInfiltrationSystems
 class AirInfiltrationSystems(BSElement):
     pass
@@ -15847,6 +16507,7 @@ class AirInfiltrationSystems(BSElement):
 AirInfiltrationSystems.element_children = [
     ("AirInfiltrationSystem", AirInfiltrationSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Schedules.Schedule
 class Schedule(ScheduleType):
@@ -15861,6 +16522,7 @@ class Schedules(BSElement):
 Schedules.element_children = [
     ("Schedule", Schedule),
 ]
+
 
 # MeasureType
 class MeasureType(BSElement):
@@ -15895,6 +16557,7 @@ MeasureType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # ThermalZoneType
 class ThermalZoneType(BSElement):
     pass
@@ -15917,6 +16580,7 @@ ThermalZoneType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # ScenarioType.ResourceUses
 class ResourceUses(BSElement):
     pass
@@ -15925,6 +16589,7 @@ class ResourceUses(BSElement):
 ResourceUses.element_children = [
     ("ResourceUse", ResourceUse),
 ]
+
 
 # ScenarioType.ScenarioType.CurrentBuilding
 class CurrentBuilding(BSElement):
@@ -15936,6 +16601,7 @@ CurrentBuilding.element_children = [
     ("AssetScore", AssetScore),
     ("ENERGYSTARScore", ENERGYSTARScore),
 ]
+
 
 # DerivedModelType
 class DerivedModelType(BSElement):
@@ -15953,6 +16619,7 @@ DerivedModelType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # ReportType.Utilities
 class Utilities(BSElement):
     pass
@@ -15961,6 +16628,7 @@ class Utilities(BSElement):
 Utilities.element_children = [
     ("Utility", Utility),
 ]
+
 
 # HVACSystemType.Plants.HeatingPlants.HeatingPlant
 class HeatingPlant(HeatingPlantType):
@@ -15975,6 +16643,7 @@ class HeatingPlants(BSElement):
 HeatingPlants.element_children = [
     ("HeatingPlant", HeatingPlant),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.Deliveries.Delivery.DeliveryType.ZoneEquipment
 class ZoneEquipment(BSElement):
@@ -15991,6 +16660,7 @@ ZoneEquipment.element_children = [
     ("Other", ZoneEquipment.Other),
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems.Deliveries.Delivery.DeliveryType
 class DeliveryType(BSElement):
     class Other(OtherType):
@@ -16002,6 +16672,7 @@ DeliveryType.element_children = [
     ("CentralAirDistribution", CentralAirDistribution),
     ("Other", DeliveryType.Other),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.Deliveries.Delivery
 class Delivery(BSElement):
@@ -16031,10 +16702,12 @@ Delivery.element_children = [
     ("ThirdPartyCertification", ThirdPartyCertification),
     ("Quantity", Quantity),
     ("DeliveryCondition", DeliveryCondition),
+    ("EquipmentID", EquipmentID),
 ]
 Delivery.Controls.element_children = [
     ("Control", Delivery.Controls.Control),
 ]
+
 
 # HVACSystemType.HeatingAndCoolingSystems.Deliveries
 class Deliveries(BSElement):
@@ -16044,6 +16717,7 @@ class Deliveries(BSElement):
 Deliveries.element_children = [
     ("Delivery", Delivery),
 ]
+
 
 # HVACSystemType.DuctSystems.DuctSystem
 class DuctSystem(DuctSystemType):
@@ -16078,10 +16752,12 @@ OtherHVACSystemType.element_children = [
     ("LinkedDeliveryIDs", LinkedDeliveryIDs),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 OtherHVACSystemType.Controls.element_children = [
     ("Control", OtherHVACSystemType.Controls.Control),
 ]
+
 
 # LightingSystemType
 class LightingSystemType(BSElement):
@@ -16129,10 +16805,44 @@ LightingSystemType.element_children = [
     ("LinkedPremises", LinkedPremises),
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
+    ("EquipmentID", EquipmentID),
 ]
 LightingSystemType.Controls.element_children = [
     ("Control", LightingSystemType.Controls.Control),
 ]
+
+
+# PrincipalLightingSystemType
+class PrincipalLightingSystemType(BSElement):
+    """Principal Lighting type for a building or a section. The usage of this element is not recommended except for Audit Template use cases."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Incandescent",
+        "Linear Fluorescent",
+        "Compact Fluorescent",
+        "Halogen",
+        "High Intensity Discharge",
+        "Solid State Lighting",
+        "LED",
+        "Mercury Vapor",
+        "Metal Halide",
+        "Sodium Vapor High Pressure",
+        "T5",
+        "T5HO",
+        "T8",
+        "Super T8",
+        "T12",
+        "T12HO",
+        "Induction",
+        "Neon",
+        "Plasma",
+        "Photoluminescent",
+        "Self Luminous",
+        "Other",
+        "Unknown"
+    ]
+
 
 # BuildingSync.Facilities.Facility.Systems.DomesticHotWaterSystems.DomesticHotWaterSystem
 class DomesticHotWaterSystem(DomesticHotWaterSystemType):
@@ -16148,6 +16858,7 @@ DomesticHotWaterSystems.element_children = [
     ("DomesticHotWaterSystem", DomesticHotWaterSystem),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.CookingSystems.CookingSystem
 class CookingSystem(CookingSystemType):
     pass
@@ -16161,6 +16872,7 @@ class CookingSystems(BSElement):
 CookingSystems.element_children = [
     ("CookingSystem", CookingSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.RefrigerationSystems.RefrigerationSystem
 class RefrigerationSystem(RefrigerationSystemType):
@@ -16176,6 +16888,7 @@ RefrigerationSystems.element_children = [
     ("RefrigerationSystem", RefrigerationSystem),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.DishwasherSystems.DishwasherSystem
 class DishwasherSystem(DishwasherSystemType):
     pass
@@ -16189,6 +16902,7 @@ class DishwasherSystems(BSElement):
 DishwasherSystems.element_children = [
     ("DishwasherSystem", DishwasherSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.LaundrySystems.LaundrySystem
 class LaundrySystem(LaundrySystemType):
@@ -16204,6 +16918,7 @@ LaundrySystems.element_children = [
     ("LaundrySystem", LaundrySystem),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.PumpSystems.PumpSystem
 class PumpSystem(PumpSystemType):
     pass
@@ -16217,6 +16932,7 @@ class PumpSystems(BSElement):
 PumpSystems.element_children = [
     ("PumpSystem", PumpSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.FanSystems.FanSystem
 class FanSystem(FanSystemType):
@@ -16232,6 +16948,7 @@ FanSystems.element_children = [
     ("FanSystem", FanSystem),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.MotorSystems.MotorSystem
 class MotorSystem(MotorSystemType):
     pass
@@ -16245,6 +16962,7 @@ class MotorSystems(BSElement):
 MotorSystems.element_children = [
     ("MotorSystem", MotorSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.HeatRecoverySystems.HeatRecoverySystem
 class HeatRecoverySystem(HeatRecoverySystemType):
@@ -16260,6 +16978,7 @@ HeatRecoverySystems.element_children = [
     ("HeatRecoverySystem", HeatRecoverySystem),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.CriticalITSystems.CriticalITSystem
 class CriticalITSystem(CriticalITSystemType):
     pass
@@ -16273,6 +16992,7 @@ class CriticalITSystems(BSElement):
 CriticalITSystems.element_children = [
     ("CriticalITSystem", CriticalITSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.PlugLoads.PlugLoad
 class PlugLoad(PlugElectricLoadType):
@@ -16288,6 +17008,7 @@ PlugLoads.element_children = [
     ("PlugLoad", PlugLoad),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.ProcessLoads.ProcessLoad
 class ProcessLoad(ProcessGasElectricLoadType):
     pass
@@ -16301,6 +17022,7 @@ class ProcessLoads(BSElement):
 ProcessLoads.element_children = [
     ("ProcessLoad", ProcessLoad),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems.ConveyanceSystems.ConveyanceSystem
 class ConveyanceSystem(ConveyanceSystemType):
@@ -16326,6 +17048,7 @@ OnsiteStorageTransmissionGenerationSystems.element_children = [
     ),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.Pools.Pool
 class Pool(PoolType):
     pass
@@ -16340,6 +17063,7 @@ Pools.element_children = [
     ("Pool", Pool),
 ]
 
+
 # BuildingSync.Facilities.Facility.Systems.WaterUses
 class WaterUses(BSElement):
     class WaterUse(WaterUseType):
@@ -16349,6 +17073,7 @@ class WaterUses(BSElement):
 WaterUses.element_children = [
     ("WaterUse", WaterUses.WaterUse),
 ]
+
 
 # BuildingSync.Facilities.Facility.Measures.Measure
 class Measure(MeasureType):
@@ -16364,6 +17089,7 @@ Measures.element_children = [
     ("Measure", Measure),
 ]
 
+
 # BuildingType.Sections.Section.ThermalZones
 class ThermalZones(BSElement):
     """Section of a building that share thermal control characteristics. May be one or many."""
@@ -16375,6 +17101,7 @@ class ThermalZones(BSElement):
 ThermalZones.element_children = [
     ("ThermalZone", ThermalZones.ThermalZone),
 ]
+
 
 # ScenarioType.ScenarioType.DerivedModel
 class DerivedModel(DerivedModelType):
@@ -16392,6 +17119,7 @@ Plants.element_children = [
     ("CondenserPlants", CondenserPlants),
 ]
 
+
 # HVACSystemType.HeatingAndCoolingSystems
 class HeatingAndCoolingSystems(BSElement):
     pass
@@ -16404,6 +17132,7 @@ HeatingAndCoolingSystems.element_children = [
     ("Deliveries", Deliveries),
 ]
 
+
 # HVACSystemType.DuctSystems
 class DuctSystems(BSElement):
     pass
@@ -16412,6 +17141,7 @@ class DuctSystems(BSElement):
 DuctSystems.element_children = [
     ("DuctSystem", DuctSystem),
 ]
+
 
 # HVACSystemType.OtherHVACSystems.OtherHVACSystem
 class OtherHVACSystem(OtherHVACSystemType):
@@ -16431,6 +17161,7 @@ class LightingSystems(BSElement):
 LightingSystems.element_children = [
     ("LightingSystem", LightingSystem),
 ]
+
 
 # BuildingType.Sections
 class Sections(BSElement):
@@ -16456,6 +17187,8 @@ Sections.Section.element_children = [
     ("SpatialUnits", SpatialUnits),
     ("PrimaryContactID", PrimaryContactID),
     ("TenantIDs", TenantIDs),
+    ("PrincipalHVACSystemType", PrincipalHVACSystemType),
+    ("PrincipalLightingSystemType", PrincipalLightingSystemType),
     ("YearOfConstruction", YearOfConstruction),
     ("FootprintShape", FootprintShape),
     ("NumberOfSides", NumberOfSides),
@@ -16481,6 +17214,7 @@ Sections.Section.element_children = [
     ("ThermalZones", ThermalZones),
 ]
 
+
 # HVACSystemType.OtherHVACSystems
 class OtherHVACSystems(BSElement):
     pass
@@ -16489,6 +17223,7 @@ class OtherHVACSystems(BSElement):
 OtherHVACSystems.element_children = [
     ("OtherHVACSystem", OtherHVACSystem),
 ]
+
 
 # HVACSystemType
 class HVACSystemType(BSElement):
@@ -16514,6 +17249,7 @@ HVACSystemType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
     ("Quantity", Quantity),
 ]
+
 
 # BuildingType
 class BuildingType(BSElement):
@@ -16593,6 +17329,8 @@ BuildingType.element_children = [
     ("VerticalSurroundings", VerticalSurroundings),
     ("Assessments", Assessments),
     ("YearOfConstruction", YearOfConstruction),
+    ("PrincipalHVACSystemType", PrincipalHVACSystemType),
+    ("PrincipalLightingSystemType", PrincipalLightingSystemType),
     ("YearOccupied", YearOccupied),
     ("YearOfLastEnergyAudit", YearOfLastEnergyAudit),
     ("RetrocommissioningDate", RetrocommissioningDate),
@@ -16605,6 +17343,7 @@ BuildingType.element_children = [
     ("Sections", Sections),
     ("UserDefinedFields", UserDefinedFields),
 ]
+
 
 # ScenarioType
 class ScenarioType(BSElement):
@@ -16663,6 +17402,7 @@ ScenarioType.ScenarioType.element_children = [
     ("Other", ScenarioType.Other),
 ]
 
+
 # ReportType.Scenarios.Scenario
 class Scenario(ScenarioType):
     pass
@@ -16681,6 +17421,7 @@ class HVACSystems(BSElement):
 HVACSystems.element_children = [
     ("HVACSystem", HVACSystem),
 ]
+
 
 # BuildingSync.Facilities.Facility.Systems
 class Systems(BSElement):
@@ -16723,6 +17464,7 @@ Systems.ConveyanceSystems.element_children = [
     ("ConveyanceSystem", ConveyanceSystem),
 ]
 
+
 # ReportType.Scenarios
 class Scenarios(BSElement):
     pass
@@ -16731,6 +17473,70 @@ class Scenarios(BSElement):
 Scenarios.element_children = [
     ("Scenario", Scenario),
 ]
+
+
+# BasicOnsiteAudit
+class BasicOnsiteAudit(BSElement):
+    """Ignition mechanism in gas heating equipment. Either pilot light or an intermittent ignition device (IID)."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "ASHRAE Level 1 Audit",
+        "Industrial Assessment Center (IAC) Audit",
+        "Utility Incentive Program Audit",
+    ]
+
+
+# DetailedOnsiteAudit
+class DetailedOnsiteAudit(BSElement):
+    """Ignition mechanism in gas heating equipment. Either pilot light or an intermittent ignition device (IID)."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "ASHRAE Level 2 Audit",
+        "ASHRAE Level 3 Audit",
+        "Deep Energy Retrofit Audit",
+        "Preliminary Assessment (PA)",
+        "Investment Grade Audit (IGA)",
+        "Retrocommissioning Audit"
+    ]
+
+
+# BasicRemoteAudit
+class BasicRemoteAudit(BSElement):
+    """Ignition mechanism in gas heating equipment. Either pilot light or an intermittent ignition device (IID)."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Rapid/Automated Audit",
+        "Continuous Monitoring of Building Systems",
+        "Portfolio Screening Analysis",
+    ]
+
+
+# DetailedRemoteAudit
+class DetailedRemoteAudit(BSElement):
+    """Ignition mechanism in gas heating equipment. Either pilot light or an intermittent ignition device (IID)."""
+
+    element_type = "xs:string"
+    element_enumerations = [
+        "Desk Audit",
+        "Remote Controls Audit",
+    ]
+
+
+# ReportType.FacilityEvaluationAuditDefinition
+class FacilityEvaluationAuditDefinition(BSElement):
+    pass
+
+
+FacilityEvaluationAuditDefinition.element_children = [
+    ("BasicOnsiteAudit", BasicOnsiteAudit),
+    ("DetailedOnsiteAudit", DetailedOnsiteAudit),
+    ("BasicRemoteAudit", BasicRemoteAudit),
+    ("DetailedRemoteAudit", DetailedRemoteAudit),
+]
+
 
 # ReportType
 class ReportType(BSElement):
@@ -16746,6 +17552,7 @@ ReportType.element_children = [
     ("AuditFilingStatus", AuditFilingStatus),
     ("EarlyCompliance", EarlyCompliance),
     ("ASHRAEAuditLevel", ASHRAEAuditLevel),
+    ("FacilityEvaluationAuditDefinition", FacilityEvaluationAuditDefinition),
     ("RetrocommissioningAudit", RetrocommissioningAudit),
     ("AuditCost", AuditCost),
     ("DiscountFactor", DiscountFactor),
@@ -16760,8 +17567,10 @@ ReportType.element_children = [
     ("Utilities", Utilities),
     ("AuditorContactID", AuditorContactID),
     ("LinkedPremisesOrSystem", LinkedPremisesOrSystem),
+    ("LinkedAuditCycles", LinkedAuditCycles),
     ("UserDefinedFields", UserDefinedFields),
 ]
+
 
 # SiteType.Buildings
 class Buildings(BSElement):
@@ -16772,6 +17581,7 @@ class Buildings(BSElement):
 Buildings.element_children = [
     ("Building", Buildings.Building),
 ]
+
 
 # SiteType
 class SiteType(BSElement):
@@ -16820,6 +17630,7 @@ SiteType.element_children = [
     ("UserDefinedFields", UserDefinedFields),
 ]
 
+
 # BuildingSync.Facilities.Facility.Reports.Report
 class Report(ReportType):
     pass
@@ -16834,6 +17645,7 @@ Reports.element_children = [
     ("Report", Report),
 ]
 
+
 # BuildingSync.Facilities.Facility.Sites
 class Sites(BSElement):
     class Site(SiteType):
@@ -16843,6 +17655,7 @@ class Sites(BSElement):
 Sites.element_children = [
     ("Site", Sites.Site),
 ]
+
 
 # BuildingSync.Facilities
 class Facilities(BSElement):
@@ -16864,8 +17677,10 @@ Facilities.Facility.element_children = [
     ("Reports", Reports),
     ("Contacts", Contacts),
     ("Tenants", Tenants),
+    ("AuditCycles", AuditCycles),
     ("UserDefinedFields", UserDefinedFields),
 ]
+
 
 # BuildingSync
 class BuildingSync(BSElement):
