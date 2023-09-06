@@ -3901,6 +3901,7 @@ class Manufacturer(BSElement):
 
     element_type = "xs:string"
 
+
 # EquipmentID
 class EquipmentID(BSElement):
     """Identifier for the equipment."""
@@ -4671,12 +4672,7 @@ class CondenserType(BSElement):
     """condenser associated with the cooling plant. The usage of this element is not recommended except for Audit Template use cases. User is recommended to use CondenserPlant instead."""
 
     element_type = "xs:string"
-    element_enumerations = [
-        "Air Cooled",
-        "Water Cooled",
-        "Other",
-        "Unknown"
-    ]
+    element_enumerations = ["Air Cooled", "Water Cooled", "Other", "Unknown"]
 
 
 # CondenserWaterTemperature
@@ -14043,12 +14039,14 @@ LinkedSpaceID.element_children = [
 # LinkedAuditCycle.IndexYearOfAuditCycle
 class IndexYearOfAuditCycle(BSElement):
     """Index number of the year when the audit is conducted from the start of the audit cycle. 1 corresponds to auc:AuditCycleStartYear."""
+
     element_type = "xs:integer"
 
 
 # LinkedAuditCycles.LinkedAuditCycle
 class LinkedAuditCycle(BSElement):
     """ID number of the associated Audit Cycle for the report"""
+
     pass
 
 
@@ -14063,6 +14061,7 @@ LinkedAuditCycle.element_children = [
 # LinkedAuditCycles
 class LinkedAuditCycles(BSElement):
     """ID numbers of the associated zones."""
+
     pass
 
 
@@ -16840,7 +16839,7 @@ class PrincipalLightingSystemType(BSElement):
         "Photoluminescent",
         "Self Luminous",
         "Other",
-        "Unknown"
+        "Unknown",
     ]
 
 
@@ -17498,7 +17497,7 @@ class DetailedOnsiteAudit(BSElement):
         "Deep Energy Retrofit Audit",
         "Preliminary Assessment (PA)",
         "Investment Grade Audit (IGA)",
-        "Retrocommissioning Audit"
+        "Retrocommissioning Audit",
     ]
 
 
