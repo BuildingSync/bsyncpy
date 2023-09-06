@@ -3099,7 +3099,7 @@ class DiscountFactor(BSElement):
     element_type = "xs:decimal"
 
 
-# ReportType.DiscountFactor
+# ReportType.DiscountRate
 class DiscountRate(BSElement):
     """Discount rate applied to calculate present values of future cash flows. (0-100) (%)"""
 

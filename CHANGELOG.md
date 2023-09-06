@@ -2,6 +2,15 @@
 
 * Generated for BuildingSync 2.5 (which is currently develop-v2)
     * Added GHG emission metrics
+    * Changed UsefulLife type
+    * Added DiscountRate
+    * Added EquipmentID
+    * Updated MeasureSavingsAnalysis
+    * Added and sorted enumerations in AuditorQualificationType
+    * Added PrincipalHVACSystemType, PrincipalLightingSystemType, CondenserType
+    * Added FacilityEvaluationAuditDefinition
+    * Added AuditCycle
+    * Added WCM categories and measures
 
 # Version 0.2.0
 
