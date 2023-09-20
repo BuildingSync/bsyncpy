@@ -2,7 +2,7 @@
 
 ![Build Status](https://github.com/BuildingSync/bsyncpy/actions/workflows/ci.yml/badge.svg?branch=develop)
 
-Current BuildingSync version: `2.4.0`.
+Current BuildingSync version: `2.5.0`.
 
 ## Installing
 
@@ -12,9 +12,9 @@ Current BuildingSync version: `2.4.0`.
 - `poetry install`
 - `poetry run pre-commit install`
 - Download, copy, or curl a BuildingSync schema into `bsyncpy/bsyncpy`
-  - `curl -L -o bsyncpy/BuildingSync-2.4.xsd https://github.com/BuildingSync/schema/releases/download/v2.4.0/BuildingSync.xsd`
+  - `curl -L -o bsyncpy/BuildingSync-2.5.xsd https://github.com/BuildingSync/schema/releases/download/v2.5.0/BuildingSync.xsd`
 - cd into `bsyncpy/bsyncpy`
-- Run generator: `poetry run python bsyncpy_generator.py BuildingSync-2.4.xsd`
+- Run generator: `poetry run python bsyncpy_generator.py BuildingSync-2.5.xsd`
 - Go back to the root `bsyncpy` and run tests: `poetry run pytest`
 - Make sure formatting is good: `poetry run pre-commit run --all-files`
 - On commit, pre-commit should run again
@@ -28,7 +28,7 @@ from bsyncpy import bsync
 
 # Create a root and set the version attribute
 root = bsync.BuildingSync()
-root.set('version', '2.4.0')
+root.set('version', '2.5.0')
 
 # Valid element attributes can also be passed in as kwargs
 f = bsync.Facilities(bsync.Facilities.Facility(ID='Facility-1'))
@@ -45,7 +45,7 @@ with open('output.xml', 'wb+') as f:
 *Output*
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<BuildingSync version="2.4.0">
+<BuildingSync version="2.5.0">
   <Facilities>
     <Facility ID="Facility-1"/>
   </Facilities>
