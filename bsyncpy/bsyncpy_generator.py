@@ -281,7 +281,7 @@ def do_simpleType(element) -> BSElement:
                 if union_type.startswith("auc:"):
                     bs_element.element_union.append(union_type[4:])
                 else:
-                    raise RuntimError(f"union out of scope: {union_type}")
+                    raise RuntimeError(f"union out of scope: {union_type}")
 
         else:
             raise RuntimeError(f"unrecognized child of a simple type: {child}")

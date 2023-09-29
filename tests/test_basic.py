@@ -11,7 +11,7 @@ def test_writefile():
 
     # Create a root and set the version attribute
     root = bsync.BuildingSync()
-    root.set("version", "2.4.0")
+    root.set("version", "2.5.0")
 
     # Valid element attributes can also be passed in as kwargs
     f = bsync.Facilities(bsync.Facilities.Facility(ID="Facility-42"))
@@ -32,7 +32,7 @@ def test_writefile():
     assert os.path.exists("output.xml") == True
 
     with open("output.xml") as f:
-        if '<BuildingSync version="2.4.0">' in f.read():
+        if '<BuildingSync version="2.5.0">' in f.read():
             assert True
         else:
             assert False, "Could not find correct BuildingSync version in file"
