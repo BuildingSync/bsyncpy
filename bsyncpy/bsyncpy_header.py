@@ -60,6 +60,15 @@ class BSElement:
                     raise TypeError("integer expected")
                 self._text = f"{arg_value:d}"
 
+            elif self.element_type == "xs:positiveInteger":
+                if len(args) > 1:
+                    raise RuntimeError("too many arguments")
+                if not isinstance(arg_value, int):
+                    raise TypeError("integer expected")
+                if arg_value < 1:
+                    raise ValueError("positive integer expected")
+                self._text = f"{arg_value:d}"
+
             elif self.element_type == "xs:nonNegativeInteger":
                 if len(args) > 1:
                     raise RuntimeError("too many arguments")

@@ -2,7 +2,9 @@
 
 ![Build Status](https://github.com/BuildingSync/bsyncpy/actions/workflows/ci.yml/badge.svg?branch=develop)
 
-Current BuildingSync version: `2.5.0`.
+Current BuildingSync version: `2.7.0`.
+
+Supported Python versions: 3.11, 3.12, 3.13, and 3.14.
 
 ## Installing
 
@@ -12,9 +14,9 @@ Current BuildingSync version: `2.5.0`.
 - `poetry install`
 - `poetry run pre-commit install`
 - Download, copy, or curl a BuildingSync schema into `bsyncpy/bsyncpy`
-  - `curl -L -o bsyncpy/BuildingSync-2.5.xsd https://github.com/BuildingSync/schema/releases/download/v2.5.0/BuildingSync.xsd`
+  - `curl -L -o bsyncpy/BuildingSync-2.7.xsd https://github.com/BuildingSync/schema/releases/download/v2.7.0/BuildingSync.xsd`
 - cd into `bsyncpy/bsyncpy`
-- Run generator: `poetry run python bsyncpy_generator.py BuildingSync-2.5.xsd`
+- Run generator: `poetry run python bsyncpy_generator.py BuildingSync-2.7.xsd`
 - Go back to the root `bsyncpy` and run tests: `poetry run pytest`
 - Make sure formatting is good: `poetry run pre-commit run --all-files`
 - On commit, pre-commit should run again
@@ -28,7 +30,7 @@ from bsyncpy import bsync
 
 # Create a root and set the version attribute
 root = bsync.BuildingSync()
-root.set('version', '2.5.0')
+root.set('version', '2.7.0')
 
 # Valid element attributes can also be passed in as kwargs
 f = bsync.Facilities(bsync.Facilities.Facility(ID='Facility-1'))
@@ -45,7 +47,7 @@ with open('output.xml', 'wb+') as f:
 *Output*
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<BuildingSync version="2.5.0">
+<BuildingSync version="2.7.0">
   <Facilities>
     <Facility ID="Facility-1"/>
   </Facilities>
@@ -54,7 +56,7 @@ with open('output.xml', 'wb+') as f:
 
 ## Comprehensive example
 
-Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/github/BuildingSync/schema/blob/develop-v2/docs/notebooks/bsync_examples/Small-Office-Level-1.ipynb).
+Check out the example Jupyter notebooks in the BuildingSync schema repository: [docs/notebooks](https://github.com/BuildingSync/schema/tree/develop-v2/docs/notebooks).
 
 
 # Updating Version
@@ -62,7 +64,7 @@ Check out our example Jupyter Notebook [here](https://nbviewer.jupyter.org/githu
 * See the notes above on downloading and generating the new bsync.py file. 
 * Bump version in `pyproject.toml` file
 * Add/update CHANGELOG entry
-* Update (or add) generator test in `.github/ci.yml`
+* Add the new release to the generator matrix in `.github/workflows/ci.yml`
 * Update this README with the latest version of testing.
 
 ## Releasing New Version

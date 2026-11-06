@@ -1,18 +1,30 @@
-[tool.poetry]
+[project]
 name = "bsyncpy"
-version = "0.3.0"
+version = "0.4.0"
 description = "Tools to autogenerate a Python SDK for BuildingSync given an XSD"
-authors = ["Joel Bender <joel@carrickbender.com>", "Nicholas Long <nicholas.lee.long@gmail.com>", "Jie Xiong <jiexiong9119@gmail.com>"]
+authors = [
+    { name = "Joel Bender", email = "joel@carrickbender.com" },
+    { name = "Nicholas Long", email = "nicholas.lee.long@gmail.com" },
+    { name = "Jie Xiong", email = "jiexiong9119@gmail.com" },
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["lxml>=5.0"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
 
-[tool.poetry.dependencies]
-python = "^3.7.9"
-lxml = "^4.6.3"
+[project.urls]
+Repository = "https://github.com/BuildingSync/bsyncpy"
 
-[tool.poetry.dev-dependencies]
-pytest = "^6.2.5"
-pre-commit = "^2.15.0"
-virtualenv = "20.09.0"
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0"
+pre-commit = "^4.0"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=2.0.0"]
 build-backend = "poetry.core.masonry.api"
