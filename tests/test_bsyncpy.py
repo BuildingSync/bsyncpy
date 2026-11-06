@@ -1,6 +1,7 @@
 import datetime
 from bsyncpy import bsync
 from lxml import etree
+import pytest
 
 
 def test_initialize():
@@ -11,6 +12,19 @@ def test_initialize():
 def test_int_datatype():
     b = bsync.Sections.Section(bsync.Story(1))
     assert b is not None
+
+
+def test_positive_integer_datatype():
+    linked_audit_cycle = bsync.LinkedAuditCycle(bsync.IndexYearOfAuditCycle(1))
+    assert etree.tostring(linked_audit_cycle.toxml()) == (
+        b"<LinkedAuditCycle><IndexYearOfAuditCycle>1</IndexYearOfAuditCycle>"
+        b"</LinkedAuditCycle>"
+    )
+
+    with pytest.raises(ValueError, match="positive integer expected"):
+        bsync.IndexYearOfAuditCycle(0)
+    with pytest.raises(ValueError, match="positive integer expected"):
+        bsync.IndexYearOfAuditCycle(-1)
 
 
 def test_weather_data_station_id():

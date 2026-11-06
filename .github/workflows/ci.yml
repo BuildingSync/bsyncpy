@@ -1,66 +1,66 @@
 name: CI
 
-on: [push]
+on:
+  pull_request:
+  push:
 
 jobs:
   tests:
-    name: Run tests with Poetry
+    name: Tests (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        python-version: [3.7, 3.8]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
-
-      - name: Install poetry
-        uses: abatilo/actions-poetry@v2.0.0
-
-      - name: Install poetry (and update) and pre-commit
-        run: |
-          poetry update
-          poetry run pre-commit install
-
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+      - name: Install dependencies
+        run: poetry install --no-interaction
       - name: Run pre-commit
         run: poetry run pre-commit run --all-files
-
       - name: Run tests
         run: poetry run pytest
 
-      - name: Run Generator (BuildingSync 2.3)
-        run: |
-          curl -L -o bsyncpy/BuildingSync-2.3.xsd https://github.com/BuildingSync/schema/releases/download/v2.3.0/BuildingSync.xsd
-          cd bsyncpy
-          poetry run python bsyncpy_generator.py BuildingSync-2.3.xsd
+  generator:
+    name: Generator (BuildingSync ${{ matrix.schema.name }})
+    runs-on: ubuntu-latest
 
-      - name: Run Generator (BuildingSync 2.4)
-        run: |
-          curl -L -o bsyncpy/BuildingSync-2.4.xsd https://github.com/BuildingSync/schema/releases/download/v2.4.0/BuildingSync.xsd
-          cd bsyncpy
-          poetry run python bsyncpy_generator.py BuildingSync-2.4.xsd
+    strategy:
+      fail-fast: false
+      matrix:
+        schema:
+          - { name: "2.3", url: "https://github.com/BuildingSync/schema/releases/download/v2.3.0/BuildingSync.xsd" }
+          - { name: "2.4", url: "https://github.com/BuildingSync/schema/releases/download/v2.4.0/BuildingSync.xsd" }
+          - { name: "2.5", url: "https://github.com/BuildingSync/schema/releases/download/v2.5.0/BuildingSync.xsd" }
+          - { name: "2.6", url: "https://github.com/BuildingSync/schema/releases/download/v2.6.0/BuildingSync.xsd" }
+          - { name: "2.7", url: "https://github.com/BuildingSync/schema/releases/download/v2.7.0/BuildingSync.xsd" }
+          - { name: "develop-v2", url: "https://raw.githubusercontent.com/BuildingSync/schema/develop-v2/BuildingSync.xsd" }
+          - { name: "develop-v3", url: "https://raw.githubusercontent.com/BuildingSync/schema/develop-v3/BuildingSync.xsd" }
 
-      - name: Run Generator (BuildingSync 2.5)
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+      - name: Install dependencies
+        run: poetry install --no-interaction
+      - name: Run generator
+        working-directory: bsyncpy
         run: |
-          curl -L -o bsyncpy/BuildingSync-2.5.xsd https://github.com/BuildingSync/schema/releases/download/v2.5.0/BuildingSync.xsd
-          cd bsyncpy
-          poetry run python bsyncpy_generator.py BuildingSync-2.5.xsd
-
-      - name: Run Generator (BuildingSync Develop V2)
-        run: |
-          curl -L -o bsyncpy/BuildingSync-develop-v2.xsd https://raw.githubusercontent.com/BuildingSync/schema/develop-v2/BuildingSync.xsd
-          cd bsyncpy
-          poetry run python bsyncpy_generator.py BuildingSync-develop-v2.xsd
-
-      - name: Run Generator (BuildingSync Develop V3)
-        run: |
-          curl -L -o bsyncpy/BuildingSync-develop-v3.xsd https://raw.githubusercontent.com/BuildingSync/schema/develop-v3/BuildingSync.xsd
-          cd bsyncpy
-          poetry run python bsyncpy_generator.py BuildingSync-develop-v3.xsd
+          curl -fsSL -o BuildingSync-test.xsd "${{ matrix.schema.url }}"
+          poetry run python bsyncpy_generator.py BuildingSync-test.xsd
+          poetry run python -c "import bsync; bsync.BuildingSync()"
